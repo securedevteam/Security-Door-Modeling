@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SecurityDoors.WPFApp
+namespace SecurityDoors.ModellingApp
 {
 	/// <summary>
 	/// Логика взаимодействия для App.xaml

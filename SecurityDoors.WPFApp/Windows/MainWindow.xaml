@@ -5,26 +5,41 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityDoors.ModellingApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="523.966">
+        Title="MainWindow" Height="450" Width="523"
+        MinHeight="450"
+        MinWidth="523">
     <Grid Margin="0,0,2,11">
-        <ComboBox HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Выбор двери" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox HorizontalAlignment="Left" Margin="135,41,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Выбор действия" HorizontalAlignment="Left" Margin="135,10,0,0" VerticalAlignment="Top" Width="120"/>
-        <DataGrid HorizontalAlignment="Left" Height="100" Margin="10,69,0,0" VerticalAlignment="Top" Width="489">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="15*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Выбор двери" Grid.Row="0" Grid.Column="0" Style="{StaticResource label_main}"/>
+        <Label Content="Выбор действия" Grid.Row="0" Grid.Column="1" Style="{StaticResource label_main}"/>
+        <Label Content="Повторять" Grid.Row="0" Grid.Column="2" Style="{StaticResource label_main}"/>
+        <Label Content="Паузка (сек)" Grid.Row="0" Grid.Column="3" Style="{StaticResource label_main}"/>
+        <ComboBox Grid.Row="1" Grid.Column="0" Style="{StaticResource comboBox_main}"/>
+        <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource comboBox_main}"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Style="{StaticResource textBox_main}"/>
+        <TextBox Grid.Row="1" Grid.Column="3" Style="{StaticResource textBox_main}"/>
+        <DataGrid Grid.Row="2" Grid.ColumnSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Сотрудник"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Карта"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Использовать для моделлирования"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Label Content="Повторять" HorizontalAlignment="Left" Margin="260,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="260,41,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="75"/>
-        <Button Content="Запуск" HorizontalAlignment="Left" Margin="420,41,0,0" VerticalAlignment="Top" Width="79" Height="23"/>
-        <TextBox HorizontalAlignment="Left" Height="193" Margin="10,205,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="489"/>
-        <Label Content="Лог" HorizontalAlignment="Left" Margin="10,174,0,0" VerticalAlignment="Top" Width="120"/>
-        <Label Content="Пауза (сек.)" HorizontalAlignment="Left" Margin="340,10,0,0" VerticalAlignment="Top" Width="75"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="340,41,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="75"/>
-
+        <Button Content="Запуск" Grid.Row="1" Grid.Column="4" Style="{StaticResource button_main}"/>
+        <Label Content="Лог" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource label_main}"/>
+        <TextBox Grid.Row="4" Grid.ColumnSpan="5"/>
     </Grid>
 </Window>

@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SecurityDoors.WPFApp
+namespace SecurityDoors.ModellingApp
 {
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml

@@ -64,6 +64,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Controllers\CacheController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\SocketController.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Windows\MainWindow.xaml.cs">

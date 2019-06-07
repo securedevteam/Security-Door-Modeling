@@ -31,6 +31,7 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// </summary>
 		/// <param name="messages">Список сообщений</param>
 		/// <returns>Список ответов</returns>
+		[Obsolete]
 		public List<string> SendMessages (List<string> messages)
 		{
 			if (messages == null)

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SecurityDoors.WPFApp.Windows"
         mc:Ignorable="d"
-        Title="ConfigureNetwork" Height="200" Width="250"
+        Title="ConfigureNetwork" Height="200" Width="310"
         WindowStartupLocation="CenterScreen"
-        MinHeight="200" MinWidth="250">
+        MinHeight="200" MinWidth="310">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -27,8 +27,8 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="проверить подключение" Grid.Column="0" Style="{StaticResource button_main}"/>
-            <Button Content="сохранить" Grid.Column="1" Style="{StaticResource button_main}"/>
+            <Button Name="btn_checkNetwork" Content="проверить подключение" Grid.Column="0" Click="Btn_checkNetwork_Click" Style="{StaticResource button_main}"/>
+            <Button x:Name="btn_save" Content="сохранить" Grid.Column="1" Click="Btn_save_Click" Style="{StaticResource button_main}"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System.Net;
+using System.Text.RegularExpressions;
+using System.Windows;
 
 namespace SecurityDoors.WPFApp.Windows
 {
@@ -10,6 +12,7 @@ namespace SecurityDoors.WPFApp.Windows
         public ConfigureNetwork()
         {
             InitializeComponent();
+            
         }
 
         private void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
@@ -17,9 +20,23 @@ namespace SecurityDoors.WPFApp.Windows
 
         }
 
+        private IPAddress ip;
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
+            if (IPAddress.TryParse(field_host.Text, out ip))
+            {
 
+            }
+        }
+
+        private void Field_host_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9.-]+").IsMatch(e.Text);
+        }
+
+        private void Field_host_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            
         }
     }
 }

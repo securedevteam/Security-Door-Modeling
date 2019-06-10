@@ -27,13 +27,13 @@
         <Label Content="Выбор двери" Grid.Row="0" Grid.Column="0" Style="{StaticResource label_main}"/>
         <Label Content="Выбор действия" Grid.Row="0" Grid.Column="1" Style="{StaticResource label_main}"/>
         <Label Content="Повторять" Grid.Row="0" Grid.Column="2" Style="{StaticResource label_main}"/>
-        <Label Content="Паузка (сек)" Grid.Row="0" Grid.Column="3" Style="{StaticResource label_main}"/>
+        <Label Content="Паузка (сек)" Grid.Row="0" Grid.Column="3"  Style="{StaticResource label_main}"/>
         <ComboBox Name="comboBox_door" Grid.Row="1" Grid.Column="0"  Style="{StaticResource comboBox_main}"/>
         <ComboBox Name="comboBox_action" Grid.Row="1" Grid.Column="1"  Style="{StaticResource comboBox_main}">
             
         </ComboBox>
-        <TextBox x:Name="textBox_repeat" Grid.Row="1" Grid.Column="2"  Style="{StaticResource textBox_main}"/>
-        <TextBox x:Name="textBox_pause" Grid.Row="1" Grid.Column="3" Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="textBox_repeat" Grid.Row="1" Grid.Column="2" PreviewTextInput="TextBox_repeat_PreviewTextInput"  Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="textBox_pause" Grid.Row="1" Grid.Column="3" PreviewTextInput="TextBox_pause_PreviewTextInput" Style="{StaticResource textBox_main}"/>
         <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5" Style="{StaticResource dataGrid_main}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Сотрудник"/>

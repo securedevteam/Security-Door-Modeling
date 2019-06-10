@@ -1,5 +1,6 @@
 ﻿using SecurityDoors.WPFApp.Models;
 using SecurityDoors.WPFApp.Windows;
+using System.Text.RegularExpressions;
 using System.Windows;
 
 namespace SecurityDoors.ModellingApp
@@ -27,6 +28,16 @@ namespace SecurityDoors.ModellingApp
         {
             ConfigureNetwork configureNetwork = new ConfigureNetwork();
             configureNetwork.ShowDialog();
+        }
+
+        private void TextBox_pause_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
+        }
+
+        private void TextBox_repeat_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }

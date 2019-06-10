@@ -20,8 +20,8 @@
         </Grid.ColumnDefinitions>
         <Label Content="хост" Grid.Row="0" Grid.Column="0" Style="{StaticResource label_main}"/>
         <Label Content="порт" Grid.Row="1" Grid.Column="0" Style="{StaticResource label_main}"/>
-        <TextBox Grid.Row="0" Grid.Column="1" Height="30" Style="{StaticResource textBox_main}"/>
-        <TextBox Grid.Row="1" Grid.Column="1" Height="30" Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="field_host" Grid.Row="0" Grid.Column="1" Height="30" PreviewTextInput="Field_host_PreviewTextInput" TextChanged="Field_host_TextChanged" MaxLength="15"  Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="field_port" Grid.Row="1" Grid.Column="1" Height="30" Style="{StaticResource textBox_main}"/>
         <Grid  Grid.Row="2" Grid.ColumnSpan="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>

@@ -37,6 +37,22 @@ namespace SecurityDoors.WPFApp.Windows
         }
 
         /// <summary>
+        /// обработчик для checkBox localhost
+        /// </summary>
+        private void CheckBox_isLocalhost_Click(object sender, RoutedEventArgs e)
+        {
+            if ((bool)checkBox_isLocalhost.IsChecked)
+            {
+                field_host.IsEnabled = false;
+                field_host.Text = "127.0.0.1";
+            }
+            else
+            {
+                field_host.IsEnabled = true;
+            }
+        }
+
+        /// <summary>
         /// метод проверяет валидность введенных настроек сети
         /// </summary>
         /// <param name="host">ip адресс сервера</param>

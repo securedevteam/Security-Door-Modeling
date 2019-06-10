@@ -1,5 +1,4 @@
-﻿using SecurityDoors.WPFApp.Models;
-using SecurityDoors.WPFApp.Windows;
+﻿using SecurityDoors.WPFApp.Windows;
 using System.Text.RegularExpressions;
 using System.Windows;
 

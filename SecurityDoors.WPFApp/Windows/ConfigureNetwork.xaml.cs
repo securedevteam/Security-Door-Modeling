@@ -20,23 +20,36 @@ namespace SecurityDoors.WPFApp.Windows
 
         }
 
-        private IPAddress ip;
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
-            if (IPAddress.TryParse(field_host.Text, out ip))
+            if (IsAddressValid(field_host.Text))
             {
-
+                
+            } else
+            {
+                MessageBox.Show("введен некоректный ip адресс");
+                return;
             }
+            if (int.Parse(field_port.Text) > 65_535){
+                MessageBox.Show("введен некоректный порт.");
+                return;
+            }
+        }
+
+        public bool IsAddressValid(string addrString)
+        {
+            IPAddress address;
+            return IPAddress.TryParse(addrString, out address);
         }
 
         private void Field_host_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            e.Handled = new Regex("[^0-9.-]+").IsMatch(e.Text);
+            e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
         }
 
-        private void Field_host_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        private void Field_port_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            
+            e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
         }
     }
 }

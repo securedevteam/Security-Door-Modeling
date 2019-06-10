@@ -11,12 +11,15 @@ namespace SecurityDoors.WPFApp.Windows
     {
         public ConfigureNetwork()
         {
-            InitializeComponent();
-            
+            InitializeComponent();            
+        }
+        private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
+        {
+
         }
 
         /// <summary>
-        /// обработчик кнопки проверить соединение
+        /// обработчик кнопки "проверить соединение"
         /// </summary>
         private void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
         {
@@ -24,7 +27,7 @@ namespace SecurityDoors.WPFApp.Windows
         }
 
         /// <summary>
-        /// обработчик для кнопки сохранить
+        /// обработчик для кнопки "сохранить"
         /// </summary>
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
@@ -50,6 +53,18 @@ namespace SecurityDoors.WPFApp.Windows
             {
                 field_host.IsEnabled = true;
             }
+        }
+
+        /// <summary>
+        /// обработчик кнопки "очистить"
+        /// очищает текст в полях <c>field_host</c> и <c>field_port</c>
+        /// </summary>
+        private void Btn_clear_Click(object sender, RoutedEventArgs e)
+        {
+            field_host.Text = "";
+            field_port.Text = "";
+            field_host.IsEnabled = true;
+            checkBox_isLocalhost.IsChecked = false;
         }
 
         /// <summary>
@@ -100,7 +115,7 @@ namespace SecurityDoors.WPFApp.Windows
         /// </summary>
         private void Field_port_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
-            e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
+            e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
     }
 }

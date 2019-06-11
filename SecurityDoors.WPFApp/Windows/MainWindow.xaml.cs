@@ -33,8 +33,10 @@ namespace SecurityDoors.ModellingApp
 
         private List<Action> actionList = new List<Action>();
         /// <summary>
-        /// Добавить текущии действия для моделирования
-        /// </summary>
+        /// обработчик кнопки "добавить действие"
+        /// происходит добавление всех сотрудников отмеченых для проведения тестирования 
+        /// в <c>Action</c> и добавление этого действия в колекцию действий
+        /// </summary
         private void Btn_addInTest_Click(object sender, RoutedEventArgs e)
         {
 

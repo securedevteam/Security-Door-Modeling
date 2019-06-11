@@ -90,6 +90,8 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\SocketController.cs" />
     <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Windows\Action.cs" />
     <Compile Include="Windows\ConfigureNetwork.xaml.cs">
       <DependentUpon>ConfigureNetwork.xaml</DependentUpon>
     </Compile>

@@ -1,4 +1,5 @@
 ﻿using SecurityDoors.WPFApp.Windows;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -28,6 +29,15 @@ namespace SecurityDoors.ModellingApp
         {
             ConfigureNetwork configureNetwork = new ConfigureNetwork();
             configureNetwork.ShowDialog();
+        }
+
+        private List<Action> actionList = new List<Action>();
+        /// <summary>
+        /// Добавить текущии действия для моделирования
+        /// </summary>
+        private void Btn_addInTest_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         private void Window_Initialized(object sender, System.EventArgs e)

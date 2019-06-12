@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:SecurityDoors.WPFApp.Windows"
         mc:Ignorable="d"
         Name="configureNetwork"
-        Title="настройка сети" Height="200" Width="300"
+        Title="настройка сети" Height="210" Width="300"
         WindowStartupLocation="CenterScreen"
-        MinHeight="200" MinWidth="280"
+        MinHeight="210" MinWidth="300"
         Initialized="ConfigureNetwork_Initialized">
     <Grid>
         <Grid.RowDefinitions>
@@ -46,7 +46,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Content="Сбросить" Grid.Row="0" Grid.Column="0" Style="{StaticResource button_main}">
+            <Button x:Name="btn_reset" Content="Сбросить" Grid.Row="0" Grid.Column="0" Click="Btn_reset_Click" Style="{StaticResource button_main}">
                 <Button.ToolTip>
                     <ToolTip Style="{StaticResource tooltip_main}">
                         Вернуть состояние всех полей до значений по умолчанию

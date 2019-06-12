@@ -1,4 +1,6 @@
-﻿using System.Net;
+﻿using SecurityDoors.WPFApp.Properties;
+using System;
+using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -18,12 +20,25 @@ namespace SecurityDoors.WPFApp.Windows
 
         }
 
+        private int port;
+        private string host;
         /// <summary>
         /// обработчик кнопки "проверить соединение"
         /// </summary>
         private void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                port = int.Parse(field_port.Text);
+            } catch (FormatException)
+            {
+                port = 0;
+            }
+            host = field_host.Text;
+            if (setErrorStyle(host, port))
+            {
 
+            }
         }
 
         /// <summary>
@@ -31,9 +46,16 @@ namespace SecurityDoors.WPFApp.Windows
         /// </summary>
         private void Btn_save_Click(object sender, RoutedEventArgs e)
         {
-            int port = int.Parse(field_port.Text);
-            string host = field_host.Text;
-            if (CheckNetworkSetting(host, port))
+            try
+            {
+                int port = int.Parse(field_port.Text);
+            }
+            catch (FormatException)
+            {
+                port = 0;
+            }
+            host = field_host.Text;
+            if (setErrorStyle(host, port))
             {
 
             }
@@ -65,39 +87,12 @@ namespace SecurityDoors.WPFApp.Windows
             field_port.Text = "";
             field_host.IsEnabled = true;
             checkBox_isLocalhost.IsChecked = false;
+            resetStyle();
         }
 
-        /// <summary>
-        /// метод проверяет валидность введенных настроек сети
-        /// </summary>
-        /// <param name="host">ip адресс сервера</param>
-        /// <param name="port">порт сервера</param>
-        /// <returns></returns>
-        private bool CheckNetworkSetting(string host, int port)
+        private void Btn_reset_Click(object sender, RoutedEventArgs e)
         {
-            if (!IsAddressValid(host))
-            {
-                MessageBox.Show("введен некоректный ip адресс");
-                return false;
-            }
-
-            if (port > 65_535 && port == 0)
-            {
-                MessageBox.Show("введен некоректный порт.");
-                return false;
-            }
-            return true;
-        }
-
-        /// <summary>
-        /// проверка валидности ip адресса
-        /// </summary>
-        /// <param name="addrString">строка содержащая ip адресс валидность которого надо проверить</param>
-        /// <returns></returns>
-        public bool IsAddressValid(string addrString)
-        {
-            IPAddress address;
-            return IPAddress.TryParse(addrString, out address);
+            resetStyle();
         }
 
         /// <summary>
@@ -106,6 +101,7 @@ namespace SecurityDoors.WPFApp.Windows
         /// </summary>
         private void Field_host_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
+            field_host.Style = (Style)field_host.FindResource("textBox_main");
             e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
         }
 
@@ -115,7 +111,27 @@ namespace SecurityDoors.WPFApp.Windows
         /// </summary>
         private void Field_port_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
         {
+            field_port.Style = (Style)field_port.FindResource("textBox_main");
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
+        }
+
+        private bool setErrorStyle(string host, int port)
+        {
+            if (!NetUtils.IsAddressValid(host))
+            {
+                field_host.Style = (Style)field_host.FindResource("textBox_error");
+            }
+            if (!NetUtils.isPortValid(port))
+            {
+                field_port.Style = (Style)field_port.FindResource("textBox_error");
+            }
+            return NetUtils.isSettingValid(host, port);
+        }
+
+        private void resetStyle()
+        {
+            field_host.Style = (Style)field_host.FindResource("textBox_main");
+            field_port.Style = (Style)field_port.FindResource("textBox_main");
         }
     }
 }

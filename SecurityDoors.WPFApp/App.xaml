@@ -19,8 +19,16 @@
             <Setter Property="Margin" Value="4"/>
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="BorderBrush" Value="Black"/>
         </Style>
-        
+
+        <Style x:Key="textBox_error" TargetType="TextBox">
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="BorderBrush" Value="Red"/>
+        </Style>
+
         <Style x:Key="button_main" TargetType="Button">
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="4"/>

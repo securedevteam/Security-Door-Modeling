@@ -31,7 +31,12 @@ namespace SecurityDoors.ModellingApp
 			}
 			else
 			{
-				///Загрузить дефолтные данные из файла
+				///TODO: Заполнить представление данными из кэша
+				using (var cacheController = new WPFApp.Controllers.CacheController())
+				{
+					var listOfPeople = cacheController.People;
+					var listOfDoord = cacheController.Doors;
+				}
 			}
 		}
         /// <summary>

@@ -74,6 +74,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controllers\DataRandomiserController.cs" />
+    <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Door.cs" />
     <Compile Include="Windows\NetUtils.cs" />
     <Page Include="Windows\ConfigureNetwork.xaml">

@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Models
 {
-	public class Door
+	public class Card
 	{
-		public string Name { get; set; }
+		public string UniqueNumber { get; set; }
 	}
 }

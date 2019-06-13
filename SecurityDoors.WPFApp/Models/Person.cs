@@ -1,13 +1,10 @@
 ﻿namespace SecurityDoors.WPFApp.Models
 {
     public class Person
-    {
-        public string name { get; }
-        public string card { get; }
-        public Person(string name, string card)
-        {
-            this.name = name;
-            this.card = card;
-        }
+	{
+		public string FirstName { get; set; }
+		public string SecondName { get; set; }
+		public string LastName { get; set; }
+		public string CardUniqueNumber { get; set; }
     }
 }

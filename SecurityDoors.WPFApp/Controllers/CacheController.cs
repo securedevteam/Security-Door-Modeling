@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-	public class CacheController
+	public class CacheController : IDisposable
 	{
 		/// <summary>
 		/// Локер для доступа к файлу
@@ -52,7 +52,7 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// Загружает данные из файла
 		/// </summary>
 		/// <returns>В случае успеха возвращает true</returns>
-		private bool LoadCacheData ()
+		public bool LoadCacheData ()
 		{
 			lock (locker)
 			{
@@ -81,7 +81,7 @@ namespace SecurityDoors.WPFApp.Controllers
 		{
 			await Task.Run(() => SaveCachedata());
 		}
-		private	bool SaveCachedata ()
+		public bool SaveCachedata ()
 		{
 			lock (locker)
 			{
@@ -105,10 +105,33 @@ namespace SecurityDoors.WPFApp.Controllers
 		{
 			await Task.Run(() => ClearCacheFile());
 		}
-		private bool ClearCacheFile ()
+		public bool ClearCacheFile ()
 		{
-			///TODO: Реализовать
+			lock (locker)
+			{
+				if (File.Exists("People.dat"))
+				{
+					File.Delete("People.dat");
+				}
+				if (File.Exists("Doors.dat"))
+				{
+					File.Delete("Doors.dat");
+				}
+			}
 			return true;
+		}
+
+		private bool disposed = false;
+
+		public void Dispose(bool disposing)
+		{
+			this.disposed = true;
+		}
+
+		public void Dispose()
+		{
+			Dispose(true);
+			GC.SuppressFinalize(this);
 		}
 	}
 }

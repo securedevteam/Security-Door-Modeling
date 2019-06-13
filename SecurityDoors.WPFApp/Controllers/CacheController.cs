@@ -14,7 +14,7 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// <summary>
 		/// Локер для доступа к файлу
 		/// </summary>
-		private object locker;
+		private object locker = new object();
 		private List<Person> people = new List<Person>();
 		private List<Door> doors = new List<Door>();
 
@@ -57,14 +57,14 @@ namespace SecurityDoors.WPFApp.Controllers
 			lock (locker)
 			{
 				var formatter = new BinaryFormatter();
-				using (var fs = new FileStream("People.dat", FileMode.Open, FileAccess.Read))
+				using (var fs = new FileStream("People.dat", FileMode.OpenOrCreate, FileAccess.Read))
 				{
 					if (fs.Length > 0 && formatter.Deserialize(fs) is List<Person> result)
 					{
 						people = result;
 					}
 				}
-				using (var fs = new FileStream("Doors.dat", FileMode.Open, FileAccess.Read))
+				using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Read))
 				{
 					if (fs.Length > 0 && formatter.Deserialize(fs) is List<Door> result)
 					{

@@ -31,14 +31,23 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// <returns>True - если подключение возможно</returns>
 		public bool CheckServerAvailability()
 		{
-			client.Connect(server, port);
-			if (client.Connected)
+			try
 			{
-				client.Close();
-				return true;
+				client.Connect(server, port);
+				if (client.Connected)
+				{
+					client.Close();
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
-			else
+			catch (Exception)
+			{
 				return false;
+			}
 		}
 		/// <summary>
 		/// Отправляет список сообщений на сервер

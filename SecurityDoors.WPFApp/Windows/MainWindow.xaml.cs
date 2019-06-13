@@ -1,4 +1,5 @@
-﻿using SecurityDoors.WPFApp.Windows;
+﻿using SecurityDoors.WPFApp.Controllers;
+using SecurityDoors.WPFApp.Windows;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -31,12 +32,26 @@ namespace SecurityDoors.ModellingApp
 			}
 			else
 			{
+				// Раскоментировать для получения списков случайных людей/карт/дверей
+				//var rnd = new DataRandomiserController();
+				//rnd.MakeRandomData();
+
+				//var listOfPeole = rnd.randomPeople;
+				//var listOfDoors = rnd.randomDoors;
+				//var listOfCards = rnd.randomCards;
+				
 				///TODO: Заполнить представление данными из кэша
 				using (var cacheController = new WPFApp.Controllers.CacheController())
 				{
+					//Заполнить кэш случайными данными
+					//cacheController.People = listOfPeole;
+					//cacheController.Doors = listOfDoors;
+					
 					var listOfPeople = cacheController.People;
 					var listOfDoord = cacheController.Doors;
 				}
+
+				
 			}
 		}
         /// <summary>

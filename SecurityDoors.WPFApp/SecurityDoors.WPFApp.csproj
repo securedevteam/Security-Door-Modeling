@@ -77,6 +77,7 @@
     <Compile Include="Controllers\DataRandomiserController.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Door.cs" />
+    <Compile Include="Models\ViewModels\PeopleAndCardsViewModel.cs" />
     <Compile Include="Windows\NetUtils.cs" />
     <Page Include="Windows\ConfigureNetwork.xaml">
       <SubType>Designer</SubType>

@@ -1,0 +1,9 @@
+language: csharp
+solution: SecurityDoors.WPFApp.sln
+mono: none
+sudo: required
+dist: xenial
+dotnet: 2.2
+script:
+    - dotnet restore
+    - dotnet build

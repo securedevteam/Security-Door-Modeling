@@ -1,13 +1,10 @@
 ﻿using SecurityDoors.WPFApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-	public class DataRandomiserController
+    public class DataRandomiserController
 	{
 		public Random random;
 		public List<Card> randomCards = new List<Card>();
@@ -15,30 +12,11 @@ namespace SecurityDoors.WPFApp.Controllers
 		public List<Person> randomPeople = new List<Person>();
 		public void MakeRandomData ()
 		{
-			var cards = new Card[]
-			{
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-				new Card { UniqueNumber = Guid.NewGuid().ToString()},
-			};
+            var cards = new Card[20];
+            for (var i = 0; i < 20; i++)
+            {
+                 cards[i] =  new Card { UniqueNumber = Guid.NewGuid().ToString() };
+            }
 			randomCards.AddRange(cards);
 
 			var doors = new Door[]

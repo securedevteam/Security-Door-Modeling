@@ -1,13 +1,10 @@
 ﻿using SecurityDoors.WPFApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-	public class MessageController
+    public class MessageController
 	{
 		private readonly TCPController socketController;
 		public int CountOfMessages { get; set; }

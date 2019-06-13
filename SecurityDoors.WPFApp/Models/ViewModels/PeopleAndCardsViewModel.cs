@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Models.ViewModels
 {
-	public class PeopleAndCardsViewModel : INotifyPropertyChanged
+    public class PeopleAndCardsViewModel : INotifyPropertyChanged
 	{
 		private string name;
 		private string cardNumber;

@@ -10,11 +10,30 @@ namespace SecurityDoors.ModellingApp
     /// </summary>
     public partial class MainWindow : Window
 	{
+		private WPFApp.Controllers.TCPController tCPController;
 		public MainWindow()
 		{
 			InitializeComponent();
+			InitializeData();
 		}
 
+		/// <summary>
+		/// Метод для заполнения формы данными с сервера или файла
+		/// </summary>
+		private void InitializeData()
+		{
+			///TODO: Подставить данные из ConfigureNetwork
+			tCPController = new WPFApp.Controllers.TCPController(1234,"localhost");
+			var isServerAvailable = tCPController.CheckServerAvailability();
+			if (isServerAvailable)
+			{
+				///TODO: Отправить сообщение на сервер и запросить новые данные
+			}
+			else
+			{
+				///Загрузить дефолтные данные из файла
+			}
+		}
         /// <summary>
         /// обработчик кнопки "запустить"
         /// </summary>

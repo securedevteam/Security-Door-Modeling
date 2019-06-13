@@ -1,6 +1,6 @@
 ﻿namespace SecurityDoors.WPFApp.Models
 {
-    class Person
+    public class Person
     {
         public string name { get; }
         public string card { get; }

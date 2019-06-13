@@ -5,10 +5,12 @@ using System.Text;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-	public class TCPController
-	{
-		private int port = 1234;
-		private string server = "127.0.0.1";
+    public class TCPController
+    {
+        public const int DefaultPort = 1234;
+        public const string DefaultServer = "127.0.0.1";
+        private int port;
+		private string server;
 
 		private TcpClient client = new TcpClient();
 

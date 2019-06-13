@@ -1,6 +1,5 @@
-﻿using SecurityDoors.WPFApp.Properties;
+﻿using SecurityDoors.WPFApp.Controllers;
 using System;
-using System.Net;
 using System.Text.RegularExpressions;
 using System.Windows;
 
@@ -17,7 +16,8 @@ namespace SecurityDoors.WPFApp.Windows
         }
         private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
         {
-
+            field_host.Text = (string)Properties.Settings.Default.host;
+            field_port.Text = Properties.Settings.Default.port.ToString();
         }
 
         private int port;
@@ -37,7 +37,14 @@ namespace SecurityDoors.WPFApp.Windows
             host = field_host.Text;
             if (setErrorStyle(host, port))
             {
-
+                TCPController tCPController = new TCPController(port, host);
+                if (tCPController.CheckServerAvailability())
+                {
+                    MessageBox.Show("подключение установлено");
+                } else
+                {
+                    MessageBox.Show("сервер не доступен");
+                }
             }
         }
 
@@ -55,9 +62,12 @@ namespace SecurityDoors.WPFApp.Windows
                 port = 0;
             }
             host = field_host.Text;
-            if (setErrorStyle(host, port))
+            if (!setErrorStyle(host, port))
             {
-
+                Properties.Settings.Default["host"] = field_host.Text;
+                Properties.Settings.Default["port"] = int.Parse(field_port.Text);
+                Properties.Settings.Default.Save();
+                Console.WriteLine("1");
             }
         }
 
@@ -93,6 +103,8 @@ namespace SecurityDoors.WPFApp.Windows
         private void Btn_reset_Click(object sender, RoutedEventArgs e)
         {
             resetStyle();
+            field_host.Text = TCPController.DefaultServer;
+            field_port.Text = TCPController.DefaultPort.ToString();
         }
 
         /// <summary>
@@ -121,7 +133,7 @@ namespace SecurityDoors.WPFApp.Windows
             {
                 field_host.Style = (Style)field_host.FindResource("textBox_error");
             }
-            if (!NetUtils.isPortValid(port))
+            if (NetUtils.isPortValid(port))
             {
                 field_port.Style = (Style)field_port.FindResource("textBox_error");
             }

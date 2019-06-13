@@ -1,5 +1,5 @@
 language: csharp
-solution: Security-Door-Modeling
+solution: Security-Door-Modeling.sln
 mono:
     - latest
 script:

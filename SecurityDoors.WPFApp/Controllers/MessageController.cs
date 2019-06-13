@@ -9,12 +9,12 @@ namespace SecurityDoors.WPFApp.Controllers
 {
 	public class MessageController
 	{
-		private readonly SocketController socketController;
+		private readonly TCPController socketController;
 		public int CountOfMessages { get; set; }
 
 		public MessageController()
 		{
-			socketController = new SocketController(1234, "127.0.0.1");
+			socketController = new TCPController(1234, "127.0.0.1");
 		}
 
 		/// <summary>

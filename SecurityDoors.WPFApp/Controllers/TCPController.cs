@@ -1,30 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-	public class SocketController
+	public class TCPController
 	{
 		private int port = 1234;
-		private string ip = "127.0.0.1";
+		private string server = "127.0.0.1";
 
-		public SocketController(int? port, string ip)
+		private TcpClient client = new TcpClient();
+
+		public TCPController(int? port, string server)
 		{
-			if (port == null && ip == null)
+			if (port == null && server == null)
 			{
 				throw new ArgumentNullException();
 			}
 			else
 			{
 				this.port = (int)port;
-				this.ip = ip;
+				this.server = server;
 			}
 		}
+
 
 		/// <summary>
 		/// Отправляет список сообщений на сервер
@@ -32,7 +32,7 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// <param name="messages">Список сообщений</param>
 		/// <returns>Список ответов</returns>
 		[Obsolete]
-		public List<string> SendMessages (List<string> messages)
+		public List<string> SendMessages(List<string> messages)
 		{
 			if (messages == null)
 			{
@@ -54,39 +54,38 @@ namespace SecurityDoors.WPFApp.Controllers
 		/// </summary>
 		/// <param name="message">Строка сообщения</param>
 		/// <returns>Ответ сервера</returns>
-		public string SendMessage (string message)
+		public string SendMessage(string message)
 		{
+			StringBuilder serverResponse = new StringBuilder();
 			if (string.IsNullOrEmpty(message))
 			{
 				return "Получено пустое сообщение.";
 			}
 
-			IPEndPoint ipPoint = new IPEndPoint(IPAddress.Parse(ip), port);
-			Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-			StringBuilder serverResponse = new StringBuilder();
-
-			socket.Connect(ipPoint);
-			if (socket.Connected)
+			client.Connect(server, port);
+			if (client.Connected)
 			{
-				byte[] data = Encoding.Unicode.GetBytes(message);
-				socket.Send(data);
+				byte[] data = new byte[256];
+				NetworkStream stream = client.GetStream();
 
-				data = new byte[256];
+				data = Encoding.UTF8.GetBytes(message);
+				stream.Write(data, 0, data.Length);
 
 				do
 				{
-					int bytes = socket.Receive(data, data.Length, 0);
-					serverResponse.Append(Encoding.Unicode.GetString(data, 0, bytes));
+					int bytes = stream.Read(data, 0, data.Length);
+					serverResponse.Append(Encoding.UTF8.GetString(data, 0, bytes));
 				}
-				while (socket.Available > 0);
+				while (stream.DataAvailable); // пока данные есть в потоке
 
-				socket.Shutdown(SocketShutdown.Both);
-				socket.Close();
+				// Закрываем потоки
+				stream.Close();
+				client.Close();
 				return serverResponse.ToString();
 			}
 			else
 			{
-				return "Сервер не отвечает";
+				return "Connection failed.";
 			}
 		}
 	}

@@ -7,8 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="470" Width="710"
         MinHeight="470" MinWidth="710"
-        WindowStartupLocation="CenterScreen"
-        Initialized="Window_Initialized">
+        WindowStartupLocation="CenterScreen">
     <Grid Margin="0,0,2,11">
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
@@ -38,7 +37,7 @@
         </ComboBox>
         <TextBox x:Name="textBox_repeat" Grid.Row="1" Grid.Column="2" PreviewTextInput="TextBox_repeat_PreviewTextInput"  Style="{StaticResource textBox_main}"/>
         <TextBox x:Name="textBox_pause" Grid.Row="1" Grid.Column="3" PreviewTextInput="TextBox_pause_PreviewTextInput" Style="{StaticResource textBox_main}"/>
-        <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5" Style="{StaticResource dataGrid_main}">
+        <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5"  Style="{StaticResource dataGrid_main}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Сотрудник"/>
                 <DataGridTextColumn Binding="{x:Null}" ClipboardContentBinding="{x:Null}" Header="Карта"/>

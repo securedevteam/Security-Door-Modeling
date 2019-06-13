@@ -10,50 +10,48 @@ namespace SecurityDoors.ModellingApp
     /// Логика взаимодействия для MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-	{
-		private WPFApp.Controllers.TCPController tCPController;
-		public MainWindow()
-		{
-			InitializeComponent();
-			InitializeData();
-		}
+    {
+        private TCPController tCPController;
+        public MainWindow()
+        {
+            InitializeComponent();
+            InitializeData();
+        }
 
-		/// <summary>
-		/// Метод для заполнения формы данными с сервера или файла
-		/// </summary>
-		private void InitializeData()
-		{
-			///TODO: Подставить данные из ConfigureNetwork
-			tCPController = new WPFApp.Controllers.TCPController(1234,"localhost");
-			var isServerAvailable = tCPController.CheckServerAvailability();
-			if (isServerAvailable)
-			{
-				///TODO: Отправить сообщение на сервер и запросить новые данные
-			}
-			else
-			{
-				// Раскоментировать для получения списков случайных людей/карт/дверей
-				//var rnd = new DataRandomiserController();
-				//rnd.MakeRandomData();
+        /// <summary>
+        /// Метод для заполнения формы данными с сервера или файла
+        /// </summary>
+        private void InitializeData()
+        {
+            tCPController = new TCPController();
+            var isServerAvailable = tCPController.CheckServerAvailability();
+            if (isServerAvailable)
+            {
+                ///TODO: Отправить сообщение на сервер и запросить новые данные
+            }
+            else
+            {
+                // Раскоментировать для получения списков случайных людей/карт/дверей
+                var rnd = new DataRandomiserController();
+                rnd.MakeRandomData();
 
-				//var listOfPeole = rnd.randomPeople;
-				//var listOfDoors = rnd.randomDoors;
-				//var listOfCards = rnd.randomCards;
-				
-				///TODO: Заполнить представление данными из кэша
-				using (var cacheController = new WPFApp.Controllers.CacheController())
-				{
-					//Заполнить кэш случайными данными
-					//cacheController.People = listOfPeole;
-					//cacheController.Doors = listOfDoors;
-					
-					var listOfPeople = cacheController.People;
-					var listOfDoord = cacheController.Doors;
-				}
+                var listOfPeole = rnd.randomPeople;
+                var listOfDoors = rnd.randomDoors;
+                var listOfCards = rnd.randomCards;
 
-				
-			}
-		}
+                ///TODO: Заполнить представление данными из кэша
+                using (var cacheController = new CacheController())
+                {
+                    //Заполнить кэш случайными данными
+                    //cacheController.People = listOfPeole;
+                    //cacheController.Doors = listOfDoors;
+
+                    var listOfPeople = cacheController.People;
+                    var listOfDoord = cacheController.Doors;
+                }
+                dataGrid_persons.ItemsSource = listOfCards;
+            }
+        }
         /// <summary>
         /// обработчик кнопки "запустить"
         /// </summary>
@@ -77,11 +75,6 @@ namespace SecurityDoors.ModellingApp
         /// в <c>Action</c> и добавление этого действия в колекцию действий
         /// </summary
         private void Btn_addInTest_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Window_Initialized(object sender, System.EventArgs e)
         {
 
         }

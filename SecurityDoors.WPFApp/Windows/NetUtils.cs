@@ -20,7 +20,8 @@ namespace SecurityDoors.WPFApp.Windows
             if (port > MAX_NUMBER_PORT || port == 0)
             {
                 return false;
-            } else
+            }
+            else
             {
                 return true;
             }

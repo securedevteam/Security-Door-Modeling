@@ -12,11 +12,11 @@ namespace SecurityDoors.WPFApp.Windows
     {
         public ConfigureNetwork()
         {
-            InitializeComponent();            
+            InitializeComponent();
         }
         private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
         {
-            field_host.Text = (string)Properties.Settings.Default.host;
+            field_host.Text = Properties.Settings.Default.host;
             field_port.Text = Properties.Settings.Default.port.ToString();
         }
 
@@ -30,7 +30,8 @@ namespace SecurityDoors.WPFApp.Windows
             try
             {
                 port = int.Parse(field_port.Text);
-            } catch (FormatException)
+            }
+            catch (FormatException)
             {
                 port = 0;
             }
@@ -41,7 +42,8 @@ namespace SecurityDoors.WPFApp.Windows
                 if (tCPController.CheckServerAvailability())
                 {
                     MessageBox.Show("подключение установлено");
-                } else
+                }
+                else
                 {
                     MessageBox.Show("сервер не доступен");
                 }

@@ -24,7 +24,11 @@ namespace SecurityDoors.WPFApp.Controllers
 				LoadCachedDataAsync();
 				return doors;
 			}
-			set => doors = value;
+			set
+			{
+				doors = value;
+				SaveCacheDataAsync();
+			}
 		}
 		public List<Person> People
 		{
@@ -68,7 +72,7 @@ namespace SecurityDoors.WPFApp.Controllers
 				{
 					if (fs.Length > 0 && formatter.Deserialize(fs) is List<Door> result)
 					{
-						Doors = result;
+						doors = result;
 					}
 				}
 			}
@@ -93,7 +97,7 @@ namespace SecurityDoors.WPFApp.Controllers
 				}
 				using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Write))
 				{
-					formatter.Serialize(fs, Doors);
+					formatter.Serialize(fs, doors);
 				}
 			}
 			return true;

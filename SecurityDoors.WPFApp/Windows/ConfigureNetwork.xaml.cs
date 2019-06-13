@@ -64,10 +64,7 @@ namespace SecurityDoors.WPFApp.Windows
             host = field_host.Text;
             if (!setErrorStyle(host, port))
             {
-                Properties.Settings.Default["host"] = field_host.Text;
-                Properties.Settings.Default["port"] = int.Parse(field_port.Text);
-                Properties.Settings.Default.Save();
-                Console.WriteLine("1");
+                Properties.Settings.Default.SaveNetworkSetting(host, port);
             }
         }
 

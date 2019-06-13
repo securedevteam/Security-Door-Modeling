@@ -24,5 +24,17 @@
         private void SettingsSavingEventHandler(object sender, System.ComponentModel.CancelEventArgs e) {
             // Add code to handle the SettingsSaving event here.
         }
+
+        /// <summary>
+        /// сохранить параметры сети в настройках приложения
+        /// </summary>
+        /// <param name="host">ip адресс сервера</param>
+        /// <param name="port">порт сервера</param>
+        public void SaveNetworkSetting(string host, int port)
+        {
+            Default["host"] = host;
+            Default["port"] =port;
+            Default.Save();
+        }
     }
 }

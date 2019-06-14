@@ -78,7 +78,7 @@ namespace SecurityDoors.WPFApp.Windows
             if ((bool)checkBox_isLocalhost.IsChecked)
             {
                 field_host.IsEnabled = false;
-                field_host.Text = "127.0.0.1";
+                field_host.Text = TCPController.DefaultServer;
             }
             else
             {

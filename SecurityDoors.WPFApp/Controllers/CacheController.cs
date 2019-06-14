@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.WPFApp.Controllers
 {
-    public class CacheController : IDisposable
+    public class CacheController
     {
         /// <summary>
         /// Локер для доступа к файлу
@@ -122,19 +122,6 @@ namespace SecurityDoors.WPFApp.Controllers
                 }
             }
             return true;
-        }
-
-        private bool disposed = false;
-
-        public void Dispose(bool disposing)
-        {
-            this.disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
     }
 }

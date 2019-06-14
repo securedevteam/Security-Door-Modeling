@@ -12,12 +12,11 @@ namespace SecurityDoors.WPFApp.Controllers
         public List<Person> randomPeople = new List<Person>();
         public void MakeRandomData()
         {
-            var cards = new Card[20];
             for (var i = 0; i < 20; i++)
             {
-                cards[i] = new Card { UniqueNumber = Guid.NewGuid().ToString() };
-            }
-            randomCards.AddRange(cards);
+                var newCard = new Card { UniqueNumber = Guid.NewGuid().ToString() };
+				randomCards.Add(newCard);
+			}
 
             var doors = new Door[]
             {

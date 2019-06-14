@@ -6,12 +6,12 @@ namespace SecurityDoors.WPFApp.Controllers
 {
     public class MessageController
     {
-        private readonly TCPController socketController;
+        private readonly TCPController tCPController;
         public int CountOfMessages { get; set; }
 
         public MessageController()
         {
-            socketController = new TCPController(1234, "127.0.0.1");
+			tCPController = new TCPController(1234, "127.0.0.1");
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace SecurityDoors.WPFApp.Controllers
 
             CountOfMessages++;
 
-            var messageBody = $"{message.PersonName}#{message.PersonCard}#{message.DoorId}#{message.DoorAccessLevel}";
-            socketController.SendMessage(messageBody);
+            var messageBody = $"{message.PersonName}#{message.PersonCard}#{message.DoorName}";
+			tCPController.SendMessage(messageBody);
         }
     }
 }

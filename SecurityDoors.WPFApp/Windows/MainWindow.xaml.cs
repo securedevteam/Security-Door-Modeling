@@ -15,7 +15,8 @@ namespace SecurityDoors.ModellingApp
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private TCPController tCPController;
+		private MessageController messageController = new MessageController();
+		
 		//TODO: Исправить именование класса на более понятное
 		private DataGridViewModel dataGridView = new DataGridViewModel();
 		private DoorsViewModel doorsViewModel = new DoorsViewModel();
@@ -33,7 +34,7 @@ namespace SecurityDoors.ModellingApp
 			dataGrid_persons.ItemsSource = dataGridView.PeopleAndCardsList;
 			comboBox_door.ItemsSource = doorsViewModel.Doors;
 
-			tCPController = new TCPController();
+			var tCPController = new TCPController();
 
 
 			var isServerAvailable = tCPController.CheckServerAvailability();
@@ -75,6 +76,19 @@ namespace SecurityDoors.ModellingApp
 		/// </summary>
 		private void Btn_run_Click(object sender, RoutedEventArgs e)
 		{
+			//TODO: Реализовать получение списка действий и передать их на сервер в виде ФИО#Номер карты#Название двери
+			var messages = new List<Message>();
+			foreach (var item in textBox_testSet.Text)
+			{
+				var newMessage = new Message()
+				{
+					PersonName = "",
+					PersonCard = "",
+					DoorName = ""
+				};
+				messages.Add(newMessage);
+			}
+			//messageController.SendMessages(messages);
 		}
 
 		/// <summary>

@@ -44,6 +44,7 @@
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DataRandomiserController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
+    <Compile Include="Controllers\RandomMessagesGenerator.cs" />
     <Compile Include="Controllers\TCPController.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Door.cs" />

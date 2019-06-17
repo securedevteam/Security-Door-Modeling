@@ -9,31 +9,31 @@ namespace SecurityDoors.BL.Controllers
     {
         public const int DefaultPort = 1234;
         public const string DefaultServer = "127.0.0.1";
-        private int port;
-        private string server;
+        private readonly int port;
+        private readonly string server;
 
-        private TcpClient client = new TcpClient();
+        private readonly TcpClient client = new TcpClient();
 
         public TCPController(int? port, string server)
         {
-            if (port == null && server == null)
+            if (port == null || string.IsNullOrWhiteSpace(server))
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException($"port {port}, server {server}");
             }
             else
             {
                 this.port = (int)port;
                 this.server = server;
             }
-        }
+		}
 
 		/// <summary>
 		/// TODO: Перенести настройки по умолчанию из UI в BL
 		/// </summary>
         public TCPController()
         {
-            /*port = Properties.Settings.Default.port;
-            server = Properties.Settings.Default.host;*/
+            //port =  Properties.Settings.Default.port;
+            //server = Properties.Settings.Default.host;
         }
 
         /// <summary>

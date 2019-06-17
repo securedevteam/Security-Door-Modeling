@@ -1,4 +1,5 @@
-﻿using SecurityDoors.BL.Controllers;
+﻿using SecurityDoor.BL.Controllers;
+using SecurityDoors.BL.Controllers;
 using SecurityDoors.BL.Models;
 using SecurityDoors.BL.Models.ViewModels;
 using SecurityDoors.BL.Windows;
@@ -78,13 +79,18 @@ namespace SecurityDoors.UI.View
 			{
 				var newMessage = new Message()
 				{
-					PersonName = "",
+					SecretKey = "",
 					PersonCard = "",
 					DoorName = ""
 				};
 				messages.Add(newMessage);
 			}
 			//messageController.SendMessages(messages);
+
+			//TODO: Удалить после приведения кода в порядок
+
+			var randomMessageSender = new RandomMessagesGenerator();
+			randomMessageSender.MakeRandomMesages();
 		}
 
 		/// <summary>

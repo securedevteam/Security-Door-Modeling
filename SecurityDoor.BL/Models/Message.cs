@@ -2,7 +2,7 @@
 {
     public class Message
     {
-        public string PersonName { get; set; }
+        public string SecretKey { get; set; }
         public string PersonCard { get; set; }
         public string DoorName { get; set; }
     }

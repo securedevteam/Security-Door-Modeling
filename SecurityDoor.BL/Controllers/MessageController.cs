@@ -43,7 +43,7 @@ namespace SecurityDoors.BL.Controllers
 
             CountOfMessages++;
 
-            var messageBody = $"{message.PersonName}#{message.PersonCard}#{message.DoorName}";
+            var messageBody = $"{message.SecretKey}#{message.PersonCard}#{message.DoorName}";
 			tCPController.SendMessage(messageBody);
         }
     }

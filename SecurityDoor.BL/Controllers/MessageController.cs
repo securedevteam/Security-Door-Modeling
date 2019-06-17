@@ -1,8 +1,8 @@
-﻿using SecurityDoors.WPFApp.Models;
+﻿using SecurityDoors.BL.Models;
 using System;
 using System.Collections.Generic;
 
-namespace SecurityDoors.WPFApp.Controllers
+namespace SecurityDoors.BL.Controllers
 {
     public class MessageController
     {

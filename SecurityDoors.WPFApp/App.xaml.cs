@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SecurityDoors.ModellingApp
+namespace SecurityDoors.UI
 {
     /// <summary>
     /// Логика взаимодействия для App.xaml

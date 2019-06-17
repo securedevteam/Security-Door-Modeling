@@ -1,6 +1,6 @@
 ﻿using System.Net;
 
-namespace SecurityDoors.WPFApp.Windows
+namespace SecurityDoors.BL.Windows
 {
     public class NetUtils
     {

@@ -1,4 +1,4 @@
-﻿namespace SecurityDoors.WPFApp.Models
+﻿namespace SecurityDoors.BL.Models
 {
     public class Person
     {

@@ -1,22 +1,18 @@
-﻿using SecurityDoors.WPFApp.Controllers;
-using SecurityDoors.WPFApp.Models;
-using SecurityDoors.WPFApp.Models.ViewModels;
-using SecurityDoors.WPFApp.Windows;
+﻿using SecurityDoors.BL.Controllers;
+using SecurityDoors.BL.Models;
+using SecurityDoors.BL.Models.ViewModels;
+using SecurityDoors.BL.Windows;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
 
-namespace SecurityDoors.ModellingApp
+namespace SecurityDoors.UI.View
 {
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml
 	/// </summary>
 	public partial class MainWindow : Window
-	{
-		private MessageController messageController = new MessageController();
-		
+	{		
 		//TODO: Исправить именование класса на более понятное
 		private DataGridViewModel dataGridView = new DataGridViewModel();
 		private DoorsViewModel doorsViewModel = new DoorsViewModel();
@@ -128,9 +124,5 @@ namespace SecurityDoors.ModellingApp
 		{
 			e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
 		}
-	}
-	public class Test
-	{
-
 	}
 }

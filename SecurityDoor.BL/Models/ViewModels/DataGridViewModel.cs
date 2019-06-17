@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SecurityDoors.WPFApp.Models.ViewModels
+namespace SecurityDoors.BL.Models.ViewModels
 {
     public class DataGridViewModel : INotifyPropertyChanged
     {

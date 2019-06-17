@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecurityDoors.WPFApp.Models.ViewModels
+namespace SecurityDoors.BL.Models.ViewModels
 {
 	public class DoorsViewModel : INotifyPropertyChanged
 	{

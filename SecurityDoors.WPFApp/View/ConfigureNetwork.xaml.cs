@@ -1,9 +1,10 @@
-﻿using SecurityDoors.WPFApp.Controllers;
+﻿using SecurityDoors.BL.Controllers;
+using SecurityDoors.BL.Windows;
 using System;
 using System.Text.RegularExpressions;
 using System.Windows;
 
-namespace SecurityDoors.WPFApp.Windows
+namespace SecurityDoors.UI.View
 {
     /// <summary>
     /// Interaction logic for ConfigureNetwork.xaml
@@ -14,10 +15,16 @@ namespace SecurityDoors.WPFApp.Windows
         {
             InitializeComponent();
         }
+
+		/// <summary>
+		/// TODO: Реализовать передачу настроек по умолчанию из UI в BL
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
         private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
         {
-            field_host.Text = Properties.Settings.Default.host;
-            field_port.Text = Properties.Settings.Default.port.ToString();
+            field_host.Text = UI.Properties.Settings.Default.host;
+            field_port.Text = UI.Properties.Settings.Default.port.ToString();
         }
 
         private int port;
@@ -36,7 +43,7 @@ namespace SecurityDoors.WPFApp.Windows
                 port = 0;
             }
             host = field_host.Text;
-            if (setErrorStyle(host, port))
+            if (SetErrorStyle(host, port))
             {
                 TCPController tCPController = new TCPController(port, host);
                 if (tCPController.CheckServerAvailability())
@@ -64,9 +71,9 @@ namespace SecurityDoors.WPFApp.Windows
                 port = 0;
             }
             host = field_host.Text;
-            if (!setErrorStyle(host, port))
+            if (!SetErrorStyle(host, port))
             {
-                Properties.Settings.Default.SaveNetworkSetting(host, port);
+				UI.Properties.Settings.Default.SaveNetworkSetting(host, port);
             }
         }
 
@@ -96,12 +103,12 @@ namespace SecurityDoors.WPFApp.Windows
             field_port.Text = "";
             field_host.IsEnabled = true;
             checkBox_isLocalhost.IsChecked = false;
-            resetStyle();
+            ResetStyle();
         }
 
         private void Btn_reset_Click(object sender, RoutedEventArgs e)
         {
-            resetStyle();
+            ResetStyle();
             field_host.Text = TCPController.DefaultServer;
             field_port.Text = TCPController.DefaultPort.ToString();
         }
@@ -126,7 +133,7 @@ namespace SecurityDoors.WPFApp.Windows
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
-        private bool setErrorStyle(string host, int port)
+        private bool SetErrorStyle(string host, int port)
         {
             if (!NetUtils.IsAddressValid(host))
             {
@@ -139,7 +146,7 @@ namespace SecurityDoors.WPFApp.Windows
             return NetUtils.isSettingValid(host, port);
         }
 
-        private void resetStyle()
+        private void ResetStyle()
         {
             field_host.Style = (Style)field_host.FindResource("textBox_main");
             field_port.Style = (Style)field_port.FindResource("textBox_main");

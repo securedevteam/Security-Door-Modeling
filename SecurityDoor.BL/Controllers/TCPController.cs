@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
 
-namespace SecurityDoors.WPFApp.Controllers
+namespace SecurityDoors.BL.Controllers
 {
     public class TCPController
     {
@@ -27,14 +27,17 @@ namespace SecurityDoors.WPFApp.Controllers
             }
         }
 
+		/// <summary>
+		/// TODO: Перенести настройки по умолчанию из UI в BL
+		/// </summary>
         public TCPController()
         {
-            port = Properties.Settings.Default.port;
-            server = Properties.Settings.Default.host;
+            /*port = Properties.Settings.Default.port;
+            server = Properties.Settings.Default.host;*/
         }
 
         /// <summary>
-        /// Проверяет возможность доступность сервера
+        /// Проверяет доступность сервера
         /// </summary>
         /// <returns>True - если подключение возможно</returns>
         public bool CheckServerAvailability()
@@ -96,11 +99,10 @@ namespace SecurityDoors.WPFApp.Controllers
             client.Connect(server, port);
             if (client.Connected)
             {
-                byte[] data = new byte[256];
-                NetworkStream stream = client.GetStream();
+				NetworkStream stream = client.GetStream();
 
-                data = Encoding.UTF8.GetBytes(message);
-                stream.Write(data, 0, data.Length);
+				byte[] data = Encoding.UTF8.GetBytes(message);
+				stream.Write(data, 0, data.Length);
 
                 do
                 {

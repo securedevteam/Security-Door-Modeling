@@ -4,9 +4,9 @@ namespace SecurityDoors.BL.Windows
 {
     public class NetUtils
     {
-        public static bool isSettingValid(string host, int port)
+        public static bool IsSettingValid(string host, int port)
         {
-            return isPortValid(port) && IsAddressValid(host);
+            return IsPortValid(port) && IsAddressValid(host);
         }
 
         private const int MAX_NUMBER_PORT = 65_535;
@@ -15,7 +15,7 @@ namespace SecurityDoors.BL.Windows
         /// </summary>
         /// <param name="port">порт для проверка</param>
         /// <returns></returns>
-        public static bool isPortValid(int port)
+        public static bool IsPortValid(int port)
         {
             if (port > MAX_NUMBER_PORT || port == 0)
             {
@@ -34,8 +34,7 @@ namespace SecurityDoors.BL.Windows
         /// <returns></returns>
         public static bool IsAddressValid(string addrString)
         {
-            IPAddress address;
-            return IPAddress.TryParse(addrString, out address);
-        }
+			return IPAddress.TryParse(addrString, out _);
+		}
     }
 }

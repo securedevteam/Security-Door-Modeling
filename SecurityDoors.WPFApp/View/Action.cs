@@ -6,13 +6,13 @@ namespace SecurityDoors.UI.View
 {
     struct Action
     {
-        public int number { get; }
-        public List<Person> persons { get; }
+        public int Number { get; }
+        public List<Person> Persons { get; }
 
         public Action(int number, List<Person> persons)
         {
-            this.number = number;
-            this.persons = persons ?? throw new ArgumentNullException(nameof(persons));
+            this.Number = number;
+            this.Persons = persons ?? throw new ArgumentNullException(nameof(persons));
         }
     }
 }

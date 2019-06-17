@@ -139,11 +139,11 @@ namespace SecurityDoors.UI.View
             {
                 field_host.Style = (Style)field_host.FindResource("textBox_error");
             }
-            if (NetUtils.isPortValid(port))
+            if (NetUtils.IsPortValid(port))
             {
                 field_port.Style = (Style)field_port.FindResource("textBox_error");
             }
-            return NetUtils.isSettingValid(host, port);
+            return NetUtils.IsSettingValid(host, port);
         }
 
         private void ResetStyle()

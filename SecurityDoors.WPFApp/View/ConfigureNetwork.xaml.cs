@@ -2,6 +2,7 @@
 using SecurityDoors.BL.Windows;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace SecurityDoors.UI.View
@@ -32,7 +33,7 @@ namespace SecurityDoors.UI.View
         /// <summary>
         /// обработчик кнопки "проверить соединение"
         /// </summary>
-        private void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
+        private async void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -42,11 +43,12 @@ namespace SecurityDoors.UI.View
             {
                 port = 0;
             }
-            host = field_host.Text;
+            host = field_host.Text; 
             if (SetErrorStyle(host, port))
             {
                 TCPController tCPController = new TCPController(port, host);
-                if (tCPController.CheckServerAvailability())
+                bool isAviable = await Task.Run(() => tCPController.CheckServerAvailability());
+                if (isAviable)
                 {
                     MessageBox.Show("подключение установлено");
                 }

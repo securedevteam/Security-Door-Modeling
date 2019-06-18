@@ -12,6 +12,7 @@
         
         <Style x:Key="comboBox_main" TargetType="ComboBox">
             <Setter Property="Margin" Value="4"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
         
         <Style x:Key="textBox_main" TargetType="TextBox">
@@ -19,6 +20,7 @@
             <Setter Property="TextAlignment" Value="Center"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="Height" Value="25"/>
         </Style>
 
         <Style x:Key="textBox_error" TargetType="TextBox">

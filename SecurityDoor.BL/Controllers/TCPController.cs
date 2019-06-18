@@ -32,8 +32,8 @@ namespace SecurityDoors.BL.Controllers
 		/// </summary>
         public TCPController()
         {
-            //port =  Properties.Settings.Default.port;
-            //server = Properties.Settings.Default.host;
+            port = SecurityDoor.BL.Properties.Settings.Default.port;
+            server = SecurityDoor.BL.Properties.Settings.Default.host;
         }
 
         /// <summary>

@@ -35,11 +35,15 @@
         /// </summary>
         /// <param name="host">ip адресс сервера</param>
         /// <param name="port">порт сервера</param>
-        public void SaveNetworkSetting(string host, int port)
+        public void SaveNetworkSetting(string host, int port, string secretKey)
         {
-            Default["host"] = host;
-            Default["port"] = port;
-            Default.Save();
+			SecurityDoor.BL.Properties.Settings.Default.host = host;
+			SecurityDoor.BL.Properties.Settings.Default.port = port;
+			SecurityDoor.BL.Properties.Settings.Default.secretKey = secretKey;
+			SecurityDoor.BL.Properties.Settings.Default.Save();
+            //Default["host"] = host;
+            //Default["port"] = port;
+            //Default.Save();
         }
     }
 }

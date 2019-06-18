@@ -16,19 +16,17 @@ namespace SecurityDoors.UI.View
             InitializeComponent();
         }
 
-		/// <summary>
-		/// TODO: Реализовать передачу настроек по умолчанию из UI в BL
-		/// </summary>
-		/// <param name="sender"></param>
-		/// <param name="e"></param>
         private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
         {
-            field_host.Text = UI.Properties.Settings.Default.host;
-            field_port.Text = UI.Properties.Settings.Default.port.ToString();
-        }
+            field_host.Text = SecurityDoor.BL.Properties.Settings.Default.host;
+            field_port.Text = SecurityDoor.BL.Properties.Settings.Default.port.ToString();
+			field_secretKey.Text = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+
+		}
 
         private int port;
         private string host;
+		private string secretKey;
         /// <summary>
         /// обработчик кнопки "проверить соединение"
         /// </summary>
@@ -64,16 +62,17 @@ namespace SecurityDoors.UI.View
         {
             try
             {
-                int port = int.Parse(field_port.Text);
+				port = int.Parse(field_port.Text);
             }
             catch (FormatException)
             {
                 port = 0;
             }
-            host = field_host.Text;
+			host = field_host.Text;
+			secretKey = field_secretKey.Text;
             if (!SetErrorStyle(host, port))
             {
-				UI.Properties.Settings.Default.SaveNetworkSetting(host, port);
+				Properties.Settings.Default.SaveNetworkSetting(host, port, secretKey);
             }
         }
 
@@ -101,6 +100,7 @@ namespace SecurityDoors.UI.View
         {
             field_host.Text = "";
             field_port.Text = "";
+			field_secretKey.Text = "";
             field_host.IsEnabled = true;
             checkBox_isLocalhost.IsChecked = false;
             ResetStyle();
@@ -111,6 +111,7 @@ namespace SecurityDoors.UI.View
             ResetStyle();
             field_host.Text = TCPController.DefaultServer;
             field_port.Text = TCPController.DefaultPort.ToString();
+			field_secretKey.Text = "";
         }
 
         /// <summary>
@@ -139,7 +140,7 @@ namespace SecurityDoors.UI.View
             {
                 field_host.Style = (Style)field_host.FindResource("textBox_error");
             }
-            if (NetUtils.IsPortValid(port))
+            if (!NetUtils.IsPortValid(port))
             {
                 field_port.Style = (Style)field_port.FindResource("textBox_error");
             }

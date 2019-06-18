@@ -40,7 +40,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="Сотрудник"/>
                 <DataGridTextColumn Binding="{Binding CardNumber}" ClipboardContentBinding="{x:Null}" Header="Карта"/>
-                <DataGridTextColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать для моделлирования"/>
+                <DataGridCheckBoxColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать для моделлирования"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btn_run" Content="Запуск" Grid.Row="1" Grid.Column="4" Click="Btn_run_Click" Style="{StaticResource button_main}"/>

@@ -40,15 +40,15 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="Сотрудник"/>
                 <DataGridTextColumn Binding="{Binding CardNumber}" ClipboardContentBinding="{x:Null}" Header="Карта"/>
-                <DataGridTextColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать для моделлирования"/>
+                <DataGridCheckBoxColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать для моделлирования"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="btn_run" Content="Запуск" Grid.Row="1" Grid.Column="4" Click="Btn_run_Click" Style="{StaticResource button_main}"/>
         <Label Content="Лог" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource label_main}"/>
         <Button x:Name="btn_configureNetwork" Content="Настроить подключение"  Grid.Row="0" Grid.Column="4" Click="Btn_configureNetwork_Click" Style="{StaticResource button_main}"/>
-        <TextBox x:Name="textBox_log" Grid.Row="4" Grid.ColumnSpan="5"  Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="textBox_log" Grid.Row="4" Grid.ColumnSpan="5" Height="auto"  Style="{StaticResource textBox_main}"/>
         <Button x:Name="btn_addInTest" Content="добавить в тест" Grid.Row="0" Grid.Column="5" Click="Btn_addInTest_Click" Style="{StaticResource button_main}"/>
         <Label Content="Набор действий" Grid.Row="1" Grid.Column="6" Style="{StaticResource label_main}"/>
-        <TextBox x:Name="textBox_testSet" Grid.Row="2" Grid.RowSpan="4" Grid.Column="6" Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="textBox_testSet" Grid.Row="2" Grid.RowSpan="4" Grid.Column="6" Height="auto" Style="{StaticResource textBox_main}"/>
     </Grid>
 </Window>

@@ -2,6 +2,7 @@
 using SecurityDoors.BL.Windows;
 using System;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace SecurityDoors.UI.View
@@ -30,7 +31,7 @@ namespace SecurityDoors.UI.View
         /// <summary>
         /// обработчик кнопки "проверить соединение"
         /// </summary>
-        private void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
+        private async void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -40,11 +41,12 @@ namespace SecurityDoors.UI.View
             {
                 port = 0;
             }
-            host = field_host.Text;
+            host = field_host.Text; 
             if (SetErrorStyle(host, port))
             {
                 TCPController tCPController = new TCPController(port, host);
-                if (tCPController.CheckServerAvailability())
+                bool isAviable = await Task.Run(() => tCPController.CheckServerAvailability());
+                if (isAviable)
                 {
                     MessageBox.Show("подключение установлено");
                 }
@@ -134,6 +136,11 @@ namespace SecurityDoors.UI.View
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
+        private void Field_secretKey_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_main");
+        }
+
         private bool SetErrorStyle(string host, int port)
         {
             if (!NetUtils.IsAddressValid(host))
@@ -143,6 +150,10 @@ namespace SecurityDoors.UI.View
             if (!NetUtils.IsPortValid(port))
             {
                 field_port.Style = (Style)field_port.FindResource("textBox_error");
+            }
+            if (field_secretKey.Text == "")
+            {
+                field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_error");
             }
             return NetUtils.IsSettingValid(host, port);
         }

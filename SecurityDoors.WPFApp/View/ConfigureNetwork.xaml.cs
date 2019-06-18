@@ -103,6 +103,7 @@ namespace SecurityDoors.UI.View
         {
             field_host.Text = "";
             field_port.Text = "";
+            field_secretKey.Text = "";
             field_host.IsEnabled = true;
             checkBox_isLocalhost.IsChecked = false;
             ResetStyle();
@@ -135,6 +136,11 @@ namespace SecurityDoors.UI.View
             e.Handled = new Regex("[^0-9]+").IsMatch(e.Text);
         }
 
+        private void Field_secretKey_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
+        {
+            field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_main");
+        }
+
         private bool SetErrorStyle(string host, int port)
         {
             if (!NetUtils.IsAddressValid(host))
@@ -144,6 +150,10 @@ namespace SecurityDoors.UI.View
             if (NetUtils.IsPortValid(port))
             {
                 field_port.Style = (Style)field_port.FindResource("textBox_error");
+            }
+            if (field_secretKey.Text == "")
+            {
+                field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_error");
             }
             return NetUtils.IsSettingValid(host, port);
         }

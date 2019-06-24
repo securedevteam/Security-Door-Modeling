@@ -123,5 +123,15 @@ namespace SecurityDoors.BL.Controllers
             }
             return true;
         }
+
+		public void SetDoors (List<string> doors)
+		{
+			Doors.Clear();
+			foreach (var door in doors)
+			{
+				Doors.Add(new Door() { Name = door });
+			}
+		}
+
     }
 }

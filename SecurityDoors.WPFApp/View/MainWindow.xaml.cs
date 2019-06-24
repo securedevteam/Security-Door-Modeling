@@ -31,41 +31,60 @@ namespace SecurityDoors.UI.View
 			dataGrid_persons.ItemsSource = dataGridView.PeopleAndCardsList;
 			comboBox_door.ItemsSource = doorsViewModel.Doors;
 
-			var tCPController = new TCPController();
-			tCPController.GetDoorsFromAPI();
 
-			var isServerAvailable = tCPController.CheckServerAvailability();
-			if (/*isServerAvailable*/ false)
+			var isServerAvailable = TCPController.CheckServerAvailability();
+			if (isServerAvailable)
 			{
-				///TODO: Отправить сообщение на сервер и запросить новые данные
-			}
-			else
-			{
+				var listOfCards = TCPController.GetListOfCardsFromAPI();
+				var listOfDoors = TCPController.GetListOfDoorsFromAPI();
+
+				foreach (var door in listOfDoors)
+				{
+					doorsViewModel.Doors.Add(door);
+				}
+
+				///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
 				var rnd = new DataRandomiserController();
 				rnd.MakeRandomData();
-
 				var listOfPeole = rnd.randomPeople;
-				var listOfDoors = rnd.randomDoors;
 
+				int i = 0;
 				foreach (var person in listOfPeole)
 				{
 					var newPerson = new PeopleAndCardsViewModel()
 					{
 						Name = $"{person.FirstName} {person.SecondName} {person.LastName}",
-						CardNumber = person.CardUniqueNumber
+						CardNumber = listOfCards[i]
 					};
 					dataGridView.PeopleAndCardsList.Add(newPerson);
+					if (i >= listOfCards.Count + 1)
+					{
+						i = 0;
+					}
+					else
+					{
+						i++;
+					}
 				}
 
-				foreach (var door in listOfDoors)
+				//Записать скачанное в кэш
+				var cacheController = new CacheController();
+				cacheController.SetDoors(listOfDoors);
+				cacheController.People = listOfPeole;
+				cacheController.SaveCachedata();
+			}
+			else
+			{
+				var cacheController = new CacheController();
+				cacheController.LoadCacheData();
+				foreach (var person in cacheController.People)
+				{
+					dataGridView.PeopleAndCardsList.Add(new PeopleAndCardsViewModel() { CardNumber = person.CardUniqueNumber, Name = $"{person.FirstName} {person.SecondName} {person.LastName}" });
+				}
+				foreach (var door in cacheController.Doors)
 				{
 					doorsViewModel.Doors.Add(door.Name);
 				}
-
-				//var cacheController = new CacheController();
-				//Заполнить кэш случайными данными
-				//cacheController.People = listOfPeole;
-				//cacheController.Doors = listOfDoors;
 			}
 		}
 		/// <summary>
@@ -73,23 +92,15 @@ namespace SecurityDoors.UI.View
 		/// </summary>
 		private void Btn_run_Click(object sender, RoutedEventArgs e)
 		{
-			//TODO: Реализовать получение списка действий и передать их на сервер в виде ФИО#Номер карты#Название двери
-			var messages = new List<Message>();
-			foreach (var item in textBox_testSet.Text)
+			var listofMessages = new List<Message>();
+			foreach (var row in dataGridView.PeopleAndCardsList)
 			{
-				var newMessage = new Message()
+				if (row.Use && comboBox_door.SelectedValue != null)
 				{
-					PersonCard = "",
-					DoorName = ""
-				};
-				messages.Add(newMessage);
+					listofMessages.Add(new Message() {PersonCard = row.CardNumber, DoorName = comboBox_door.SelectedValue.ToString()});
+				}
 			}
-			//messageController.SendMessages(messages);
-
-			//TODO: Удалить после приведения кода в порядок
-
-			var randomMessageSender = new RandomMessagesGenerator();
-			randomMessageSender.MakeRandomMesages();
+			TCPController.SendMessages(listofMessages);
 		}
 
 		/// <summary>

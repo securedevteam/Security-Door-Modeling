@@ -4,45 +4,30 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using Newtonsoft.Json;
+using SecurityDoors.BL.Models;
 
 namespace SecurityDoors.BL.Controllers
 {
-    public class TCPController
+    public static class TCPController
     {
         public const int DefaultPort = 1234;
         public const string DefaultServer = "127.0.0.1";
-        private readonly int port;
-        private readonly string server;
+        private static int port = SecurityDoor.BL.Properties.Settings.Default.port;
+        private static string server = SecurityDoor.BL.Properties.Settings.Default.host;
 
-		private TcpClient client;// = new TcpClient();
+		private static TcpClient client;// = new TcpClient();
 
-        public TCPController(int? port, string server)
-        {
-            if (port == null || string.IsNullOrWhiteSpace(server))
-            {
-                throw new ArgumentNullException($"port {port}, server {server}");
-            }
-            else
-            {
-                this.port = (int)port;
-                this.server = server;
-            }
+		public static void ConfigureTCPController (int port, string server)
+		{
+			TCPController.port = port;
+			TCPController.server = server;
 		}
-
-		/// <summary>
-		/// TODO: Перенести настройки по умолчанию из UI в BL
-		/// </summary>
-        public TCPController()
-        {
-            port = SecurityDoor.BL.Properties.Settings.Default.port;
-            server = SecurityDoor.BL.Properties.Settings.Default.host;
-        }
 
         /// <summary>
         /// Проверяет доступность сервера
         /// </summary>
         /// <returns>True - если подключение возможно</returns>
-        public bool CheckServerAvailability()
+        public static bool CheckServerAvailability()
         {
             try
             {
@@ -67,46 +52,40 @@ namespace SecurityDoors.BL.Controllers
         /// Отправляет список сообщений на сервер
         /// </summary>
         /// <param name="messages">Список сообщений</param>
-        /// <returns>Список ответов</returns>
-        [Obsolete]
-        public List<string> SendMessages(List<string> messages)
+		public static void SendMessages(List<Message> messages)
         {
             if (messages == null)
             {
-                return new List<string>() { };
+                return;
             }
 
-            var responses = new List<string>() { };
-            string response;
             foreach (var message in messages)
             {
-                response = SendMessage(message);
-                responses.Add(response);
+                SendMessage(message);
             }
-            return responses;
         }
 
         /// <summary>
         /// Отправляет сообщение на сервер
         /// </summary>
         /// <param name="message">Строка сообщения</param>
-        /// <returns>Ответ сервера</returns>
-        public string SendMessage(string message)
+        public static void SendMessage(Message message)
         {
 			byte[] data = new byte[256];
-
+			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+			var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
 			StringBuilder serverResponse = new StringBuilder();
-            if (string.IsNullOrEmpty(message))
+            if (message == null)
             {
-                return "Получено пустое сообщение.";
+                return;
             }
 			client = new TcpClient();
-            client.Connect(server, port);
+			client.Connect(server, port);
             if (client.Connected)
             {
 				NetworkStream stream = client.GetStream();
 
-				data = Encoding.UTF8.GetBytes(message);
+				data = Encoding.UTF8.GetBytes(messageBody);
 				stream.Write(data, 0, data.Length);
 
                 do
@@ -119,15 +98,10 @@ namespace SecurityDoors.BL.Controllers
                 // Закрываем потоки
                 stream.Close();
                 client.Close();
-                return serverResponse.ToString();
-            }
-            else
-            {
-                return "Connection failed.";
             }
         }
 
-		public List<string> GetDoorsFromAPI (string url = "http://localhost:49883/api/doors")
+		public static List<string> GetListOfDoorsFromAPI (string url = "http://localhost:49883/api/doors")
 		{
 			try
 			{
@@ -145,7 +119,7 @@ namespace SecurityDoors.BL.Controllers
 			}
 		}
 
-		public List<string> GetCardsFromAPI (string url = "http://localhost:49883/api/cards")
+		public static List<string> GetListOfCardsFromAPI (string url = "http://localhost:49883/api/cards")
 		{
 			try
 			{

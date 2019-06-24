@@ -1,5 +1,8 @@
-﻿namespace SecurityDoors.BL.Models
+﻿using System;
+
+namespace SecurityDoors.BL.Models
 {
+	[Serializable]
     public class Person
     {
         public string FirstName { get; set; }

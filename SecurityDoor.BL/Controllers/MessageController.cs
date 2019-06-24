@@ -6,12 +6,11 @@ namespace SecurityDoors.BL.Controllers
 {
     public class MessageController
     {
-        private readonly TCPController tCPController;
         public int CountOfMessages { get; set; }
 
         public MessageController()
         {
-			tCPController = new TCPController(1234, "127.0.0.1");
+			
         }
 
         /// <summary>
@@ -44,7 +43,6 @@ namespace SecurityDoors.BL.Controllers
             CountOfMessages++;
 			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
             var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
-			tCPController.SendMessage(messageBody);
         }
     }
 }

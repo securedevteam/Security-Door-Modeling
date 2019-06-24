@@ -44,8 +44,7 @@ namespace SecurityDoors.UI.View
             host = field_host.Text; 
             if (SetErrorStyle(host, port))
             {
-                TCPController tCPController = new TCPController(port, host);
-                bool isAviable = await Task.Run(() => tCPController.CheckServerAvailability());
+                bool isAviable = await Task.Run(() => TCPController.CheckServerAvailability());
                 if (isAviable)
                 {
                     MessageBox.Show("подключение установлено");

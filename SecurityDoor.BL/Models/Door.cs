@@ -1,6 +1,9 @@
-﻿namespace SecurityDoors.BL.Models
+﻿using System;
+
+namespace SecurityDoors.BL.Models
 {
-    public class Door
+	[Serializable]
+	public class Door
     {
         public string Name { get; set; }
     }

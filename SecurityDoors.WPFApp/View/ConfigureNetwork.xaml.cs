@@ -72,7 +72,7 @@ namespace SecurityDoors.UI.View
             }
 			host = field_host.Text;
 			secretKey = field_secretKey.Text;
-            if (!SetErrorStyle(host, port))
+            if (SetErrorStyle(host, port))
             {
 				Properties.Settings.Default.SaveNetworkSetting(host, port, secretKey);
             }

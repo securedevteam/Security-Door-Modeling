@@ -23,13 +23,10 @@ namespace SecurityDoor.BL.Controllers
 			var dataRandomiser = new DataRandomiserController();
 			dataRandomiser.MakeRandomData();
 
-			//
-			var secretKey = "ab6fc77d-a990-4342-ba8b-80f35df8b6b1";
-			//
 
 			foreach (var person in dataRandomiser.randomPeople)
 			{
-				Messages.Add(new Message() { SecretKey = secretKey, PersonCard = person.CardUniqueNumber, DoorName = dataRandomiser.randomDoors[new Random().Next(0,12)].Name });
+				Messages.Add(new Message() { PersonCard = person.CardUniqueNumber, DoorName = dataRandomiser.randomDoors[new Random(100).Next(0, 12)].Name });
 			}
 
 			messageController.SendMessages(Messages);

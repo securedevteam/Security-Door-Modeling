@@ -12,7 +12,7 @@ namespace SecurityDoors.BL.Controllers
         private readonly int port;
         private readonly string server;
 
-        private readonly TcpClient client = new TcpClient();
+		private TcpClient client;// = new TcpClient();
 
         public TCPController(int? port, string server)
         {
@@ -44,7 +44,8 @@ namespace SecurityDoors.BL.Controllers
         {
             try
             {
-                client.Connect(server, port);
+				client = new TcpClient();
+				client.Connect(server, port);
                 if (client.Connected)
                 {
                     client.Close();
@@ -90,18 +91,20 @@ namespace SecurityDoors.BL.Controllers
         /// <returns>Ответ сервера</returns>
         public string SendMessage(string message)
         {
-            StringBuilder serverResponse = new StringBuilder();
+			byte[] data = new byte[256];
+
+			StringBuilder serverResponse = new StringBuilder();
             if (string.IsNullOrEmpty(message))
             {
                 return "Получено пустое сообщение.";
             }
-
+			client = new TcpClient();
             client.Connect(server, port);
             if (client.Connected)
             {
 				NetworkStream stream = client.GetStream();
 
-				byte[] data = Encoding.UTF8.GetBytes(message);
+				data = Encoding.UTF8.GetBytes(message);
 				stream.Write(data, 0, data.Length);
 
                 do

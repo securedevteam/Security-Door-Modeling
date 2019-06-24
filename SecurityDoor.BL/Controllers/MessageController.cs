@@ -42,8 +42,8 @@ namespace SecurityDoors.BL.Controllers
             }
 
             CountOfMessages++;
-
-            var messageBody = $"{message.SecretKey}#{message.PersonCard}#{message.DoorName}";
+			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+            var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
 			tCPController.SendMessage(messageBody);
         }
     }

@@ -17,7 +17,7 @@ namespace SecurityDoors.BL.Windows
         /// <returns></returns>
         public static bool IsPortValid(int port)
         {
-            if (port < MAX_NUMBER_PORT || port == 0)
+            if (port > MAX_NUMBER_PORT || port == 0)
             {
                 return false;
             }

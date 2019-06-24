@@ -35,7 +35,7 @@ namespace SecurityDoors.UI.View
 
 
 			var isServerAvailable = tCPController.CheckServerAvailability();
-			if (isServerAvailable)
+			if (/*isServerAvailable*/ false)
 			{
 				///TODO: Отправить сообщение на сервер и запросить новые данные
 			}
@@ -79,7 +79,6 @@ namespace SecurityDoors.UI.View
 			{
 				var newMessage = new Message()
 				{
-					SecretKey = "",
 					PersonCard = "",
 					DoorName = ""
 				};

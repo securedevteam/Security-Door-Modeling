@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.BL.Models.ViewModels
 {
-	public class PeopleAndCardsViewModel// : INotifyPropertyChanged
+	public class PeopleAndCardsViewModel : INotifyPropertyChanged
 	{
 		private string name;
 		private string cardNumber;
@@ -15,7 +15,7 @@ namespace SecurityDoors.BL.Models.ViewModels
 			set
 			{
 				name = value;
-				//OnPropertyChanged("Name");
+				OnPropertyChanged(nameof(Name));
 			}
 		}
 		public string CardNumber
@@ -24,7 +24,7 @@ namespace SecurityDoors.BL.Models.ViewModels
 			set
 			{
 				cardNumber = value;
-				//OnPropertyChanged("CardNumber");
+				OnPropertyChanged(nameof(CardNumber));
 			}
 		}
 
@@ -34,14 +34,14 @@ namespace SecurityDoors.BL.Models.ViewModels
 			set
 			{
 				use = value;
-				//OnPropertyChanged("Use");
+				OnPropertyChanged(nameof(Use));
 			}
 		}
-		/*
+		
 		public event PropertyChangedEventHandler PropertyChanged;
 		public void OnPropertyChanged([CallerMemberName]string prop = "")
 		{
 			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
-		}*/
+		}
 	}
 }

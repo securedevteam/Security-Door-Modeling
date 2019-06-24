@@ -32,7 +32,7 @@ namespace SecurityDoors.UI.View
 			comboBox_door.ItemsSource = doorsViewModel.Doors;
 
 			var tCPController = new TCPController();
-
+			tCPController.GetDoorsFromAPI();
 
 			var isServerAvailable = tCPController.CheckServerAvailability();
 			if (/*isServerAvailable*/ false)

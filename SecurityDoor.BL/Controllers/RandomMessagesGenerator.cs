@@ -29,7 +29,7 @@ namespace SecurityDoor.BL.Controllers
 				Messages.Add(new Message() { PersonCard = person.CardUniqueNumber, DoorName = dataRandomiser.randomDoors[new Random(100).Next(0, 12)].Name });
 			}
 
-			messageController.SendMessages(Messages);
+			//messageController.SendMessages(Messages);
 		}
 	}
 }

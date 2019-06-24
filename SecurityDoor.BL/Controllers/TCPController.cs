@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace SecurityDoors.BL.Controllers
 {
@@ -124,5 +126,41 @@ namespace SecurityDoors.BL.Controllers
                 return "Connection failed.";
             }
         }
-    }
+
+		public List<string> GetDoorsFromAPI (string url = "http://localhost:49883/api/doors")
+		{
+			try
+			{
+				using (var webClient = new WebClient())
+				{
+					webClient.Encoding = Encoding.UTF8;
+					var response = webClient.DownloadString(url);
+					var listOfDoors = JsonConvert.DeserializeObject<List<string>>(response);
+					return listOfDoors;
+				}
+			}
+			catch (WebException webExc)
+			{
+				return new List<string>();
+			}
+		}
+
+		public List<string> GetCardsFromAPI (string url = "http://localhost:49883/api/cards")
+		{
+			try
+			{
+				using (var webClient = new WebClient())
+				{
+					webClient.Encoding = Encoding.UTF8;
+					var response = webClient.DownloadString(url);
+					var listOfDoors = JsonConvert.DeserializeObject<List<string>>(response);
+					return listOfDoors;
+				}
+			}
+			catch (WebException webExc)
+			{
+				return new List<string>();
+			}
+		}
+	}
 }

@@ -51,10 +51,11 @@ namespace SecurityDoors.UI.View
 				int i = 0;
 				foreach (var person in listOfPeole)
 				{
+					person.CardUniqueNumber = listOfCards[i];
 					var newPerson = new PeopleAndCardsViewModel()
 					{
 						Name = $"{person.FirstName} {person.SecondName} {person.LastName}",
-						CardNumber = listOfCards[i]
+						CardNumber = person.CardUniqueNumber
 					};
 					dataGridView.PeopleAndCardsList.Add(newPerson);
 					if (i >= listOfCards.Count + 1)
@@ -71,7 +72,7 @@ namespace SecurityDoors.UI.View
 				var cacheController = new CacheController();
 				cacheController.SetDoors(listOfDoors);
 				cacheController.People = listOfPeole;
-				cacheController.SaveCachedata();
+				cacheController.SaveCacheData();
 			}
 			else
 			{

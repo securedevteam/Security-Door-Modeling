@@ -20,33 +20,33 @@ namespace SecurityDoors.BL.Controllers
         {
             get
             {
-                LoadCachedDataAsync();
+                LoadCacheData();
                 return doors;
             }
             set
             {
                 doors = value;
-                SaveCacheDataAsync();
+                SaveCacheData();
             }
         }
         public List<Person> People
         {
             get
             {
-                LoadCachedDataAsync();
+                LoadCacheData();
                 return people;
             }
             set
             {
                 people = value;
-                SaveCacheDataAsync();
+                SaveCacheData();
             }
         }
 
         /// <summary>
         /// Загружает данные из файла
         /// </summary>
-        public async void LoadCachedDataAsync()
+        public async void LoadCacheDataAsync()
         {
             await Task.Run(() => LoadCacheData());
         }
@@ -82,9 +82,9 @@ namespace SecurityDoors.BL.Controllers
         /// </summary>
         public async void SaveCacheDataAsync()
         {
-            await Task.Run(() => SaveCachedata());
+            await Task.Run(() => SaveCacheData());
         }
-        public bool SaveCachedata()
+        public bool SaveCacheData()
         {
             lock (locker)
             {
@@ -126,11 +126,12 @@ namespace SecurityDoors.BL.Controllers
 
 		public void SetDoors (List<string> doors)
 		{
-			Doors.Clear();
+			var listOfDoors = new List<Door>();
 			foreach (var door in doors)
 			{
-				Doors.Add(new Door() { Name = door });
+				listOfDoors.Add(new Door() { Name = door });
 			}
+			Doors = listOfDoors;
 		}
 
     }

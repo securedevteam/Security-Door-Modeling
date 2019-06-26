@@ -21,7 +21,7 @@ namespace SecurityDoors.UI.View
         {
             field_host.Text = SecurityDoor.BL.Properties.Settings.Default.host;
             field_port.Text = SecurityDoor.BL.Properties.Settings.Default.port.ToString();
-			field_secretKey.Text = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+			field_secretKey.Text = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
 
 		}
 

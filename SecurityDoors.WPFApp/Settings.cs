@@ -39,7 +39,7 @@
         {
 			SecurityDoor.BL.Properties.Settings.Default.host = host;
 			SecurityDoor.BL.Properties.Settings.Default.port = port;
-			SecurityDoor.BL.Properties.Settings.Default.secretKey = secretKey;
+			SecurityDoor.BL.Properties.Settings.Default.SecretKey = secretKey;
 			SecurityDoor.BL.Properties.Settings.Default.Save();
             //Default["host"] = host;
             //Default["port"] = port;

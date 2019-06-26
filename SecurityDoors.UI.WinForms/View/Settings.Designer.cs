@@ -30,16 +30,20 @@
 		{
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.сохранитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.вернутьСтандартныеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SetDefaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.CloseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+			this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.maskedTextBoxIP = new System.Windows.Forms.MaskedTextBox();
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
-			this.maskedTextBox2 = new System.Windows.Forms.MaskedTextBox();
-			this.button1 = new System.Windows.Forms.Button();
+			this.maskedTextBoxPort = new System.Windows.Forms.MaskedTextBox();
+			this.buttonCheckSettings = new System.Windows.Forms.Button();
+			this.label3 = new System.Windows.Forms.Label();
+			this.maskedTextBoxPortAPI = new System.Windows.Forms.MaskedTextBox();
+			this.label4 = new System.Windows.Forms.Label();
+			this.textBoxSecretKey = new System.Windows.Forms.TextBox();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -50,65 +54,69 @@
             this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(553, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(223, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
 			// сервисToolStripMenuItem
 			// 
 			this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.сохранитьToolStripMenuItem,
-            this.вернутьСтандартныеToolStripMenuItem,
-            this.выходToolStripMenuItem});
+            this.SaveToolStripMenuItem,
+            this.SetDefaultToolStripMenuItem,
+            this.CloseToolStripMenuItem});
 			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
 			// 
-			// сохранитьToolStripMenuItem
+			// SaveToolStripMenuItem
 			// 
-			this.сохранитьToolStripMenuItem.Name = "сохранитьToolStripMenuItem";
-			this.сохранитьToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.сохранитьToolStripMenuItem.Text = "Сохранить";
+			this.SaveToolStripMenuItem.Name = "SaveToolStripMenuItem";
+			this.SaveToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.SaveToolStripMenuItem.Text = "Сохранить";
+			this.SaveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
 			// 
-			// вернутьСтандартныеToolStripMenuItem
+			// SetDefaultToolStripMenuItem
 			// 
-			this.вернутьСтандартныеToolStripMenuItem.Name = "вернутьСтандартныеToolStripMenuItem";
-			this.вернутьСтандартныеToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.вернутьСтандартныеToolStripMenuItem.Text = "Вернуть стандартные";
+			this.SetDefaultToolStripMenuItem.Name = "SetDefaultToolStripMenuItem";
+			this.SetDefaultToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.SetDefaultToolStripMenuItem.Text = "Вернуть стандартные";
+			this.SetDefaultToolStripMenuItem.Click += new System.EventHandler(this.SetDefaultToolStripMenuItem_Click);
 			// 
-			// выходToolStripMenuItem
+			// CloseToolStripMenuItem
 			// 
-			this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-			this.выходToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
-			this.выходToolStripMenuItem.Text = "Выход";
+			this.CloseToolStripMenuItem.Name = "CloseToolStripMenuItem";
+			this.CloseToolStripMenuItem.Size = new System.Drawing.Size(191, 22);
+			this.CloseToolStripMenuItem.Text = "Выход";
+			this.CloseToolStripMenuItem.Click += new System.EventHandler(this.CloseToolStripMenuItem_Click);
 			// 
 			// справкаToolStripMenuItem
 			// 
 			this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.оПрограммеToolStripMenuItem});
+            this.AboutToolStripMenuItem});
 			this.справкаToolStripMenuItem.Name = "справкаToolStripMenuItem";
 			this.справкаToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
 			this.справкаToolStripMenuItem.Text = "Справка";
 			// 
-			// оПрограммеToolStripMenuItem
+			// AboutToolStripMenuItem
 			// 
-			this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-			this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.оПрограммеToolStripMenuItem.Text = "О программе";
+			this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
+			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.AboutToolStripMenuItem.Text = "О программе";
+			this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
 			// 
-			// maskedTextBox1
+			// maskedTextBoxIP
 			// 
-			this.maskedTextBox1.Location = new System.Drawing.Point(70, 42);
-			this.maskedTextBox1.Mask = "000\\.000\\.000\\.000";
-			this.maskedTextBox1.Name = "maskedTextBox1";
-			this.maskedTextBox1.ResetOnSpace = false;
-			this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-			this.maskedTextBox1.TabIndex = 1;
+			this.maskedTextBoxIP.Location = new System.Drawing.Point(38, 33);
+			this.maskedTextBoxIP.Mask = "000\\.000\\.000\\.000";
+			this.maskedTextBoxIP.Name = "maskedTextBoxIP";
+			this.maskedTextBoxIP.ResetOnSpace = false;
+			this.maskedTextBoxIP.Size = new System.Drawing.Size(90, 20);
+			this.maskedTextBoxIP.TabIndex = 1;
 			// 
 			// label1
 			// 
 			this.label1.AutoSize = true;
-			this.label1.Location = new System.Drawing.Point(29, 45);
+			this.label1.Location = new System.Drawing.Point(12, 36);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(20, 13);
 			this.label1.TabIndex = 2;
@@ -117,44 +125,88 @@
 			// label2
 			// 
 			this.label2.AutoSize = true;
-			this.label2.Location = new System.Drawing.Point(29, 71);
+			this.label2.Location = new System.Drawing.Point(11, 62);
 			this.label2.Name = "label2";
 			this.label2.Size = new System.Drawing.Size(35, 13);
 			this.label2.TabIndex = 4;
 			this.label2.Text = "Порт:";
 			// 
-			// maskedTextBox2
+			// maskedTextBoxPort
 			// 
-			this.maskedTextBox2.Location = new System.Drawing.Point(70, 68);
-			this.maskedTextBox2.Mask = "00000\\";
-			this.maskedTextBox2.Name = "maskedTextBox2";
-			this.maskedTextBox2.ResetOnSpace = false;
-			this.maskedTextBox2.Size = new System.Drawing.Size(100, 20);
-			this.maskedTextBox2.TabIndex = 3;
+			this.maskedTextBoxPort.Location = new System.Drawing.Point(94, 59);
+			this.maskedTextBoxPort.Mask = "00000\\";
+			this.maskedTextBoxPort.Name = "maskedTextBoxPort";
+			this.maskedTextBoxPort.ResetOnSpace = false;
+			this.maskedTextBoxPort.Size = new System.Drawing.Size(34, 20);
+			this.maskedTextBoxPort.TabIndex = 3;
 			// 
-			// button1
+			// buttonCheckSettings
 			// 
-			this.button1.Location = new System.Drawing.Point(176, 40);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(75, 23);
-			this.button1.TabIndex = 5;
-			this.button1.Text = "Проверить";
-			this.button1.UseVisualStyleBackColor = true;
+			this.buttonCheckSettings.Location = new System.Drawing.Point(134, 31);
+			this.buttonCheckSettings.Name = "buttonCheckSettings";
+			this.buttonCheckSettings.Size = new System.Drawing.Size(75, 23);
+			this.buttonCheckSettings.TabIndex = 5;
+			this.buttonCheckSettings.Text = "Проверить";
+			this.buttonCheckSettings.UseVisualStyleBackColor = true;
+			this.buttonCheckSettings.Click += new System.EventHandler(this.ButtonCheckSettings_Click);
+			// 
+			// label3
+			// 
+			this.label3.AutoSize = true;
+			this.label3.Location = new System.Drawing.Point(12, 88);
+			this.label3.Name = "label3";
+			this.label3.Size = new System.Drawing.Size(76, 13);
+			this.label3.TabIndex = 7;
+			this.label3.Text = "Порт для API:";
+			// 
+			// maskedTextBoxPortAPI
+			// 
+			this.maskedTextBoxPortAPI.Location = new System.Drawing.Point(94, 85);
+			this.maskedTextBoxPortAPI.Mask = "00000\\";
+			this.maskedTextBoxPortAPI.Name = "maskedTextBoxPortAPI";
+			this.maskedTextBoxPortAPI.ResetOnSpace = false;
+			this.maskedTextBoxPortAPI.Size = new System.Drawing.Size(34, 20);
+			this.maskedTextBoxPortAPI.TabIndex = 6;
+			// 
+			// label4
+			// 
+			this.label4.AutoSize = true;
+			this.label4.Location = new System.Drawing.Point(12, 114);
+			this.label4.Name = "label4";
+			this.label4.Size = new System.Drawing.Size(94, 13);
+			this.label4.TabIndex = 9;
+			this.label4.Text = "Секретный ключ:";
+			// 
+			// textBoxSecretKey
+			// 
+			this.textBoxSecretKey.Location = new System.Drawing.Point(14, 130);
+			this.textBoxSecretKey.Multiline = true;
+			this.textBoxSecretKey.Name = "textBoxSecretKey";
+			this.textBoxSecretKey.Size = new System.Drawing.Size(195, 71);
+			this.textBoxSecretKey.TabIndex = 10;
 			// 
 			// Settings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(553, 307);
-			this.Controls.Add(this.button1);
+			this.ClientSize = new System.Drawing.Size(223, 212);
+			this.Controls.Add(this.textBoxSecretKey);
+			this.Controls.Add(this.label4);
+			this.Controls.Add(this.label3);
+			this.Controls.Add(this.maskedTextBoxPortAPI);
+			this.Controls.Add(this.buttonCheckSettings);
 			this.Controls.Add(this.label2);
-			this.Controls.Add(this.maskedTextBox2);
+			this.Controls.Add(this.maskedTextBoxPort);
 			this.Controls.Add(this.label1);
-			this.Controls.Add(this.maskedTextBox1);
+			this.Controls.Add(this.maskedTextBoxIP);
 			this.Controls.Add(this.menuStrip1);
+			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
 			this.MainMenuStrip = this.menuStrip1;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "Settings";
 			this.Text = "Settings";
+			this.Load += new System.EventHandler(this.Settings_Load);
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			this.ResumeLayout(false);
@@ -166,15 +218,19 @@
 
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem сохранитьToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem вернутьСтандартныеToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem SaveToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem SetDefaultToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem CloseToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem справкаToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
-		private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+		private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+		private System.Windows.Forms.MaskedTextBox maskedTextBoxIP;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.MaskedTextBox maskedTextBox2;
-		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.MaskedTextBox maskedTextBoxPort;
+		private System.Windows.Forms.Button buttonCheckSettings;
+		private System.Windows.Forms.Label label3;
+		private System.Windows.Forms.MaskedTextBox maskedTextBoxPortAPI;
+		private System.Windows.Forms.Label label4;
+		private System.Windows.Forms.TextBox textBoxSecretKey;
 	}
 }

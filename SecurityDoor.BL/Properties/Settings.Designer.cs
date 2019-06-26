@@ -25,37 +25,49 @@ namespace SecurityDoor.BL.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1234")]
-        public int port {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string IP {
             get {
-                return ((int)(this["port"]));
+                return ((string)(this["IP"]));
             }
             set {
-                this["port"] = value;
+                this["IP"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("127.0.0.1")]
-        public string host {
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int Port {
             get {
-                return ((string)(this["host"]));
+                return ((int)(this["Port"]));
             }
             set {
-                this["host"] = value;
+                this["Port"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int PortApi {
+            get {
+                return ((int)(this["PortApi"]));
+            }
+            set {
+                this["PortApi"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string secretKey {
+        public string SecretKey {
             get {
-                return ((string)(this["secretKey"]));
+                return ((string)(this["SecretKey"]));
             }
             set {
-                this["secretKey"] = value;
+                this["SecretKey"] = value;
             }
         }
     }

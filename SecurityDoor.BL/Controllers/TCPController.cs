@@ -75,7 +75,7 @@ namespace SecurityDoors.BL.Controllers
 				return;
 
 			byte[] data = new byte[256];
-			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+			var secretKey = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
 			var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
 			StringBuilder serverResponse = new StringBuilder();
 			client = new TcpClient();

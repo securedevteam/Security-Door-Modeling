@@ -41,7 +41,7 @@ namespace SecurityDoors.BL.Controllers
             }
 
             CountOfMessages++;
-			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
+			var secretKey = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
             var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
         }
     }

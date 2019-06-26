@@ -2,13 +2,16 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="SecurityDoor.BL.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="port" Type="System.Int32" Scope="User">
-      <Value Profile="(Default)">1234</Value>
+    <Setting Name="IP" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="host" Type="System.String" Scope="User">
-      <Value Profile="(Default)">127.0.0.1</Value>
+    <Setting Name="Port" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="secretKey" Type="System.String" Scope="User">
+    <Setting Name="PortApi" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="SecretKey" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

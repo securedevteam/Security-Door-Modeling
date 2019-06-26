@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoor.BL", "SecurityDoor.BL\SecurityDoor.BL.csproj", "{3EEE4E31-02E7-4BD5-8D97-763C479D1237}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.WinForms", "SecurityDoors.UI.WinForms\SecurityDoors.UI.WinForms.csproj", "{9CF9E363-E640-415A-BA6D-863C828F113F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{3EEE4E31-02E7-4BD5-8D97-763C479D1237}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3EEE4E31-02E7-4BD5-8D97-763C479D1237}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3EEE4E31-02E7-4BD5-8D97-763C479D1237}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CF9E363-E640-415A-BA6D-863C828F113F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CF9E363-E640-415A-BA6D-863C828F113F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CF9E363-E640-415A-BA6D-863C828F113F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CF9E363-E640-415A-BA6D-863C828F113F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

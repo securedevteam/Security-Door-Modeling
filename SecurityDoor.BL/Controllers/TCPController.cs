@@ -70,15 +70,14 @@ namespace SecurityDoors.BL.Controllers
         /// </summary>
         /// <param name="message">Строка сообщения</param>
         public static void SendMessage(Message message)
-        {
+		{
+			if (message == null)
+				return;
+
 			byte[] data = new byte[256];
 			var secretKey = SecurityDoor.BL.Properties.Settings.Default.secretKey;
 			var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
 			StringBuilder serverResponse = new StringBuilder();
-            if (message == null)
-            {
-                return;
-            }
 			client = new TcpClient();
 			client.Connect(server, port);
             if (client.Connected)
@@ -113,7 +112,7 @@ namespace SecurityDoors.BL.Controllers
 					return listOfDoors;
 				}
 			}
-			catch (WebException webExc)
+			catch (WebException)
 			{
 				return new List<string>();
 			}
@@ -131,7 +130,7 @@ namespace SecurityDoors.BL.Controllers
 					return listOfDoors;
 				}
 			}
-			catch (WebException webExc)
+			catch (WebException)
 			{
 				return new List<string>();
 			}

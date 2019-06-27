@@ -40,8 +40,8 @@
 			this.label1 = new System.Windows.Forms.Label();
 			this.label2 = new System.Windows.Forms.Label();
 			this.label3 = new System.Windows.Forms.Label();
-			this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-			this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDownRepeatCount = new System.Windows.Forms.NumericUpDown();
+			this.numericUpDownDelay = new System.Windows.Forms.NumericUpDown();
 			this.dataGridViewPeoplesAndCards = new System.Windows.Forms.DataGridView();
 			this.textBoxLog = new System.Windows.Forms.TextBox();
 			this.label4 = new System.Windows.Forms.Label();
@@ -50,8 +50,8 @@
 			this.dataGridViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
 			this.SaveDataToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRepeatCount)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownDelay)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPeoplesAndCards)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewModelBindingSource)).BeginInit();
 			this.SuspendLayout();
@@ -148,19 +148,19 @@
 			this.label3.TabIndex = 4;
 			this.label3.Text = "Пауза";
 			// 
-			// numericUpDown1
+			// numericUpDownRepeatCount
 			// 
-			this.numericUpDown1.Location = new System.Drawing.Point(139, 55);
-			this.numericUpDown1.Name = "numericUpDown1";
-			this.numericUpDown1.Size = new System.Drawing.Size(48, 20);
-			this.numericUpDown1.TabIndex = 7;
+			this.numericUpDownRepeatCount.Location = new System.Drawing.Point(139, 55);
+			this.numericUpDownRepeatCount.Name = "numericUpDownRepeatCount";
+			this.numericUpDownRepeatCount.Size = new System.Drawing.Size(48, 20);
+			this.numericUpDownRepeatCount.TabIndex = 7;
 			// 
-			// numericUpDown2
+			// numericUpDownDelay
 			// 
-			this.numericUpDown2.Location = new System.Drawing.Point(193, 55);
-			this.numericUpDown2.Name = "numericUpDown2";
-			this.numericUpDown2.Size = new System.Drawing.Size(48, 20);
-			this.numericUpDown2.TabIndex = 8;
+			this.numericUpDownDelay.Location = new System.Drawing.Point(193, 55);
+			this.numericUpDownDelay.Name = "numericUpDownDelay";
+			this.numericUpDownDelay.Size = new System.Drawing.Size(48, 20);
+			this.numericUpDownDelay.TabIndex = 8;
 			// 
 			// dataGridViewPeoplesAndCards
 			// 
@@ -224,8 +224,8 @@
 			this.Controls.Add(this.label4);
 			this.Controls.Add(this.textBoxLog);
 			this.Controls.Add(this.dataGridViewPeoplesAndCards);
-			this.Controls.Add(this.numericUpDown2);
-			this.Controls.Add(this.numericUpDown1);
+			this.Controls.Add(this.numericUpDownDelay);
+			this.Controls.Add(this.numericUpDownRepeatCount);
 			this.Controls.Add(this.label3);
 			this.Controls.Add(this.label2);
 			this.Controls.Add(this.label1);
@@ -239,8 +239,8 @@
 			this.Text = "Form1";
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRepeatCount)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.numericUpDownDelay)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewPeoplesAndCards)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataGridViewModelBindingSource)).EndInit();
 			this.ResumeLayout(false);
@@ -260,8 +260,8 @@
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label label2;
 		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.NumericUpDown numericUpDown1;
-		private System.Windows.Forms.NumericUpDown numericUpDown2;
+		private System.Windows.Forms.NumericUpDown numericUpDownRepeatCount;
+		private System.Windows.Forms.NumericUpDown numericUpDownDelay;
 		private System.Windows.Forms.DataGridView dataGridViewPeoplesAndCards;
 		private System.Windows.Forms.BindingSource dataGridViewModelBindingSource;
 		private System.Windows.Forms.TextBox textBoxLog;

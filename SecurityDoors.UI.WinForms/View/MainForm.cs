@@ -3,11 +3,7 @@ using SecurityDoors.BL.Models.ViewModels;
 using SecurityDoors.UI.WinForms.Controllers;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -110,11 +106,30 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private void ButtonStart_Click(object sender, EventArgs e)
 		{
-			int i = 0;
-			do
-			{
+			var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
+			var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
 
-			} while (true);
+			if (parseCountSuccess && parseDelaySuccess)
+			{
+				do
+				{
+					var messages = new List<BL.Models.Message>();
+					foreach (var row in dataGridViewModel.PeopleAndCardsList)
+					{
+						if (row.Use)
+						{
+							messages.Add(new BL.Models.Message() { DoorName = comboBoxDoors.SelectedValue.ToString(), PersonCard = row.CardUniqueNumber });
+						}
+					}
+					TCPController.SendMessages(messages);
+					Thread.Sleep(new TimeSpan(0, 0, delay));
+					count--;
+				} while (count > 0);
+			}
+			else
+			{
+				LoggerController.Log = "Ошибка при конвертации";
+			}
 		}
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
 		{

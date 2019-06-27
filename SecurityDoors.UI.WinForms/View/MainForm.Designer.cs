@@ -48,7 +48,7 @@
 			this.buttonStart = new System.Windows.Forms.Button();
 			this.timerUpdateLog = new System.Windows.Forms.Timer(this.components);
 			this.dataGridViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.сохранитьДанныеВФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SaveDataToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -73,7 +73,7 @@
             this.SettingsToolStripMenuItem,
             this.UpdateThroughtAPIToolStripMenuItem,
             this.LoadDataFromFileToolStripMenuItem,
-            this.сохранитьДанныеВФайлToolStripMenuItem});
+            this.SaveDataToFileToolStripMenuItem});
 			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
@@ -208,11 +208,12 @@
 			// 
 			this.dataGridViewModelBindingSource.DataSource = typeof(SecurityDoors.BL.Models.ViewModels.DataGridViewModel);
 			// 
-			// сохранитьДанныеВФайлToolStripMenuItem
+			// SaveDataToFileToolStripMenuItem
 			// 
-			this.сохранитьДанныеВФайлToolStripMenuItem.Name = "сохранитьДанныеВФайлToolStripMenuItem";
-			this.сохранитьДанныеВФайлToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-			this.сохранитьДанныеВФайлToolStripMenuItem.Text = "Сохранить данные в файл";
+			this.SaveDataToFileToolStripMenuItem.Name = "SaveDataToFileToolStripMenuItem";
+			this.SaveDataToFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+			this.SaveDataToFileToolStripMenuItem.Text = "Сохранить данные в файл";
+			this.SaveDataToFileToolStripMenuItem.Click += new System.EventHandler(this.SaveDataToFileToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -268,7 +269,7 @@
 		private System.Windows.Forms.Button buttonStart;
 		private System.Windows.Forms.ToolStripMenuItem LoadDataFromFileToolStripMenuItem;
 		private System.Windows.Forms.Timer timerUpdateLog;
-		private System.Windows.Forms.ToolStripMenuItem сохранитьДанныеВФайлToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem SaveDataToFileToolStripMenuItem;
 	}
 }
 

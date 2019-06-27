@@ -68,6 +68,21 @@ namespace SecurityDoors.UI.WinForms.View
 
 			LoggerController.Log = "Загрузка из файла закончена";
 		}
+		/// <summary>
+		/// Сохраняет данные в файл
+		/// </summary>
+		private void SaveDataToFileToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			LoggerController.Log = "Начато сохранение данных в файл";
+			var cacheController = new CacheController();
+
+			cacheController.Doors = doorsViewModel.Doors;
+			cacheController.People = dataGridViewModel.PeopleAndCardsList;
+
+			cacheController.SaveCacheData();
+
+			LoggerController.Log = "Сохранение данных в файл закончено";
+		}
 
 		/// <summary>
 		/// Выполняет загрузку данных из API
@@ -105,7 +120,5 @@ namespace SecurityDoors.UI.WinForms.View
 		{
 			textBoxLog.Text = LoggerController.Log;
 		}
-
-
 	}
 }

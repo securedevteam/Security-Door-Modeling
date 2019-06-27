@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 
 namespace SecurityDoor.BL.Controllers
 {
@@ -38,6 +35,15 @@ namespace SecurityDoor.BL.Controllers
 				return checkResult;
 		}
 
+
+		public static void SetDefaultProperties()
+		{
+			iP = Properties.Settings.Default.IP;
+			port = Properties.Settings.Default.Port;
+			portApi = Properties.Settings.Default.PortApi;
+			secretKey = Properties.Settings.Default.SecretKey;
+		}
+
 		/// <summary>
 		/// Выполняет проверку настроек
 		/// </summary>
@@ -46,7 +52,7 @@ namespace SecurityDoor.BL.Controllers
 		/// <param name="portApi">Порт API</param>
 		/// <param name="secretKey">Секретный ключ</param>
 		/// <returns>null в случае успеха или ошибку</returns>
-		public static string CheckSettings (string ip, int? port, int? portApi, string secretKey)
+		public static string CheckSettings(string ip, int? port, int? portApi, string secretKey)
 		{
 			if (string.IsNullOrEmpty(ip) || string.IsNullOrWhiteSpace(ip))
 			{
@@ -76,6 +82,12 @@ namespace SecurityDoor.BL.Controllers
 			if (portApi < 0)
 			{
 				return "Порт не может быть отрицательным";
+			}
+
+			Regex rgx = new Regex(@"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
+			if (!rgx.Match(ip).Success)
+			{
+				return "IP введен неправильно";
 			}
 			return null;
 		}

@@ -11,8 +11,8 @@ namespace SecurityDoors.BL.Models.ViewModels
 {
 	public class DoorsViewModel : INotifyPropertyChanged
 	{
-		private ObservableCollection<string> doors = new ObservableCollection<string>();
-		public ObservableCollection<string> Doors
+		private List<Door> doors = new List<Door>();
+		public List<Door> Doors
 		{
 			get
 			{

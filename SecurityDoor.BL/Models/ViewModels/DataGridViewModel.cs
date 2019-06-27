@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -6,9 +7,9 @@ namespace SecurityDoors.BL.Models.ViewModels
 {
     public class DataGridViewModel : INotifyPropertyChanged
     {
-		private ObservableCollection<PeopleAndCardsViewModel> peopleAndCardsList;
+		private List<Person> peopleAndCardsList;
 
-		public ObservableCollection<PeopleAndCardsViewModel> PeopleAndCardsList
+		public List<Person> PeopleAndCardsList
 		{
 			get
 			{
@@ -22,7 +23,7 @@ namespace SecurityDoors.BL.Models.ViewModels
 		}
 		public DataGridViewModel()
 		{
-			PeopleAndCardsList = new ObservableCollection<PeopleAndCardsViewModel>();
+			PeopleAndCardsList = new List<Person>();
 		}
 
 		public event PropertyChangedEventHandler PropertyChanged;

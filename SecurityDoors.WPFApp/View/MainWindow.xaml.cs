@@ -35,12 +35,12 @@ namespace SecurityDoors.UI.View
 			var isServerAvailable = TCPController.CheckServerAvailability();
 			if (isServerAvailable)
 			{
-				var listOfCards = TCPController.GetListOfCardsFromAPI();
-				var listOfDoors = TCPController.GetListOfDoorsFromAPI();
+				var listOfCards = TCPController.GetListOfStringCardsFromAPI();
+				var listOfDoors = TCPController.GetListOfStringDoorsFromAPI();
 
 				foreach (var door in listOfDoors)
 				{
-					doorsViewModel.Doors.Add(door);
+					doorsViewModel.Doors.Add(new Door() { Name = door });
 				}
 
 				///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
@@ -84,7 +84,7 @@ namespace SecurityDoors.UI.View
 				}
 				foreach (var door in cacheController.Doors)
 				{
-					doorsViewModel.Doors.Add(door.Name);
+					doorsViewModel.Doors.Add(new Door() { Name = door.Name });
 				}
 			}
 		}

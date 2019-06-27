@@ -19,8 +19,8 @@ namespace SecurityDoors.UI.View
 
         private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
         {
-            field_host.Text = SecurityDoor.BL.Properties.Settings.Default.host;
-            field_port.Text = SecurityDoor.BL.Properties.Settings.Default.port.ToString();
+            field_host.Text = SecurityDoor.BL.Properties.Settings.Default.IP;
+            field_port.Text = SecurityDoor.BL.Properties.Settings.Default.Port.ToString();
 			field_secretKey.Text = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
 
 		}

@@ -37,8 +37,8 @@
         /// <param name="port">порт сервера</param>
         public void SaveNetworkSetting(string host, int port, string secretKey)
         {
-			SecurityDoor.BL.Properties.Settings.Default.host = host;
-			SecurityDoor.BL.Properties.Settings.Default.port = port;
+			SecurityDoor.BL.Properties.Settings.Default.IP= host;
+			SecurityDoor.BL.Properties.Settings.Default.Port = port;
 			SecurityDoor.BL.Properties.Settings.Default.SecretKey = secretKey;
 			SecurityDoor.BL.Properties.Settings.Default.Save();
             //Default["host"] = host;

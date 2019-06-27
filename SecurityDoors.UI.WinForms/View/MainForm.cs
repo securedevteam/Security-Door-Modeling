@@ -25,6 +25,9 @@ namespace SecurityDoors.UI.WinForms.View
 			UpdateDataSource();
 		}
 
+		/// <summary>
+		/// Обновляет данные на форме
+		/// </summary>
 		private void UpdateDataSource()
 		{
 			LoggerController.Log = "Устанавливаю привязки к форме";
@@ -50,6 +53,9 @@ namespace SecurityDoors.UI.WinForms.View
 			settings.ShowDialog();
 		}
 
+		/// <summary>
+		/// Выполняет загрузку данных из файла
+		/// </summary>
 		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			LoggerController.Log = "Начата загрузка данных из файла";
@@ -63,6 +69,9 @@ namespace SecurityDoors.UI.WinForms.View
 			LoggerController.Log = "Загрузка из файла закончена";
 		}
 
+		/// <summary>
+		/// Выполняет загрузку данных из API
+		/// </summary>
 		private void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			LoggerController.Log = "Начата загрузка данных из API";
@@ -81,15 +90,22 @@ namespace SecurityDoors.UI.WinForms.View
 				LoggerController.Log = "Загрузка данных из API неудачна";
 			}
 		}
+		/// <summary>
+		/// Запускает/останавливает тесты.
+		/// </summary>
+		private void ButtonStart_Click(object sender, EventArgs e)
+		{
+			int i = 0;
+			do
+			{
 
+			} while (true);
+		}
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
 		{
 			textBoxLog.Text = LoggerController.Log;
 		}
 
-		private void ButtonStart_Click(object sender, EventArgs e)
-		{
 
-		}
 	}
 }

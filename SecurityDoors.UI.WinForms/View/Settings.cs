@@ -1,4 +1,5 @@
 ﻿using SecurityDoor.BL.Controllers;
+using SecurityDoors.BL.Controllers;
 using SecurityDoors.UI.WinForms.Controllers;
 using System;
 using System.Collections.Generic;
@@ -84,6 +85,21 @@ namespace SecurityDoors.UI.WinForms.View
 		private void Settings_FormClosed(object sender, FormClosedEventArgs e)
 		{
 			SettingsController.SetDefaultProperties();
+		}
+
+		private void ButtonConnectionTest_Click(object sender, EventArgs e)
+		{
+			var result = TCPController.CheckServerAvailability();
+			if (result == true)
+			{
+				MessageBox.Show("Соединение установлено");
+				LoggerController.Log = "Соединение установлено";
+			}
+			else
+			{
+				MessageBox.Show("Соединение не установлено");
+				LoggerController.Log = "Соединение не установлено";
+			}
 		}
 	}
 }

@@ -44,6 +44,7 @@
 			this.label4 = new System.Windows.Forms.Label();
 			this.textBoxSecretKey = new System.Windows.Forms.TextBox();
 			this.textBoxIP = new System.Windows.Forms.TextBox();
+			this.buttonConnectionTest = new System.Windows.Forms.Button();
 			this.menuStrip1.SuspendLayout();
 			this.SuspendLayout();
 			// 
@@ -54,7 +55,7 @@
             this.справкаToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(228, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(256, 24);
 			this.menuStrip1.TabIndex = 0;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -135,7 +136,7 @@
 			// 
 			this.buttonCheckSettings.Location = new System.Drawing.Point(134, 31);
 			this.buttonCheckSettings.Name = "buttonCheckSettings";
-			this.buttonCheckSettings.Size = new System.Drawing.Size(75, 23);
+			this.buttonCheckSettings.Size = new System.Drawing.Size(110, 23);
 			this.buttonCheckSettings.TabIndex = 5;
 			this.buttonCheckSettings.Text = "Проверить";
 			this.buttonCheckSettings.UseVisualStyleBackColor = true;
@@ -174,7 +175,7 @@
 			this.textBoxSecretKey.Location = new System.Drawing.Point(14, 130);
 			this.textBoxSecretKey.Multiline = true;
 			this.textBoxSecretKey.Name = "textBoxSecretKey";
-			this.textBoxSecretKey.Size = new System.Drawing.Size(195, 71);
+			this.textBoxSecretKey.Size = new System.Drawing.Size(230, 71);
 			this.textBoxSecretKey.TabIndex = 10;
 			// 
 			// textBoxIP
@@ -184,11 +185,22 @@
 			this.textBoxIP.Size = new System.Drawing.Size(90, 20);
 			this.textBoxIP.TabIndex = 11;
 			// 
+			// buttonConnectionTest
+			// 
+			this.buttonConnectionTest.Location = new System.Drawing.Point(134, 59);
+			this.buttonConnectionTest.Name = "buttonConnectionTest";
+			this.buttonConnectionTest.Size = new System.Drawing.Size(110, 23);
+			this.buttonConnectionTest.TabIndex = 12;
+			this.buttonConnectionTest.Text = "Тест соединения";
+			this.buttonConnectionTest.UseVisualStyleBackColor = true;
+			this.buttonConnectionTest.Click += new System.EventHandler(this.ButtonConnectionTest_Click);
+			// 
 			// Settings
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(228, 214);
+			this.ClientSize = new System.Drawing.Size(256, 214);
+			this.Controls.Add(this.buttonConnectionTest);
 			this.Controls.Add(this.textBoxIP);
 			this.Controls.Add(this.textBoxSecretKey);
 			this.Controls.Add(this.label4);
@@ -232,5 +244,6 @@
 		private System.Windows.Forms.Label label4;
 		private System.Windows.Forms.TextBox textBoxSecretKey;
 		private System.Windows.Forms.TextBox textBoxIP;
+		private System.Windows.Forms.Button buttonConnectionTest;
 	}
 }

@@ -48,6 +48,7 @@
 			this.buttonStart = new System.Windows.Forms.Button();
 			this.timerUpdateLog = new System.Windows.Forms.Timer(this.components);
 			this.dataGridViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
+			this.сохранитьДанныеВФайлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
@@ -71,7 +72,8 @@
 			this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.SettingsToolStripMenuItem,
             this.UpdateThroughtAPIToolStripMenuItem,
-            this.LoadDataFromFileToolStripMenuItem});
+            this.LoadDataFromFileToolStripMenuItem,
+            this.сохранитьДанныеВФайлToolStripMenuItem});
 			this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
 			this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
 			this.сервисToolStripMenuItem.Text = "Сервис";
@@ -206,6 +208,12 @@
 			// 
 			this.dataGridViewModelBindingSource.DataSource = typeof(SecurityDoors.BL.Models.ViewModels.DataGridViewModel);
 			// 
+			// сохранитьДанныеВФайлToolStripMenuItem
+			// 
+			this.сохранитьДанныеВФайлToolStripMenuItem.Name = "сохранитьДанныеВФайлToolStripMenuItem";
+			this.сохранитьДанныеВФайлToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+			this.сохранитьДанныеВФайлToolStripMenuItem.Text = "Сохранить данные в файл";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,6 +268,7 @@
 		private System.Windows.Forms.Button buttonStart;
 		private System.Windows.Forms.ToolStripMenuItem LoadDataFromFileToolStripMenuItem;
 		private System.Windows.Forms.Timer timerUpdateLog;
+		private System.Windows.Forms.ToolStripMenuItem сохранитьДанныеВФайлToolStripMenuItem;
 	}
 }
 

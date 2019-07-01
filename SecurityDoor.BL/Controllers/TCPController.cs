@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using SecurityDoor.BL.Controllers;
 using SecurityDoors.BL.Models;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ namespace SecurityDoors.BL.Controllers
 		public const string DefaultServer = "127.0.0.1";
 		private static int port = SecurityDoor.BL.Properties.Settings.Default.Port;
 		private static string server = SecurityDoor.BL.Properties.Settings.Default.IP;
+		private static int portApi = SecurityDoor.BL.Properties.Settings.Default.PortApi;
 
 		private static TcpClient client;// = new TcpClient();
 
@@ -23,6 +23,7 @@ namespace SecurityDoors.BL.Controllers
 			TCPController.port = port;
 			TCPController.server = server;
 		}
+
 
 		/// <summary>
 		/// Проверяет доступность сервера
@@ -74,115 +75,107 @@ namespace SecurityDoors.BL.Controllers
 		{
 			if (message == null)
 				return;
-
-			byte[] data = new byte[256];
-			var secretKey = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
-			var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
-			StringBuilder serverResponse = new StringBuilder();
-			client = new TcpClient();
-			client.Connect(server, port);
-			if (client.Connected)
+			try
 			{
-				NetworkStream stream = client.GetStream();
-
-				data = Encoding.UTF8.GetBytes(messageBody);
-				stream.Write(data, 0, data.Length);
-
-				do
+				byte[] data = new byte[256];
+				var secretKey = SecurityDoor.BL.Properties.Settings.Default.SecretKey;
+				var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
+				StringBuilder serverResponse = new StringBuilder();
+				client = new TcpClient();
+				client.Connect(server, port);
+				if (client.Connected)
 				{
-					int bytes = stream.Read(data, 0, data.Length);
-					serverResponse.Append(Encoding.UTF8.GetString(data, 0, bytes));
-				}
-				while (stream.DataAvailable); // пока данные есть в потоке
+					NetworkStream stream = client.GetStream();
 
-				// Закрываем потоки
-				stream.Close();
-				client.Close();
+					data = Encoding.UTF8.GetBytes(messageBody);
+					stream.Write(data, 0, data.Length);
+
+					do
+					{
+						int bytes = stream.Read(data, 0, data.Length);
+						serverResponse.Append(Encoding.UTF8.GetString(data, 0, bytes));
+					}
+					while (stream.DataAvailable); // пока данные есть в потоке
+
+					// Закрываем потоки
+					stream.Close();
+					client.Close();
+				}
+			}
+			catch (Exception)
+			{
+
 			}
 		}
 
-		public static List<string> GetListOfStringDoorsFromAPI(string url = "http://localhost:49883/api/doors")
+		public static List<string> GetListOfStringDoorsFromAPI()
 		{
-			try
+			var response = MakeAPIRequest("api/doors");
+			if (response != null)
 			{
-				using (var webClient = new WebClient())
-				{
-					webClient.Encoding = Encoding.UTF8;
-					var response = webClient.DownloadString(url);
-					var listOfDoors = JsonConvert.DeserializeObject<List<string>>(response);
-					return listOfDoors;
-				}
+				var listOfDoors = JsonConvert.DeserializeObject<List<string>>(response);
+				return listOfDoors;
 			}
-			catch (WebException)
+			else
 			{
 				return new List<string>();
 			}
 		}
 
-		public static List<Door> GetListOfDoorsFromAPI(string url = "http://localhost:49883/api/doors")
+		public static List<Door> GetListOfDoorsFromAPI()
 		{
-			try
+			var response = MakeAPIRequest("api/doors");
+			if (response != null)
 			{
-				using (var webClient = new WebClient())
+				var requestedDoors = JsonConvert.DeserializeObject<List<string>>(response);
+				var listOfDoors = new List<Door>();
+				foreach (var door in requestedDoors)
 				{
-					webClient.Encoding = Encoding.UTF8;
-					var response = webClient.DownloadString(url);
-					var listOfDoors = JsonConvert.DeserializeObject<List<Door>>(response);
-					return listOfDoors;
+					listOfDoors.Add(new Door() { Name = door });
 				}
+				return listOfDoors;
 			}
-			catch (WebException)
+			else
 			{
 				return new List<Door>();
 			}
 		}
-		public static List<string> GetListOfStringCardsFromAPI(string url = "http://localhost:49883/api/cards")
+
+		public static List<string> GetListOfStringCardsFromAPI()
 		{
-			try
-			{
-				using (var webClient = new WebClient())
-				{
-					webClient.Encoding = Encoding.UTF8;
-					var response = webClient.DownloadString(url);
-					var listOfDoors = JsonConvert.DeserializeObject<List<string>>(response);
-					return listOfDoors;
-				}
-			}
-			catch (WebException)
-			{
-				return new List<string>();
-			}
+			var response = MakeAPIRequest("api/cards");
+			var listOfStringCards = JsonConvert.DeserializeObject<List<string>>(response);
+			return listOfStringCards;
 		}
 
-		public static List<Card> GetListOfCardsFromAPI()
+		private static string MakeAPIRequest(string pathValue)
 		{
-			string url = $"http://localhost:{SettingsController.PortApi}/api/cards";
 			try
 			{
+				Uri uri = new UriBuilder("http://", "localhost", portApi, pathValue).Uri;
 				using (var webClient = new WebClient())
 				{
 					webClient.Encoding = Encoding.UTF8;
-					var response = webClient.DownloadString(url);
-					var listOfDoors = JsonConvert.DeserializeObject<List<Card>>(response);
-					return listOfDoors;
+					var response = webClient.DownloadString(uri);
+					return response;
 				}
 			}
 			catch (WebException)
 			{
-				return new List<Card>();
+				return default;
 			}
 		}
 
 		public static List<Person> GetListOfPeopleFromAPI()
 		{
-			string url = $"http://localhost:{SettingsController.PortApi}/api/cards";
 			try
 			{
+				Uri uri = new UriBuilder("http://", "localhost", portApi, "api/cards").Uri;
 				using (var webClient = new WebClient())
 				{
 					webClient.Encoding = Encoding.UTF8;
-					var response = webClient.DownloadString(url);
-					var listOfCards = JsonConvert.DeserializeObject<List<Card>>(response);
+					var response = webClient.DownloadString(uri);
+					var listOfCards = JsonConvert.DeserializeObject<List<string>>(response);
 					var listOfPeople = new List<Person>();
 
 					var dataRnd = new DataRandomiserController();
@@ -195,7 +188,8 @@ namespace SecurityDoors.BL.Controllers
 						if (i >= listOfCards.Count - 1)
 							i = 0;
 
-						randomPerson.CardUniqueNumber = listOfCards[i].UniqueNumber;
+						randomPerson.CardUniqueNumber = listOfCards[i];
+						i++;
 					}
 					listOfPeople.AddRange(listOfRandomPeople);
 					return listOfPeople;

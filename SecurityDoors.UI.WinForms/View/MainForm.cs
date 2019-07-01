@@ -92,8 +92,8 @@ namespace SecurityDoors.UI.WinForms.View
 			if (lisrOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
 			{
 				LoggerController.Log = "Загрузка данных из API прошла успешно";
-				dataGridViewModel.PeopleAndCardsList = TCPController.GetListOfPeopleFromAPI();
-				doorsViewModel.Doors = TCPController.GetListOfDoorsFromAPI();
+				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
+				doorsViewModel.Doors = lisrOfDoors;
 				UpdateDataSource();
 			}
 			else

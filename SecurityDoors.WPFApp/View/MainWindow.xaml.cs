@@ -36,12 +36,8 @@ namespace SecurityDoors.UI.View
 			if (isServerAvailable)
 			{
 				var listOfCards = TCPController.GetListOfStringCardsFromAPI();
-				var listOfDoors = TCPController.GetListOfStringDoorsFromAPI();
-
-				foreach (var door in listOfDoors)
-				{
-					doorsViewModel.Doors.Add(new Door() { Name = door });
-				}
+				var listOfDoors = TCPController.GetListOfDoorsFromAPI();
+				doorsViewModel.Doors.AddRange(listOfDoors);
 
 				///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
 				var rnd = new DataRandomiserController();
@@ -52,10 +48,12 @@ namespace SecurityDoors.UI.View
 				foreach (var person in listOfPeole)
 				{
 					person.CardUniqueNumber = listOfCards[i];
-					var newPerson = new PeopleAndCardsViewModel()
+					var newPerson = new Person()
 					{
-						Name = $"{person.FirstName} {person.SecondName} {person.LastName}",
-						CardNumber = person.CardUniqueNumber
+						CardUniqueNumber = person.CardUniqueNumber,
+						FirstName = person.FirstName,
+						SecondName = person.SecondName,
+						LastName = person.LastName
 					};
 					dataGridView.PeopleAndCardsList.Add(newPerson);
 					if (i >= listOfCards.Count + 1)
@@ -80,7 +78,7 @@ namespace SecurityDoors.UI.View
 				cacheController.LoadCacheData();
 				foreach (var person in cacheController.People)
 				{
-					dataGridView.PeopleAndCardsList.Add(new PeopleAndCardsViewModel() { CardNumber = person.CardUniqueNumber, Name = $"{person.FirstName} {person.SecondName} {person.LastName}" });
+					dataGridView.PeopleAndCardsList.Add(new Person() { CardUniqueNumber = person.CardUniqueNumber, FirstName = person.FirstName, SecondName = person.SecondName, LastName = person.LastName });
 				}
 				foreach (var door in cacheController.Doors)
 				{
@@ -98,7 +96,7 @@ namespace SecurityDoors.UI.View
 			{
 				if (row.Use && comboBox_door.SelectedValue != null)
 				{
-					listofMessages.Add(new Message() {PersonCard = row.CardNumber, DoorName = comboBox_door.SelectedValue.ToString()});
+					listofMessages.Add(new Message() {PersonCard = row.CardUniqueNumber, DoorName = comboBox_door.SelectedValue.ToString()});
 				}
 			}
 			TCPController.SendMessages(listofMessages);

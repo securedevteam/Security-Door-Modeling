@@ -68,7 +68,7 @@ namespace SecurityDoors.UI.View
 
 				//Записать скачанное в кэш
 				var cacheController = new CacheController();
-				cacheController.SetDoors(listOfDoors);
+				cacheController.Doors = listOfDoors;
 				cacheController.People = listOfPeole;
 				cacheController.SaveCacheData();
 			}

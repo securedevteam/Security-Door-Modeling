@@ -135,5 +135,11 @@ namespace SecurityDoors.UI.WinForms.View
 		{
 			textBoxLog.Text = LoggerController.Log;
 		}
+
+		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			var about = new About();
+			about.ShowDialog();
+		}
 	}
 }

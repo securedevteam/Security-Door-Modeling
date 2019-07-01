@@ -34,6 +34,7 @@
 			this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.UpdateThroughtAPIToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.LoadDataFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.SaveDataToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.comboBoxDoors = new System.Windows.Forms.ComboBox();
@@ -48,7 +49,6 @@
 			this.buttonStart = new System.Windows.Forms.Button();
 			this.timerUpdateLog = new System.Windows.Forms.Timer(this.components);
 			this.dataGridViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
-			this.SaveDataToFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownRepeatCount)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.numericUpDownDelay)).BeginInit();
@@ -99,6 +99,13 @@
 			this.LoadDataFromFileToolStripMenuItem.Text = "Загрузить данные из файла";
 			this.LoadDataFromFileToolStripMenuItem.Click += new System.EventHandler(this.LoadDataFromFileToolStripMenuItem_Click);
 			// 
+			// SaveDataToFileToolStripMenuItem
+			// 
+			this.SaveDataToFileToolStripMenuItem.Name = "SaveDataToFileToolStripMenuItem";
+			this.SaveDataToFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+			this.SaveDataToFileToolStripMenuItem.Text = "Сохранить данные в файл";
+			this.SaveDataToFileToolStripMenuItem.Click += new System.EventHandler(this.SaveDataToFileToolStripMenuItem_Click);
+			// 
 			// справкаToolStripMenuItem
 			// 
 			this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -110,8 +117,9 @@
 			// AboutToolStripMenuItem
 			// 
 			this.AboutToolStripMenuItem.Name = "AboutToolStripMenuItem";
-			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
+			this.AboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.AboutToolStripMenuItem.Text = "О программе";
+			this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
 			// 
 			// comboBoxDoors
 			// 
@@ -207,13 +215,6 @@
 			// dataGridViewModelBindingSource
 			// 
 			this.dataGridViewModelBindingSource.DataSource = typeof(SecurityDoors.BL.Models.ViewModels.DataGridViewModel);
-			// 
-			// SaveDataToFileToolStripMenuItem
-			// 
-			this.SaveDataToFileToolStripMenuItem.Name = "SaveDataToFileToolStripMenuItem";
-			this.SaveDataToFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-			this.SaveDataToFileToolStripMenuItem.Text = "Сохранить данные в файл";
-			this.SaveDataToFileToolStripMenuItem.Click += new System.EventHandler(this.SaveDataToFileToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 

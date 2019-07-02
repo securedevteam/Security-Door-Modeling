@@ -1,13 +1,11 @@
-﻿using SecurityDoor.BL.Controllers;
-using SecurityDoors.BL.Controllers;
-using SecurityDoors.BL.Models;
-using SecurityDoors.BL.Models.ViewModels;
-using SecurityDoors.BL.Windows;
+﻿using SecurityDoors.BL.Controllers;
+using SecurityDoors.DAL.Models;
+using SecurityDoors.DAL.Models.ViewModels;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
 
-namespace SecurityDoors.UI.View
+namespace SecurityDoors.UI.WPF.View
 {
 	/// <summary>
 	/// Логика взаимодействия для MainWindow.xaml

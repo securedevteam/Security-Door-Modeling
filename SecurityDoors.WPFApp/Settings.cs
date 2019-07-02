@@ -1,4 +1,4 @@
-﻿namespace SecurityDoors.UI.Properties
+﻿namespace SecurityDoors.UI.WPF.Properties
 {
 
 

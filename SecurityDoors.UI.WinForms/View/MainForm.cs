@@ -1,5 +1,5 @@
 ﻿using SecurityDoors.BL.Controllers;
-using SecurityDoors.BL.Models.ViewModels;
+using SecurityDoors.DAL.Models.ViewModels;
 using SecurityDoors.UI.WinForms.Controllers;
 using System;
 using System.Collections.Generic;
@@ -113,12 +113,12 @@ namespace SecurityDoors.UI.WinForms.View
 			{
 				do
 				{
-					var messages = new List<BL.Models.Message>();
+					var messages = new List<DAL.Models.Message>();
 					foreach (var row in dataGridViewModel.PeopleAndCardsList)
 					{
 						if (row.Use)
 						{
-							messages.Add(new BL.Models.Message() { DoorName = comboBoxDoors.SelectedValue.ToString(), PersonCard = row.CardUniqueNumber });
+							messages.Add(new DAL.Models.Message() { DoorName = comboBoxDoors.SelectedValue.ToString(), PersonCard = row.CardUniqueNumber });
 						}
 					}
 					TCPController.SendMessages(messages);

@@ -89,6 +89,8 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void ButtonConnectionTest_Click(object sender, EventArgs e)
 		{
+			//int.TryParse(maskedTextBoxPort.Text, );
+			var server = textBoxIP.Text;
 			var result = TCPController.CheckServerAvailability();
 			if (result == true)
 			{

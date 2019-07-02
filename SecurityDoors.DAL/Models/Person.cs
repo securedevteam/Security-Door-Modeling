@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SecurityDoors.BL.Models
+namespace SecurityDoors.DAL.Models
 {
 	[Serializable]
     public class Person

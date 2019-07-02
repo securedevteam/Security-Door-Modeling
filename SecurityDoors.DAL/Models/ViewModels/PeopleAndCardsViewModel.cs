@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace SecurityDoors.BL.Models.ViewModels
+namespace SecurityDoors.DAL.Models.ViewModels
 {
 	public class PeopleAndCardsViewModel : INotifyPropertyChanged
 	{

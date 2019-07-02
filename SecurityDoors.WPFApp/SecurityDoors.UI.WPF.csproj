@@ -141,6 +141,10 @@
       <Project>{3eee4e31-02e7-4bd5-8d97-763c479d1237}</Project>
       <Name>SecurityDoors.BL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SecurityDoors.DAL\SecurityDoors.DAL.csproj">
+      <Project>{e1da8ce1-8480-42f4-9c85-587ebb09f113}</Project>
+      <Name>SecurityDoors.DAL</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using SecurityDoors.BL.Models;
+using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -31,6 +31,15 @@ namespace SecurityDoors.BL.Controllers
 		/// <returns>True - если подключение возможно</returns>
 		public static bool CheckServerAvailability()
 		{
+			return CheckServer(server, port);
+		}
+
+		public static bool CheckServerAvailability(string server, int port)
+		{
+			return CheckServer(server, port);
+		}
+		private static bool CheckServer(string server, int port)
+		{
 			try
 			{
 				client = new TcpClient();
@@ -50,6 +59,7 @@ namespace SecurityDoors.BL.Controllers
 				return false;
 			}
 		}
+
 		/// <summary>
 		/// Отправляет список сообщений на сервер
 		/// </summary>

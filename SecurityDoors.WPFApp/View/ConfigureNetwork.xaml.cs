@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SecurityDoors.UI.View
+namespace SecurityDoors.UI.WPF.View
 {
     /// <summary>
     /// Interaction logic for ConfigureNetwork.xaml

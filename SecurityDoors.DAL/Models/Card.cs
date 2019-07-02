@@ -1,4 +1,4 @@
-﻿namespace SecurityDoors.BL.Models
+﻿namespace SecurityDoors.DAL.Models
 {
     public class Card
     {

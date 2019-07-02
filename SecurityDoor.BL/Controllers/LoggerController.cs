@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SecurityDoors.UI.WinForms.Controllers
+namespace SecurityDoors.BL.Controllers
 {
 	/// <summary>
 	/// Хранит данные лога для текущего запуска программы

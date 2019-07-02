@@ -46,7 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\LoggerController.cs" />
     <Compile Include="View\About.cs">
       <SubType>Form</SubType>
     </Compile>

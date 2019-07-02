@@ -1,14 +1,7 @@
 ﻿using SecurityDoor.BL.Controllers;
 using SecurityDoors.BL.Controllers;
+using SecurityDoors.Core;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SecurityDoors.UI.WinForms.View
@@ -22,8 +15,8 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var about = new About();
-			about.ShowDialog();
+			var aboutForm = new About();
+            aboutForm.ShowDialog();
 		}
 
 		private void ButtonCheckSettings_Click(object sender, EventArgs e)
@@ -35,7 +28,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 			var result = SettingsController.CheckSettings(ip, port, portApi, secretKey);
 
-			LoggerController.Log = result ?? "Введенные настройки корректны";
+			LoggerController.Log = result ?? Constants.SETTING_CORRECT;
 
 			if (result != null)
 			{
@@ -43,7 +36,7 @@ namespace SecurityDoors.UI.WinForms.View
 			}
 			else
 			{
-				MessageBox.Show("Введенные настройки корректны");
+				MessageBox.Show(Constants.SETTING_INCORRECT);
 			}
 		}
 
@@ -53,7 +46,9 @@ namespace SecurityDoors.UI.WinForms.View
 			SettingsController.Port = int.Parse(maskedTextBoxPort.Text);
 			SettingsController.PortApi = int.Parse(maskedTextBoxPortAPI.Text);
 			SettingsController.SecretKey = textBoxSecretKey.Text;
+
 			var result = SettingsController.SaveProperties();
+
 			if (result != null)
 			{
 				MessageBox.Show(result);
@@ -62,12 +57,10 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SetDefaultToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-            // TODO: Перенести в константы
-
-			textBoxIP.Text = "127.0.0.1";
-			maskedTextBoxPort.Text = "1234";
-			maskedTextBoxPortAPI.Text = "80";
-			textBoxSecretKey.Text = " "; // string.Empty
+			textBoxIP.Text = Constants.DEFAULT_IP;
+			maskedTextBoxPort.Text = Constants.DEFAULT_PORT;
+			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API;
+            textBoxSecretKey.Text = Constants.STRING_EMPTY;
 		}
 
 		private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -94,8 +87,10 @@ namespace SecurityDoors.UI.WinForms.View
 			int port = int.Parse(maskedTextBoxPort.Text);
 			int portApi = int.Parse(maskedTextBoxPortAPI.Text);
 			string secretKey = textBoxSecretKey.Text;
+
 			var checkResult = SettingsController.CheckSettings(server, port, portApi, secretKey);
-			if (checkResult != default)
+
+            if (checkResult != default)
 			{
 				MessageBox.Show(checkResult);
 				LoggerController.Log = checkResult;
@@ -105,15 +100,16 @@ namespace SecurityDoors.UI.WinForms.View
 				var webConnection = new WebConnectionController(server, port, portApi, secretKey);
 
 				var result = await webConnection.CheckServerConnectionAsync();
+
 				if (result == true)
 				{
-					MessageBox.Show("Соединение установлено");
-					LoggerController.Log = "Соединение установлено";
+					MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
+					LoggerController.Log = Constants.CONNECTION_ESTABLISHED;
 				}
 				else
 				{
-					MessageBox.Show("Соединение не установлено");
-					LoggerController.Log = "Соединение не установлено";
+					MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
+					LoggerController.Log = Constants.CONNECTION_NOT_ESTABLISHED;
 				}
 			}
 		}

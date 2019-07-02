@@ -1,5 +1,6 @@
 ﻿using SecurityDoor.BL.Controllers;
 using SecurityDoors.BL.Controllers;
+using SecurityDoors.Core;
 using SecurityDoors.DAL.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private void UpdateDataSource()
 		{
-			LoggerController.Log = "Устанавливаю привязки к форме";
+			LoggerController.Log = Constants.SETTING_BINDING_FORM;
 
 			dataGridViewPeoplesAndCards.DataSource = dataGridViewModel.PeopleAndCardsList;
 			dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
@@ -44,7 +45,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = "Открываю окно настроек";
+			LoggerController.Log = Constants.SETTING_OPENING_WINDOW;
 			var settings = new Settings();
 			settings.ShowDialog();
 		}
@@ -54,7 +55,7 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = "Начата загрузка данных из файла";
+			LoggerController.Log = Constants.DATA_READING_STARTED;
 			var cacheController = new CacheController();
 
 			doorsViewModel.Doors = cacheController.Doors;
@@ -62,14 +63,14 @@ namespace SecurityDoors.UI.WinForms.View
 
 			UpdateDataSource();
 
-			LoggerController.Log = "Загрузка из файла закончена";
+			LoggerController.Log = Constants.DATA_READING_ENDED;
 		}
 		/// <summary>
 		/// Сохраняет данные в файл
 		/// </summary>
 		private void SaveDataToFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = "Начато сохранение данных в файл";
+			LoggerController.Log = Constants.DATA_SAVING_STARTED;
 			var cacheController = new CacheController
 			{
 				Doors = doorsViewModel.Doors,
@@ -78,7 +79,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 			cacheController.SaveCacheData();
 
-			LoggerController.Log = "Сохранение данных в файл закончено";
+			LoggerController.Log = Constants.DATA_SAVING_COMPLETED;
 		}
 
 		/// <summary>
@@ -86,21 +87,21 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = "Начата загрузка данных из API";
+			LoggerController.Log = Constants.DATA_API_DOWNLOADING_STARTED;
 
 			var webConnection = new WebConnectionController();
 			var listOfPeopleAndCards = await webConnection.GetPeopleFromAPIAsync();
 			var listOfDoors = await webConnection.GetDoorsFromAPIAsync();
 			if (listOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
 			{
-				LoggerController.Log = "Загрузка данных из API прошла успешно";
+				LoggerController.Log = Constants.DATA_API_SUCCESSED;
 				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
 				doorsViewModel.Doors = listOfDoors;
 				UpdateDataSource();
 			}
 			else
 			{
-				LoggerController.Log = "Загрузка данных из API неудачна";
+				LoggerController.Log = Constants.DATA_API_FAILED;
 			}
 		}
 		/// <summary>
@@ -124,7 +125,7 @@ namespace SecurityDoors.UI.WinForms.View
 			}
 			else
 			{
-				LoggerController.Log = "Ошибка при конвертации";
+				LoggerController.Log = Constants.CONVERSION_ERROR;
 			}
 		}
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
@@ -134,8 +135,8 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var about = new About();
-			about.ShowDialog();
+			var aboutForm = new About();
+			aboutForm.ShowDialog();
 		}
 	}
 }

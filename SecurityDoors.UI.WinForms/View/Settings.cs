@@ -28,7 +28,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 			var result = SettingsController.CheckSettings(ip, port, portApi, secretKey);
 
-			LoggerController.Log = result ?? Constants.SETTING_CORRECT;
+			Logger.Log = result ?? Constants.SETTING_CORRECT;
 
 			if (result != null)
 			{
@@ -93,7 +93,7 @@ namespace SecurityDoors.UI.WinForms.View
             if (checkResult != default)
 			{
 				MessageBox.Show(checkResult);
-				LoggerController.Log = checkResult;
+				Logger.Log = checkResult;
 			}
 			else
 			{
@@ -104,12 +104,12 @@ namespace SecurityDoors.UI.WinForms.View
 				if (result == true)
 				{
 					MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
-					LoggerController.Log = Constants.CONNECTION_ESTABLISHED;
+					Logger.Log = Constants.CONNECTION_ESTABLISHED;
 				}
 				else
 				{
 					MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
-					LoggerController.Log = Constants.CONNECTION_NOT_ESTABLISHED;
+					Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
 				}
 			}
 		}

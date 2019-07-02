@@ -27,7 +27,7 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private void UpdateDataSource()
 		{
-			LoggerController.Log = Constants.SETTING_BINDING_FORM;
+			Logger.Log = Constants.SETTING_BINDING_FORM;
 
 			dataGridViewPeoplesAndCards.DataSource = dataGridViewModel.PeopleAndCardsList;
 			dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
@@ -45,7 +45,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = Constants.SETTING_OPENING_WINDOW;
+			Logger.Log = Constants.SETTING_OPENING_WINDOW;
 			var settings = new Settings();
 			settings.ShowDialog();
 		}
@@ -55,7 +55,7 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = Constants.DATA_READING_STARTED;
+			Logger.Log = Constants.DATA_READING_STARTED;
 			var cacheController = new CacheController();
 
 			doorsViewModel.Doors = cacheController.Doors;
@@ -63,14 +63,14 @@ namespace SecurityDoors.UI.WinForms.View
 
 			UpdateDataSource();
 
-			LoggerController.Log = Constants.DATA_READING_ENDED;
+			Logger.Log = Constants.DATA_READING_ENDED;
 		}
 		/// <summary>
 		/// Сохраняет данные в файл
 		/// </summary>
 		private void SaveDataToFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = Constants.DATA_SAVING_STARTED;
+			Logger.Log = Constants.DATA_SAVING_STARTED;
 			var cacheController = new CacheController
 			{
 				Doors = doorsViewModel.Doors,
@@ -79,7 +79,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 			cacheController.SaveCacheData();
 
-			LoggerController.Log = Constants.DATA_SAVING_COMPLETED;
+			Logger.Log = Constants.DATA_SAVING_COMPLETED;
 		}
 
 		/// <summary>
@@ -87,21 +87,21 @@ namespace SecurityDoors.UI.WinForms.View
 		/// </summary>
 		private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			LoggerController.Log = Constants.DATA_API_DOWNLOADING_STARTED;
+			Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
 
 			var webConnection = new WebConnectionController();
 			var listOfPeopleAndCards = await webConnection.GetPeopleFromAPIAsync();
 			var listOfDoors = await webConnection.GetDoorsFromAPIAsync();
 			if (listOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
 			{
-				LoggerController.Log = Constants.DATA_API_SUCCESSED;
+				Logger.Log = Constants.DATA_API_SUCCESSED;
 				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
 				doorsViewModel.Doors = listOfDoors;
 				UpdateDataSource();
 			}
 			else
 			{
-				LoggerController.Log = Constants.DATA_API_FAILED;
+				Logger.Log = Constants.DATA_API_FAILED;
 			}
 		}
 		/// <summary>
@@ -125,12 +125,12 @@ namespace SecurityDoors.UI.WinForms.View
 			}
 			else
 			{
-				LoggerController.Log = Constants.CONVERSION_ERROR;
+				Logger.Log = Constants.CONVERSION_ERROR;
 			}
 		}
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
 		{
-			textBoxLog.Text = LoggerController.Log;
+			textBoxLog.Text = Logger.Log;
 		}
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)

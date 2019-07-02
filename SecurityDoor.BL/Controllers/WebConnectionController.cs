@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using SecurityDoors.BL.Controllers;
+using SecurityDoors.Core;
 
 namespace SecurityDoor.BL.Controllers
 {
@@ -175,7 +176,7 @@ namespace SecurityDoor.BL.Controllers
 			}
 			catch (Exception e)
 			{
-				LoggerController.Log = e.ToString();
+				Logger.Log = e.ToString();
 				return e.ToString();
 			}
 		}
@@ -184,13 +185,13 @@ namespace SecurityDoor.BL.Controllers
 		{
 			if (people == null)
 			{
-				LoggerController.Log = new ArgumentNullException(nameof(people)).ToString();
+				Logger.Log = new ArgumentNullException(nameof(people)).ToString();
 				return default;
 			}
 
 			if (string.IsNullOrEmpty(door))
 			{
-				LoggerController.Log = new ArgumentException("message", nameof(door)).ToString();
+				Logger.Log = new ArgumentException("message", nameof(door)).ToString();
 				return default;
 			}
 
@@ -198,7 +199,7 @@ namespace SecurityDoor.BL.Controllers
 			{
 				var message = $"{SecretKey}${person.CardUniqueNumber}${door}";
 				var result = await SendMessageAsync(message);
-				LoggerController.Log = result;
+				Logger.Log = result;
 				return result;
 			}
 			return default;

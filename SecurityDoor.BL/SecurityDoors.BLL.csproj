@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DataRandomiserController.cs" />
-    <Compile Include="Controllers\LoggerController.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TCPController.cs" />
     <Compile Include="Controllers\WebConnectionController.cs" />

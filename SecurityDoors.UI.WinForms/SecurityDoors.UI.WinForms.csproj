@@ -99,9 +99,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SecurityDoor.BL\SecurityDoors.BL.csproj">
+    <ProjectReference Include="..\SecurityDoor.BL\SecurityDoors.BLL.csproj">
       <Project>{3eee4e31-02e7-4bd5-8d97-763c479d1237}</Project>
-      <Name>SecurityDoors.BL</Name>
+      <Name>SecurityDoors.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SecurityDoors.DAL\SecurityDoors.DAL.csproj">
       <Project>{e1da8ce1-8480-42f4-9c85-587ebb09f113}</Project>

@@ -104,7 +104,7 @@
       <Name>SecurityDoors.BLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\SecurityDoors.DAL\SecurityDoors.DAL.csproj">
-      <Project>{e1da8ce1-8480-42f4-9c85-587ebb09f113}</Project>
+      <Project>{8cdb15e4-01e7-4c81-9a36-4154d123fd07}</Project>
       <Name>SecurityDoors.DAL</Name>
     </ProjectReference>
   </ItemGroup>

@@ -62,10 +62,12 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SetDefaultToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+            // TODO: Перенести в константы
+
 			textBoxIP.Text = "127.0.0.1";
 			maskedTextBoxPort.Text = "1234";
 			maskedTextBoxPortAPI.Text = "80";
-			textBoxSecretKey.Text = " ";
+			textBoxSecretKey.Text = " "; // string.Empty
 		}
 
 		private void CloseToolStripMenuItem_Click(object sender, EventArgs e)

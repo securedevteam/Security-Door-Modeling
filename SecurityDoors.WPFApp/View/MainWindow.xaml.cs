@@ -1,6 +1,6 @@
 ﻿using SecurityDoors.BL.Controllers;
 using SecurityDoors.DAL.Models;
-using SecurityDoors.DAL.Models.ViewModels;
+using SecurityDoors.DAL.ViewModels;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -14,7 +14,7 @@ namespace SecurityDoors.UI.WPF.View
 	{		
 		//TODO: Исправить именование класса на более понятное
 		private DataGridViewModel dataGridView = new DataGridViewModel();
-		private DoorsViewModel doorsViewModel = new DoorsViewModel();
+		private DoorViewModel doorsViewModel = new DoorViewModel();
 		public MainWindow()
 		{
 			InitializeComponent();

@@ -1,6 +1,6 @@
 ﻿using SecurityDoor.BL.Controllers;
 using SecurityDoors.BL.Controllers;
-using SecurityDoors.DAL.Models.ViewModels;
+using SecurityDoors.DAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -12,7 +12,7 @@ namespace SecurityDoors.UI.WinForms.View
 	public partial class MainForm : Form
 	{
 		private DataGridViewModel dataGridViewModel = new DataGridViewModel();
-		private DoorsViewModel doorsViewModel = new DoorsViewModel();
+		private DoorViewModel doorsViewModel = new DoorViewModel();
 
 		public MainForm()
 		{

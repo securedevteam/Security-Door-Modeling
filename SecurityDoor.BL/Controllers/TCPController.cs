@@ -10,6 +10,9 @@ namespace SecurityDoors.BL.Controllers
 {
 	public static class TCPController
 	{
+		/// <summary>
+		/// TODO: Удалить
+		/// </summary>
 		public const int DefaultPort = 1234;
 		public const string DefaultServer = "127.0.0.1";
 		private static int port = Properties.Settings.Default.Port;

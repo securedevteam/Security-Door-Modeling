@@ -1,4 +1,5 @@
-﻿using SecurityDoors.BL.Controllers;
+﻿using SecurityDoor.BL.Controllers;
+using SecurityDoors.BL.Controllers;
 using SecurityDoors.DAL.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -83,17 +84,18 @@ namespace SecurityDoors.UI.WinForms.View
 		/// <summary>
 		/// Выполняет загрузку данных из API
 		/// </summary>
-		private void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			LoggerController.Log = "Начата загрузка данных из API";
 
-			var listOfPeopleAndCards = TCPController.GetListOfPeopleFromAPI();
-			var lisrOfDoors = TCPController.GetListOfDoorsFromAPI();
-			if (lisrOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
+			var webConnection = new WebConnectionController();
+			var listOfPeopleAndCards = await webConnection.GetPeopleFromAPIAsync();
+			var listOfDoors = await webConnection.GetDoorsFromAPIAsync();
+			if (listOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
 			{
 				LoggerController.Log = "Загрузка данных из API прошла успешно";
 				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
-				doorsViewModel.Doors = lisrOfDoors;
+				doorsViewModel.Doors = listOfDoors;
 				UpdateDataSource();
 			}
 			else
@@ -104,7 +106,7 @@ namespace SecurityDoors.UI.WinForms.View
 		/// <summary>
 		/// Запускает/останавливает тесты.
 		/// </summary>
-		private void ButtonStart_Click(object sender, EventArgs e)
+		private async void ButtonStart_Click(object sender, EventArgs e)
 		{
 			var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
 			var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
@@ -113,15 +115,9 @@ namespace SecurityDoors.UI.WinForms.View
 			{
 				do
 				{
-					var messages = new List<DAL.Models.Message>();
-					foreach (var row in dataGridViewModel.PeopleAndCardsList)
-					{
-						if (row.Use)
-						{
-							messages.Add(new DAL.Models.Message() { DoorName = comboBoxDoors.SelectedValue.ToString(), PersonCard = row.CardUniqueNumber });
-						}
-					}
-					TCPController.SendMessages(messages);
+					var webConnection = new WebConnectionController();
+					await webConnection.SendMessageAsync(dataGridViewModel.PeopleAndCardsList, comboBoxDoors.SelectedValue.ToString());
+					
 					Thread.Sleep(new TimeSpan(0, 0, delay));
 					count--;
 				} while (count > 0);

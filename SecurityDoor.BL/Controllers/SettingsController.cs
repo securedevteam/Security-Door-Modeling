@@ -69,9 +69,9 @@ namespace SecurityDoors.BL.Controllers
 				return new ArgumentNullException("Получен null", nameof(portApi)).ToString();
 			}
 
-			if (string.IsNullOrEmpty(secretKey) || string.IsNullOrWhiteSpace(secretKey))
+			if (string.IsNullOrEmpty(secretKey))
 			{
-				return new ArgumentException("Получен null или пустая строка", nameof(secretKey)).ToString();
+				return new ArgumentException("Получен null", nameof(secretKey)).ToString();
 			}
 
 			if (port < 0)

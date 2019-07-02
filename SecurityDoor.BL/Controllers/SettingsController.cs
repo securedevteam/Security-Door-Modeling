@@ -84,12 +84,12 @@ namespace SecurityDoors.BL.Controllers
 				return "Порт не может быть отрицательным";
 			}
 
-			//Regex rgx = new Regex(@"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
-			//if (!rgx.Match(ip).Success)
-			//{
-			//	return "IP введен неправильно";
-			//}
-			return null;
+			Regex rgx = new Regex(@"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$");
+			if (ip.ToLower() != "localhost" && !rgx.Match(ip).Success)
+			{
+				return "IP введен неправильно";
+			}
+			return default;
 		}
 	}
 }

@@ -214,7 +214,7 @@
 			// 
 			// dataGridViewModelBindingSource
 			// 
-			this.dataGridViewModelBindingSource.DataSource = typeof(SecurityDoors.DAL.Models.ViewModels.DataGridViewModel);
+			//this.dataGridViewModelBindingSource.DataSource = typeof(SecurityDoors.DAL.Models.ViewModels.DataGridViewModel);
 			// 
 			// MainForm
 			// 

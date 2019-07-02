@@ -12,10 +12,10 @@ namespace SecurityDoors.BL.Controllers
 	{
 		public const int DefaultPort = 1234;
 		public const string DefaultServer = "127.0.0.1";
-		private static int port = SecurityDoors.BL.Properties.Settings.Default.Port;
-		private static string server = SecurityDoors.BL.Properties.Settings.Default.IP;
-		private static int portApi = SecurityDoors.BL.Properties.Settings.Default.PortApi;
-
+		private static int port = Properties.Settings.Default.Port;
+		private static string server = Properties.Settings.Default.IP;
+		private static int portApi = Properties.Settings.Default.PortApi;
+		private static string secretKet = Properties.Settings.Default.SecretKey;
 		private static TcpClient client;// = new TcpClient();
 
 		public static void ConfigureTCPController(int port, string server)
@@ -88,7 +88,7 @@ namespace SecurityDoors.BL.Controllers
 			try
 			{
 				byte[] data = new byte[256];
-				var secretKey = SecurityDoors.BL.Properties.Settings.Default.SecretKey;
+				var secretKey = Properties.Settings.Default.SecretKey;
 				var messageBody = $"{secretKey}${message.PersonCard}${message.DoorName}";
 				StringBuilder serverResponse = new StringBuilder();
 				client = new TcpClient();

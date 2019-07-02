@@ -69,10 +69,11 @@ namespace SecurityDoors.UI.WinForms.View
 		private void SaveDataToFileToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			LoggerController.Log = "Начато сохранение данных в файл";
-			var cacheController = new CacheController();
-
-			cacheController.Doors = doorsViewModel.Doors;
-			cacheController.People = dataGridViewModel.PeopleAndCardsList;
+			var cacheController = new CacheController
+			{
+				Doors = doorsViewModel.Doors,
+				People = dataGridViewModel.PeopleAndCardsList
+			};
 
 			cacheController.SaveCacheData();
 

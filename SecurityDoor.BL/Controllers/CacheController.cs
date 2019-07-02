@@ -84,22 +84,30 @@ namespace SecurityDoors.BL.Controllers
         {
             await Task.Run(() => SaveCacheData());
         }
+
         public bool SaveCacheData()
         {
             lock (locker)
             {
-                var formatter = new BinaryFormatter();
+				try
+				{
+					var formatter = new BinaryFormatter();
 
-                using (var fs = new FileStream("People.dat", FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    formatter.Serialize(fs, people);
-                }
-                using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Write))
-                {
-                    formatter.Serialize(fs, doors);
-                }
-            }
-            return true;
+					using (var fs = new FileStream("People.dat", FileMode.OpenOrCreate, FileAccess.Write))
+					{
+						formatter.Serialize(fs, people);
+					}
+					using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Write))
+					{
+						formatter.Serialize(fs, doors);
+					}
+				}
+				catch (Exception)
+				{
+					return false;
+				}
+				return true;
+			}
         }
         /// <summary>
         /// Очищает файл кэша
@@ -112,27 +120,23 @@ namespace SecurityDoors.BL.Controllers
         {
             lock (locker)
             {
-                if (File.Exists("People.dat"))
-                {
-                    File.Delete("People.dat");
-                }
-                if (File.Exists("Doors.dat"))
-                {
-                    File.Delete("Doors.dat");
-                }
+				try
+				{
+					if (File.Exists("People.dat"))
+					{
+						File.Delete("People.dat");
+					}
+					if (File.Exists("Doors.dat"))
+					{
+						File.Delete("Doors.dat");
+					}
+				}
+				catch (Exception)
+				{
+					return false;
+				}
+				return true;
             }
-            return true;
         }
-
-		public void SetDoors (List<string> doors)
-		{
-			var listOfDoors = new List<Door>();
-			foreach (var door in doors)
-			{
-				listOfDoors.Add(new Door() { Name = door });
-			}
-			Doors = listOfDoors;
-		}
-
     }
 }

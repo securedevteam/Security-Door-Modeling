@@ -28,11 +28,11 @@ namespace SecurityDoors.BLL.Controllers
         }
 
         /// <inheritdoc/>
-        public void SendMessage(TCPMessage message)
+        public bool SendMessage(TCPMessage message)
         {
-            if (message == null || _cs.Port == null)
+            if (string.IsNullOrWhiteSpace(message.PersonCard) || string.IsNullOrWhiteSpace(message.DoorName) || _cs.Port == null)
             {
-                return;
+                return false;
             }
                 
             try
@@ -65,9 +65,12 @@ namespace SecurityDoors.BLL.Controllers
             catch (Exception e)
             {
                 Logger.Log = e.ToString() ?? Constants.SETTING_SAVE_FAILED;
+                return false;
             }
 
             Logger.Log = null ?? Constants.SETTING_SAVE_SUCCESSED;
+
+            return true;
         }
     }
 }

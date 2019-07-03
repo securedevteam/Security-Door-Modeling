@@ -13,8 +13,9 @@ namespace SecurityDoors.UI.WinForms.View
         private ConnectionSettings _cs;
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
+        private List<string> selectedListOfCards = new List<string>();
 
-		public MainForm()
+        public MainForm()
 		{
 			InitializeComponent();
 
@@ -55,12 +56,61 @@ namespace SecurityDoors.UI.WinForms.View
                     await cache.ClearCacheFileAsync();
                     await cache.SaveCacheDataAsync();
 
+                    LoadDataFromFiles();
+
                     Logger.Log = Constants.DATA_API_SUCCESSED;
                 }
             }
             catch 
             {
                 Logger.Log = Constants.DATA_API_FAILED;
+            }
+        }
+
+        // Полностью готово и реализовано (Добавить константу)
+        private async void ButtonStart_Click(object sender, EventArgs e)
+        {
+            var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
+            var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
+
+            if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
+            {
+                if (parseCountSuccess && parseDelaySuccess)
+                {
+                    foreach (var data in selectedListOfCards)
+                    {
+                        var message = new TCPMessage()
+                        {
+                            PersonCard = data,
+                            DoorName = comboBoxDoors.SelectedItem.ToString()
+                        };
+
+                        var tcp = new TCP(_cs);
+                        var result = tcp.SendMessage(message);
+
+                        if (!result)
+                        {
+                            break;
+                        }
+
+                        count--;
+
+                        if (count == 0)
+                        {
+                            break;
+                        }
+
+                        await Task.Delay(delay);
+                    }
+                }
+                else
+                {
+                    Logger.Log = Constants.CONVERSION_ERROR;
+                }
+            }
+            else
+            {
+                // TODO: Сообщение, что невозможно.
             }
         }
 
@@ -71,11 +121,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 
 
-
-
-
-
-		private async void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        private async void LoadDataFromFiles()
         {
             Logger.Log = Constants.DATA_READING_STARTED;
 
@@ -87,17 +133,28 @@ namespace SecurityDoors.UI.WinForms.View
                 listOfCards = result.Item1;
                 listOfDoors = result.Item2;
 
-                // TODO: Сделать отображение всего в DropDownList и Grid
+                comboBoxDoors.DataSource = listOfDoors;
+                // TODO: Сделать отображение всего Grid
 
                 Logger.Log = Constants.DATA_READING_ENDED;
             }
             else
             {
+                comboBoxDoors.Items.Add("Список пуст.");
+                comboBoxDoors.SelectedItem = "Список пуст.";
                 // TODO: Сообщение, что невозможно.
             }
         }
 
+		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoadDataFromFiles();
+        }
 
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            LoadDataFromFiles();
+        }
 
 
 
@@ -132,59 +189,7 @@ namespace SecurityDoors.UI.WinForms.View
 			//comboBoxDoors.ValueMember = "Name";
 		}
 
-		
 
-
-
-
-
-
-
-
-
-		/// <summary>
-		/// Запускает отправку тестов.
-		/// </summary>
-		private async void ButtonStart_Click(object sender, EventArgs e)
-		{
-			var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
-			var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
-
-            if (listOfCards != null)
-            {
-			    if (parseCountSuccess && parseDelaySuccess)
-			    {
-                    foreach(var data in listOfCards)
-                    {
-                        var message = new TCPMessage()
-                        {
-                            PersonCard = "",
-                            DoorName = ""
-                        };
-
-                        var tcp = new TCP(_cs);
-                        tcp.SendMessage(message);
-
-                        count--;
-
-                        if(count == 0)
-                        {
-                            break;
-                        }
-
-                        await Task.Delay(delay);
-                    }
-                }
-                else
-                {
-                    Logger.Log = Constants.CONVERSION_ERROR;
-                }
-            }
-			else
-			{
-                // TODO: Сообщение, что невозможно.
-            }
-        }
 
 
 
@@ -211,5 +216,6 @@ namespace SecurityDoors.UI.WinForms.View
         {
             MessageBox.Show(_cs.IP + " " + _cs.Port + " " + _cs.PortAPI + " " + _cs.SecretKey);
         }
+
     }
 }

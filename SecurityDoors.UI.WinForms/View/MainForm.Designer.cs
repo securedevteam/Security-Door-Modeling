@@ -135,10 +135,11 @@
             // 
             // comboBoxDoors
             // 
+            this.comboBoxDoors.DisplayMember = "Список пуст.";
             this.comboBoxDoors.FormattingEnabled = true;
             this.comboBoxDoors.Location = new System.Drawing.Point(7, 35);
             this.comboBoxDoors.Name = "comboBoxDoors";
-            this.comboBoxDoors.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDoors.Size = new System.Drawing.Size(200, 21);
             this.comboBoxDoors.TabIndex = 1;
             // 
             // label1
@@ -153,7 +154,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(136, 19);
+            this.label2.Location = new System.Drawing.Point(215, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(44, 13);
             this.label2.TabIndex = 3;
@@ -162,7 +163,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(193, 19);
+            this.label3.Location = new System.Drawing.Point(272, 19);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(38, 13);
             this.label3.TabIndex = 4;
@@ -170,14 +171,14 @@
             // 
             // numericUpDownRepeatCount
             // 
-            this.numericUpDownRepeatCount.Location = new System.Drawing.Point(134, 35);
+            this.numericUpDownRepeatCount.Location = new System.Drawing.Point(213, 35);
             this.numericUpDownRepeatCount.Name = "numericUpDownRepeatCount";
             this.numericUpDownRepeatCount.Size = new System.Drawing.Size(48, 20);
             this.numericUpDownRepeatCount.TabIndex = 7;
             // 
             // numericUpDownDelay
             // 
-            this.numericUpDownDelay.Location = new System.Drawing.Point(188, 35);
+            this.numericUpDownDelay.Location = new System.Drawing.Point(267, 35);
             this.numericUpDownDelay.Name = "numericUpDownDelay";
             this.numericUpDownDelay.Size = new System.Drawing.Size(48, 20);
             this.numericUpDownDelay.TabIndex = 8;
@@ -205,11 +206,11 @@
             // 
             // buttonStart
             // 
-            this.buttonStart.Location = new System.Drawing.Point(242, 33);
+            this.buttonStart.Location = new System.Drawing.Point(321, 33);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.Size = new System.Drawing.Size(79, 23);
             this.buttonStart.TabIndex = 12;
-            this.buttonStart.Text = "Начать";
+            this.buttonStart.Text = "Запустить";
             this.buttonStart.UseVisualStyleBackColor = true;
             this.buttonStart.Click += new System.EventHandler(this.ButtonStart_Click);
             // 
@@ -230,7 +231,7 @@
             this.groupBox1.Controls.Add(this.numericUpDownDelay);
             this.groupBox1.Location = new System.Drawing.Point(12, 27);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(330, 64);
+            this.groupBox1.Size = new System.Drawing.Size(406, 64);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Основные действия";
@@ -257,9 +258,12 @@
             this.Controls.Add(this.dataGridViewPeoplesAndCards);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(800, 480);
             this.MinimumSize = new System.Drawing.Size(640, 480);
             this.Name = "MainForm";
             this.Text = "Моделирование данных для приложения SecurityDoors.DoorController";
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRepeatCount)).EndInit();

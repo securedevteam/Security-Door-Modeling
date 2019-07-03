@@ -51,7 +51,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 			if (result == null)
 			{
-				MessageBox.Show(result);
+				MessageBox.Show(Constants.SETTING_CORRECT);
 			}
 			else
 			{
@@ -81,9 +81,10 @@ namespace SecurityDoors.UI.WinForms.View
 		private void SetDefaultToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			textBoxIP.Text = Constants.DEFAULT_IP;
-			maskedTextBoxPort.Text = Constants.DEFAULT_PORT;
-			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API;
+			maskedTextBoxPort.Text = Constants.DEFAULT_PORT.ToString();
+			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API.ToString();
             textBoxSecretKey.Text = Constants.STRING_EMPTY;
+			settings.SetDefaultProperties();
 		}
 
 		private void CloseToolStripMenuItem_Click(object sender, EventArgs e)

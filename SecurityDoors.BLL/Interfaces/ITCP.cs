@@ -8,6 +8,6 @@ namespace SecurityDoors.BLL.Interfaces
         /// Отправить сообщение на DoorController.
         /// </summary>
         /// <param name="message">сообщение.</param>
-        void SendMessage(Message message);
+        void SendMessage(TCPMessage message);
     }
 }

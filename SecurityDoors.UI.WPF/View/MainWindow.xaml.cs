@@ -91,12 +91,12 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private void Btn_run_Click(object sender, RoutedEventArgs e)
 		{
-			var listofMessages = new List<Message>();
+			var listofMessages = new List<TCPMessage>();
 			foreach (var row in dataGridView.PeopleAndCardsList)
 			{
 				if (row.Use && comboBox_door.SelectedValue != null)
 				{
-					listofMessages.Add(new Message() {PersonCard = row.CardUniqueNumber, DoorName = comboBox_door.SelectedValue.ToString()});
+					listofMessages.Add(new TCPMessage() {PersonCard = row.CardUniqueNumber, DoorName = comboBox_door.SelectedValue.ToString()});
 				}
 			}
 			TCPController.SendMessages(listofMessages);

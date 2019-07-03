@@ -1,4 +1,5 @@
-﻿using SecurityDoors.Core;
+﻿using SecurityDoors.BLL.Interfaces;
+using SecurityDoors.Core;
 using SecurityDoors.DAL.Models;
 using System;
 using System.Net.Sockets;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace SecurityDoors.BLL.Controllers
 {
-    public class TCP
+    public class TCP : ITCP
     {
         private ConnectionSettings _cs;
 
@@ -27,7 +28,7 @@ namespace SecurityDoors.BLL.Controllers
         }
 
         /// <inheritdoc/>
-        public void SendMessage(Message message)
+        public void SendMessage(TCPMessage message)
         {
             if (message == null || _cs.Port == null)
             {

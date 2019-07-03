@@ -67,11 +67,6 @@ namespace SecurityDoors.UI.WinForms.View
             }
         }
 
-
-
-
-
-
         // Полностью готово и реализовано (Занести выбранные данные в selectedList..)
         private async void ButtonStart_Click(object sender, EventArgs e)
         {
@@ -133,7 +128,16 @@ namespace SecurityDoors.UI.WinForms.View
             }
         }
 
+        private void UpdateDataSource()
+        {
+            Logger.Log = Constants.SETTING_BINDING_FORM;
 
+            dataGridViewPeoplesAndCards.DataSource = listOfCards;
+            dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
+            dataGridViewPeoplesAndCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+
+            dataGridViewPeoplesAndCards.Columns[0].ReadOnly = true;
+        }
 
         // Полностью готово и реализовано (Добавить выборку из Grid)
         private async Task LoadDataFromFilesAsync()
@@ -149,7 +153,7 @@ namespace SecurityDoors.UI.WinForms.View
                 listOfDoors = result.Item2;
 
                 comboBoxDoors.DataSource = listOfDoors;
-                // TODO: Сделать отображение всего Grid
+                UpdateDataSource();
 
                 Logger.Log = Constants.DATA_READING_ENDED;
             }
@@ -172,66 +176,9 @@ namespace SecurityDoors.UI.WinForms.View
             await LoadDataFromFilesAsync();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-        /// <summary>
-        /// Обновляет данные на форме
-        /// </summary>
-        private void UpdateDataSource()
-		{
-			Logger.Log = Constants.SETTING_BINDING_FORM;
-
-			//dataGridViewPeoplesAndCards.DataSource = dataGridViewModel.PeopleAndCardsList;
-			//dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
-			//dataGridViewPeoplesAndCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-			//dataGridViewPeoplesAndCards.Columns[0].ReadOnly = true;
-			//dataGridViewPeoplesAndCards.Columns[1].ReadOnly = true;
-			//dataGridViewPeoplesAndCards.Columns[2].ReadOnly = true;
-			//dataGridViewPeoplesAndCards.Columns[3].ReadOnly = true;
-
-			//comboBoxDoors.DataSource = doorsViewModel.Doors;
-			//comboBoxDoors.DisplayMember = "Name";
-			//comboBoxDoors.ValueMember = "Name";
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
 		{
 			textBoxLog.Text = Logger.Log;
 		}
-
-		
-
-        private void ConnectionSettingToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show(_cs.IP + " " + _cs.Port + " " + _cs.PortAPI + " " + _cs.SecretKey);
-        }
-
     }
 }

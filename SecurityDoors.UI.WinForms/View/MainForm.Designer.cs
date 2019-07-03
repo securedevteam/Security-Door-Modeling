@@ -36,8 +36,6 @@
             this.LoadDataFromFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.connectionSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.comboBoxDoors = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,8 +62,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сервисToolStripMenuItem,
-            this.справкаToolStripMenuItem,
-            this.testToolStripMenuItem});
+            this.справкаToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(624, 24);
@@ -117,21 +114,6 @@
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(149, 22);
             this.AboutToolStripMenuItem.Text = "О программе";
             this.AboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
-            // 
-            // testToolStripMenuItem
-            // 
-            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.connectionSettingToolStripMenuItem});
-            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
-            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
-            this.testToolStripMenuItem.Text = "Test";
-            // 
-            // connectionSettingToolStripMenuItem
-            // 
-            this.connectionSettingToolStripMenuItem.Name = "connectionSettingToolStripMenuItem";
-            this.connectionSettingToolStripMenuItem.Size = new System.Drawing.Size(173, 22);
-            this.connectionSettingToolStripMenuItem.Text = "ConnectionSetting";
-            this.connectionSettingToolStripMenuItem.Click += new System.EventHandler(this.ConnectionSettingToolStripMenuItem_Click);
             // 
             // comboBoxDoors
             // 
@@ -200,6 +182,7 @@
             this.textBoxLog.Location = new System.Drawing.Point(3, 16);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
+            this.textBoxLog.ReadOnly = true;
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.textBoxLog.Size = new System.Drawing.Size(594, 181);
             this.textBoxLog.TabIndex = 10;
@@ -301,8 +284,6 @@
 		private System.Windows.Forms.Timer timerUpdateLog;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem connectionSettingToolStripMenuItem;
     }
 }
 

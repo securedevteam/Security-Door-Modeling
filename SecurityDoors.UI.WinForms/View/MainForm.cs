@@ -36,9 +36,18 @@ namespace SecurityDoors.UI.WinForms.View
 			dataGridViewPeoplesAndCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
 			dataGridViewPeoplesAndCards.Columns[0].ReadOnly = true;
+			dataGridViewPeoplesAndCards.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
 			dataGridViewPeoplesAndCards.Columns[1].ReadOnly = true;
+			dataGridViewPeoplesAndCards.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
 			dataGridViewPeoplesAndCards.Columns[2].ReadOnly = true;
+			dataGridViewPeoplesAndCards.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
+
 			dataGridViewPeoplesAndCards.Columns[3].ReadOnly = true;
+			dataGridViewPeoplesAndCards.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+			dataGridViewPeoplesAndCards.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.DisplayedCells;
 
 			comboBoxDoors.DataSource = doorsViewModel.Doors;
 			comboBoxDoors.DisplayMember = "Name";

@@ -124,18 +124,24 @@ namespace SecurityDoors.UI.WinForms.View
             {
                 var webConnection = new WebConnection(_cs);
 
-                var resultPort = await webConnection.CheckConnectionAsync(_cs.Port.Value);
-                var resultPortAPI = await webConnection.CheckConnectionAsync(_cs.PortAPI.Value);
+                var isServerAvailable = await webConnection.CheckConnectionAsync(_cs.Port.Value);
+                var isApiAvailable = await webConnection.CheckConnectionAsync(_cs.PortAPI.Value);
+				//TODO: поправить
+				string serversAvailability = "";
+				serversAvailability += isApiAvailable ? Constants.CONNECTION_API_SUCCESSED : Constants.CONNECTION_API_FAILED;
+				serversAvailability += Environment.NewLine;
+				serversAvailability += isServerAvailable ? Constants.CONNECTION_DOOR_CONTROLLER_SUCCESSED : Constants.CONNECTION_DOOR_CONTROLLER_FAILED;
+				
 
-                if (resultPort == true || resultPortAPI == true)
+				if (isServerAvailable || isApiAvailable)
                 {
                     Logger.Log = Constants.CONNECTION_ESTABLISHED;
-                    MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
+                    MessageBox.Show(serversAvailability);
                 }
                 else
                 {
                     Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
-                    MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
+                    MessageBox.Show(serversAvailability);
                 }
             }
         }

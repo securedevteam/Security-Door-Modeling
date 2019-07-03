@@ -48,7 +48,7 @@ namespace SecurityDoors.UI.WinForms.View
 		private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Logger.Log = Constants.SETTING_OPENING_WINDOW;
-			var settings = new Settings(_cs);
+			var settings = new SettingForm(_cs);
 			settings.ShowDialog();
 		}
 
@@ -153,7 +153,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var aboutForm = new About();
+			var aboutForm = new AboutProjectForm();
 			aboutForm.ShowDialog();
 		}
 

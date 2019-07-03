@@ -8,6 +8,8 @@
         public static readonly string SETTING_INCORRECT = "Введенные настройки некорректны.";
         public static readonly string SETTING_OPENING_WINDOW = "Открывается окно настроек.";
         public static readonly string SETTING_BINDING_FORM = "Устанавливается привязка к форме.";
+        public static readonly string SETTING_SAVE_SUCCESSED = "Операция выполнена успешно.";
+        public static readonly string SETTING_NULL = "Получен null или пустая строка.";
 
         public static readonly string CONNECTION_ESTABLISHED = "Соединение установлено.";
         public static readonly string CONNECTION_NOT_ESTABLISHED = "Соединение не установлено.";

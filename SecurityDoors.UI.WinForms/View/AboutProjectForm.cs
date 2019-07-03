@@ -2,9 +2,9 @@
 
 namespace SecurityDoors.UI.WinForms.View
 {
-	public partial class About : Form
+	public partial class AboutProjectForm : Form
 	{
-		public About()
+		public AboutProjectForm()
 		{
 			InitializeComponent();
 		}

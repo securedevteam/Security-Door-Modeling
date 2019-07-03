@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace SecurityDoors.UI.WinForms.View
 {
-	public partial class Settings : Form
+	public partial class SettingForm : Form
 	{
         private ConnectionSettings _cs;
 
-		public Settings(ConnectionSettings connectionSettings)
+		public SettingForm(ConnectionSettings connectionSettings)
 		{
 			InitializeComponent();
             _cs = connectionSettings;
@@ -17,7 +17,7 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			var aboutForm = new About();
+			var aboutForm = new AboutProjectForm();
             aboutForm.ShowDialog();
 		}
 

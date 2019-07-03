@@ -1,4 +1,5 @@
 ﻿using SecurityDoors.BLL.Interfaces;
+using SecurityDoors.Core;
 using System;
 
 namespace SecurityDoors.BLL.Controllers
@@ -64,7 +65,7 @@ namespace SecurityDoors.BLL.Controllers
                 Properties.Settings.Default.SecretKey = SecretKey;
                 Properties.Settings.Default.Save();
 
-                return "Операция выполнена успешно.";
+                return Constants.SETTING_SAVE_SUCCESSED;
             }
 
             return checkResult;           
@@ -84,32 +85,22 @@ namespace SecurityDoors.BLL.Controllers
         {
             if (string.IsNullOrEmpty(IP) || string.IsNullOrWhiteSpace(IP))
             {
-                return new ArgumentException("Получен null или пустая строка", nameof(IP)).ToString();
+                return new ArgumentException(Constants.SETTING_NULL, nameof(IP)).ToString();
             }
 
             if (Port == null)
             {
-                return new ArgumentNullException("Получен null", nameof(Port)).ToString();
+                return new ArgumentNullException(Constants.SETTING_NULL, nameof(Port)).ToString();
             }
 
             if (PortAPI == null)
             {
-                return new ArgumentNullException("Получен null", nameof(PortAPI)).ToString();
+                return new ArgumentNullException(Constants.SETTING_NULL, nameof(PortAPI)).ToString();
             }
 
             if (string.IsNullOrEmpty(SecretKey))
             {
-                return new ArgumentException("Получен null", nameof(SecretKey)).ToString();
-            }
-
-            if (Port < 0)
-            {
-                return "Порт не может быть отрицательным";
-            }
-
-            if (PortAPI < 0)
-            {
-                return "Порт не может быть отрицательным";
+                return new ArgumentException(Constants.SETTING_NULL, nameof(SecretKey)).ToString();
             }
 
             return null;
@@ -120,32 +111,22 @@ namespace SecurityDoors.BLL.Controllers
         {
             if (string.IsNullOrEmpty(ip) || string.IsNullOrWhiteSpace(ip))
             {
-                return new ArgumentException("Получен null или пустая строка", nameof(ip)).ToString();
+                return new ArgumentException(Constants.SETTING_NULL, nameof(ip)).ToString();
             }
 
             if (port == null)
             {
-                return new ArgumentNullException("Получен null", nameof(port)).ToString();
+                return new ArgumentNullException(Constants.SETTING_NULL, nameof(port)).ToString();
             }
 
             if (portApi == null)
             {
-                return new ArgumentNullException("Получен null", nameof(portApi)).ToString();
+                return new ArgumentNullException(Constants.SETTING_NULL, nameof(portApi)).ToString();
             }
 
             if (string.IsNullOrEmpty(secretKey))
             {
-                return new ArgumentException("Получен null", nameof(secretKey)).ToString();
-            }
-
-            if (port < 0)
-            {
-                return "Порт не может быть отрицательным";
-            }
-
-            if (portApi < 0)
-            {
-                return "Порт не может быть отрицательным";
+                return new ArgumentException(Constants.SETTING_NULL, nameof(secretKey)).ToString();
             }
 
             return default;

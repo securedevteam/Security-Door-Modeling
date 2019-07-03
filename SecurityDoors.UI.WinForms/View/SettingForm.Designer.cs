@@ -1,6 +1,6 @@
 ﻿namespace SecurityDoors.UI.WinForms.View
 {
-	partial class Settings
+	partial class SettingForm
 	{
 		/// <summary>
 		/// Required designer variable.

@@ -13,9 +13,13 @@
         public static readonly string SETTING_NULL = "Получен null или пустая строка.";
 
         public static readonly string CONNECTION_ESTABLISHED = "Соединение установлено.";
-        public static readonly string CONNECTION_NOT_ESTABLISHED = "Соединение не установлено.";
+		public static readonly string CONNECTION_NOT_ESTABLISHED = "Соединение не установлено.";
+		public static readonly string CONNECTION_API_FAILED = "Соединение с сервером API не установлено.";
+		public static readonly string CONNECTION_API_SUCCESSED = "Соединение с сервером API установлено.";
+		public static readonly string CONNECTION_DOOR_CONTROLLER_FAILED = "Соединение с сервером не установлено.";
+		public static readonly string CONNECTION_DOOR_CONTROLLER_SUCCESSED = "Соединение с сервером не установлено.";
 
-        public static readonly string CONVERSION_ERROR = "Ошибка при конвертации";
+		public static readonly string CONVERSION_ERROR = "Ошибка при конвертации";
         public static readonly string DATA_API_FAILED = "Загрузка данных из API прошла с ошибкой.";
         public static readonly string DATA_API_SUCCESSED = "Загрузка данных из API прошла успешно.";
         public static readonly string DATA_API_DOWNLOADING_STARTED = "Начата загрузка данных из API.";

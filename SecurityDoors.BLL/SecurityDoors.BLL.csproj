@@ -52,7 +52,6 @@
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\TCPController.cs" />
     <Compile Include="Controllers\WebConnection.cs" />
-    <Compile Include="Controllers\WebConnectionController.cs" />
     <Compile Include="Interfaces\ICache.cs" />
     <Compile Include="Interfaces\IConnectionSettings.cs" />
     <Compile Include="Interfaces\ITCP.cs" />

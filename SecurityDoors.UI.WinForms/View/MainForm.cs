@@ -107,20 +107,20 @@ namespace SecurityDoors.UI.WinForms.View
 		{
 			Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
 
-			var webConnection = new WebConnectionController();
-			var listOfPeopleAndCards = await webConnection.GetPeopleFromAPIAsync();
-			var listOfDoors = await webConnection.GetDoorsFromAPIAsync();
-			if (listOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
-			{
-				Logger.Log = Constants.DATA_API_SUCCESSED;
-				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
-				doorsViewModel.Doors = listOfDoors;
-				UpdateDataSource();
-			}
-			else
-			{
-				Logger.Log = Constants.DATA_API_FAILED;
-			}
+			//var webConnection = new WebConnectionController();
+			//var listOfPeopleAndCards = await webConnection.GetPeopleFromAPIAsync();
+			//var listOfDoors = await webConnection.GetDoorsFromAPIAsync();
+			//if (listOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
+			//{
+			//	Logger.Log = Constants.DATA_API_SUCCESSED;
+			//	dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
+			//	doorsViewModel.Doors = listOfDoors;
+			//	UpdateDataSource();
+			//}
+			//else
+			//{
+			//	Logger.Log = Constants.DATA_API_FAILED;
+			//}
 		}
 		/// <summary>
 		/// Запускает/останавливает тесты.
@@ -134,8 +134,8 @@ namespace SecurityDoors.UI.WinForms.View
 			{
 				do
 				{
-					var webConnection = new WebConnectionController();
-					await webConnection.SendMessageAsync(dataGridViewModel.PeopleAndCardsList, comboBoxDoors.SelectedValue.ToString());
+					//var webConnection = new WebConnectionController();
+					//await webConnection.SendMessageAsync(dataGridViewModel.PeopleAndCardsList, comboBoxDoors.SelectedValue.ToString());
 					
 					Thread.Sleep(new TimeSpan(0, 0, delay));
 					count--;

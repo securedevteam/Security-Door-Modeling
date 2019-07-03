@@ -122,11 +122,12 @@ namespace SecurityDoors.UI.WinForms.View
             }
             else
             {
-                var webConnection = new WebConnectionController(server, port, portAPI, secretKey);
+                var webConnection = new WebConnection(_cs);
 
-                var result = await webConnection.CheckServerConnectionAsync();
+                var resultPort = await webConnection.CheckConnectionAsync(_cs.Port.Value);
+                var resultPortAPI = await webConnection.CheckConnectionAsync(_cs.PortAPI.Value);
 
-                if (result == true)
+                if (resultPort == true || resultPortAPI == true)
                 {
                     Logger.Log = Constants.CONNECTION_ESTABLISHED;
                     MessageBox.Show(Constants.CONNECTION_ESTABLISHED);

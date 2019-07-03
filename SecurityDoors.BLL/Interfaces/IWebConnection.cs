@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SecurityDoor.BL.Interfaces
+namespace SecurityDoors.BLL.Interfaces
 {
 	public interface IWebConnection
 	{

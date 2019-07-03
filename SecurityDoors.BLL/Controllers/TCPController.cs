@@ -6,7 +6,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Text;
 
-namespace SecurityDoors.BL.Controllers
+namespace SecurityDoors.BLL.Controllers
 {
 	public static class TCPController
 	{

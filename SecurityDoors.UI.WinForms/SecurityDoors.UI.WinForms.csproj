@@ -99,7 +99,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SecurityDoor.BL\SecurityDoors.BLL.csproj">
+    <ProjectReference Include="..\SecurityDoors.BLL\SecurityDoors.BLL.csproj">
       <Project>{3eee4e31-02e7-4bd5-8d97-763c479d1237}</Project>
       <Name>SecurityDoors.BLL</Name>
     </ProjectReference>

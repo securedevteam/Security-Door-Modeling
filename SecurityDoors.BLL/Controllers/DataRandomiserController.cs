@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace SecurityDoors.BL.Controllers
+namespace SecurityDoors.BLL.Controllers
 {
     public class DataRandomiserController
     {

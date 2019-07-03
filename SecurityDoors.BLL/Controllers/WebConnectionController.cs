@@ -1,5 +1,4 @@
-﻿using SecurityDoor.BL.Interfaces;
-using SecurityDoors.BL.Properties;
+﻿using SecurityDoors.BL.Properties;
 using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
@@ -8,10 +7,11 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using SecurityDoors.BL.Controllers;
+using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
+using SecurityDoors.BLL.Interfaces;
 
-namespace SecurityDoor.BL.Controllers
+namespace SecurityDoors.BLL.Controllers
 {
 	public class WebConnectionController : IWebConnection
 	{

@@ -5,7 +5,7 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Threading.Tasks;
 
-namespace SecurityDoors.BL.Controllers
+namespace SecurityDoors.BLL.Controllers
 {
     public class CacheController
     {

@@ -1,5 +1,4 @@
-﻿using SecurityDoor.BL.Controllers;
-using SecurityDoors.BL.Controllers;
+﻿using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
 using System;
 using System.Windows.Forms;

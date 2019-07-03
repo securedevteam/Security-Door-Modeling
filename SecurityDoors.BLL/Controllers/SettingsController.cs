@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace SecurityDoors.BL.Controllers
+namespace SecurityDoors.BLL.Controllers
 {
 	public static class SettingsController
 	{

@@ -48,14 +48,14 @@
     <Compile Include="Controllers\Cache.cs" />
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DataRandomiserController.cs" />
-    <Compile Include="Controllers\Settings.cs" />
+    <Compile Include="Controllers\ConnectionSettings.cs" />
     <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\TCPController.cs" />
     <Compile Include="Controllers\WebConnection.cs" />
     <Compile Include="Controllers\WebConnectionController.cs" />
     <Compile Include="Interfaces\ICache.cs" />
-    <Compile Include="Interfaces\ISettings.cs" />
+    <Compile Include="Interfaces\IConnectionSettings.cs" />
     <Compile Include="Interfaces\ITCP.cs" />
     <Compile Include="Interfaces\IWebConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

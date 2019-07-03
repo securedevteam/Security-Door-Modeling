@@ -50,6 +50,8 @@
             this.dataGridViewModelBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.testToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.connectionSettingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownRepeatCount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDelay)).BeginInit();
@@ -63,7 +65,8 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.сервисToolStripMenuItem,
-            this.справкаToolStripMenuItem});
+            this.справкаToolStripMenuItem,
+            this.testToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(624, 24);
@@ -238,6 +241,21 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Лог приложения";
             // 
+            // testToolStripMenuItem
+            // 
+            this.testToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.connectionSettingToolStripMenuItem});
+            this.testToolStripMenuItem.Name = "testToolStripMenuItem";
+            this.testToolStripMenuItem.Size = new System.Drawing.Size(40, 20);
+            this.testToolStripMenuItem.Text = "Test";
+            // 
+            // connectionSettingToolStripMenuItem
+            // 
+            this.connectionSettingToolStripMenuItem.Name = "connectionSettingToolStripMenuItem";
+            this.connectionSettingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.connectionSettingToolStripMenuItem.Text = "ConnectionSetting";
+            this.connectionSettingToolStripMenuItem.Click += new System.EventHandler(this.ConnectionSettingToolStripMenuItem_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -289,6 +307,8 @@
 		private System.Windows.Forms.ToolStripMenuItem SaveDataToFileToolStripMenuItem;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ToolStripMenuItem testToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem connectionSettingToolStripMenuItem;
     }
 }
 

@@ -7,9 +7,12 @@ namespace SecurityDoors.UI.WinForms.View
 {
 	public partial class Settings : Form
 	{
-		public Settings()
+        private ConnectionSettings _cs;
+
+		public Settings(ConnectionSettings connectionSettings)
 		{
 			InitializeComponent();
+            _cs = connectionSettings;
 		}
 
 		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -20,16 +23,33 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void ButtonCheckSettings_Click(object sender, EventArgs e)
 		{
-			string ip = textBoxIP.Text;
-			int port = int.Parse(maskedTextBoxPort.Text);
-			int portApi = int.Parse(maskedTextBoxPortAPI.Text);
-			string secretKey = textBoxSecretKey.Text;
+            _cs.IP = textBoxIP.Text;
 
-			var result = SettingsController.CheckSettings(ip, port, portApi, secretKey);
+            if(!string.IsNullOrWhiteSpace(maskedTextBoxPort.Text))
+            {
+                _cs.Port = int.Parse(maskedTextBoxPort.Text);
+            }
+            else
+            {
+                _cs.Port = null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(maskedTextBoxPortAPI.Text))
+            {
+                _cs.PortAPI = int.Parse(maskedTextBoxPortAPI.Text);
+            }
+            else
+            {
+                _cs.PortAPI = null;
+            }
+
+            _cs.SecretKey = textBoxSecretKey.Text;
+
+			var result = _cs.CheckSettings();
 
 			Logger.Log = result ?? Constants.SETTING_CORRECT;
 
-			if (result != null)
+			if (result == null)
 			{
 				MessageBox.Show(result);
 			}
@@ -41,18 +61,22 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			SettingsController.IP = textBoxIP.Text;
-			SettingsController.Port = int.Parse(maskedTextBoxPort.Text);
-			SettingsController.PortApi = int.Parse(maskedTextBoxPortAPI.Text);
-			SettingsController.SecretKey = textBoxSecretKey.Text;
+            _cs.IP = textBoxIP.Text;
+            _cs.Port = int.Parse(maskedTextBoxPort.Text);
+            _cs.PortAPI = int.Parse(maskedTextBoxPortAPI.Text);
+            _cs.SecretKey = textBoxSecretKey.Text;
 
-			var result = SettingsController.SaveProperties();
+            var result = _cs.SaveProperties();
 
 			if (result != null)
 			{
 				MessageBox.Show(result);
 			}
-		}
+            else
+            {
+                MessageBox.Show(Constants.SETTING_INCORRECT);
+            }
+        }
 
 		private void SetDefaultToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -69,48 +93,48 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void Settings_Load(object sender, EventArgs e)
 		{
-			textBoxIP.Text = SettingsController.IP;
-			maskedTextBoxPort.Text = SettingsController.Port.ToString();
-			maskedTextBoxPortAPI.Text = SettingsController.PortApi.ToString();
-			textBoxSecretKey.Text = SettingsController.SecretKey;
+			textBoxIP.Text = _cs.IP;
+			maskedTextBoxPort.Text = _cs.Port.ToString();
+			maskedTextBoxPortAPI.Text = _cs.PortAPI.ToString();
+			textBoxSecretKey.Text = _cs.SecretKey;
 		}
 
 		private void Settings_FormClosed(object sender, FormClosedEventArgs e)
 		{
-			SettingsController.SetDefaultProperties();
+			_cs.SetDefaultProperties();
 		}
 
 		private async void ButtonConnectionTest_Click(object sender, EventArgs e)
 		{
-			string server = textBoxIP.Text;
-			int port = int.Parse(maskedTextBoxPort.Text);
-			int portApi = int.Parse(maskedTextBoxPortAPI.Text);
-			string secretKey = textBoxSecretKey.Text;
+            string server = textBoxIP.Text;
+            int port = int.Parse(maskedTextBoxPort.Text);
+            int portAPI = int.Parse(maskedTextBoxPortAPI.Text);
+            string secretKey = textBoxSecretKey.Text;
 
-			var checkResult = SettingsController.CheckSettings(server, port, portApi, secretKey);
+            var checkResult = _cs.CheckSettings(server, port, portAPI, secretKey);
 
             if (checkResult != default)
-			{
-				MessageBox.Show(checkResult);
-				Logger.Log = checkResult;
-			}
-			else
-			{
-				var webConnection = new WebConnectionController(server, port, portApi, secretKey);
+            {
+                MessageBox.Show(checkResult);
+                Logger.Log = checkResult;
+            }
+            else
+            {
+                var webConnection = new WebConnectionController(server, port, portAPI, secretKey);
 
-				var result = await webConnection.CheckServerConnectionAsync();
+                var result = await webConnection.CheckServerConnectionAsync();
 
-				if (result == true)
-				{
-					MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
-					Logger.Log = Constants.CONNECTION_ESTABLISHED;
-				}
-				else
-				{
-					MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
-					Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
-				}
-			}
-		}
+                if (result == true)
+                {
+                    MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
+                    Logger.Log = Constants.CONNECTION_ESTABLISHED;
+                }
+                else
+                {
+                    MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
+                    Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
+                }
+            }
+        }
 	}
 }

@@ -14,10 +14,13 @@ namespace SecurityDoors.UI.WinForms.View
 		private DataGridViewModel dataGridViewModel = new DataGridViewModel();
 		private DoorViewModel doorsViewModel = new DoorViewModel();
 
+        private ConnectionSettings _cs;
+
 		public MainForm()
 		{
 			InitializeComponent();
 
+            _cs = new ConnectionSettings();
 			UpdateDataSource();
 		}
 
@@ -45,9 +48,25 @@ namespace SecurityDoors.UI.WinForms.View
 		private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			Logger.Log = Constants.SETTING_OPENING_WINDOW;
-			var settings = new Settings();
+			var settings = new Settings(_cs);
 			settings.ShowDialog();
 		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 		/// <summary>
 		/// Выполняет загрузку данных из файла
@@ -137,5 +156,10 @@ namespace SecurityDoors.UI.WinForms.View
 			var aboutForm = new About();
 			aboutForm.ShowDialog();
 		}
-	}
+
+        private void ConnectionSettingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_cs.IP + " " + _cs.Port + " " + _cs.PortAPI + " " + _cs.SecretKey);
+        }
+    }
 }

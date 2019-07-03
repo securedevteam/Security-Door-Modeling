@@ -75,13 +75,26 @@ namespace SecurityDoors.UI.WinForms.View
 
 
 
-		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.Log = Constants.DATA_READING_STARTED;
 
-            // TODO: Загрузка на форму
-            
-            Logger.Log = Constants.DATA_READING_ENDED;
+            var cache = new Cache();
+            var result = await cache.LoadCacheDataAsync();
+
+            if (result.Item1.Count != 0 || result.Item1.Count != 0)
+            {
+                listOfCards = result.Item1;
+                listOfDoors = result.Item2;
+
+                // TODO: Сделать отображение всего в DropDownList и Grid
+
+                Logger.Log = Constants.DATA_READING_ENDED;
+            }
+            else
+            {
+                // TODO: Сообщение, что невозможно.
+            }
         }
 
 

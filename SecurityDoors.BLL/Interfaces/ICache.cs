@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
@@ -7,7 +8,7 @@ namespace SecurityDoors.BLL.Interfaces
         /// <summary>
         /// Запуск загрузки данных из файлов.
         /// </summary>
-        Task LoadCacheDataAsync();
+        Task<(List<string>, List<string>)> LoadCacheDataAsync();
 
         /// <summary>
         /// Загрузка данных из файлов.

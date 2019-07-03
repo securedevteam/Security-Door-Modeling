@@ -36,9 +36,11 @@ namespace SecurityDoors.BLL.Controllers
         }
 
         /// <inheritdoc/>
-        public async Task LoadCacheDataAsync()
+        public async Task<(List<string>, List<string>)> LoadCacheDataAsync()
         {
             await Task.Run(() => LoadCacheData());
+
+            return (_cards, _doors);
         }
 
         /// <inheritdoc/>

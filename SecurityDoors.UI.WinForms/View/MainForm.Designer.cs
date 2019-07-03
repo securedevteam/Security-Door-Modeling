@@ -85,22 +85,22 @@
             // SettingsToolStripMenuItem
             // 
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
-            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.SettingsToolStripMenuItem.Text = "Настройки";
             this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // UpdateThroughtAPIToolStripMenuItem
             // 
             this.UpdateThroughtAPIToolStripMenuItem.Name = "UpdateThroughtAPIToolStripMenuItem";
-            this.UpdateThroughtAPIToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
+            this.UpdateThroughtAPIToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.UpdateThroughtAPIToolStripMenuItem.Text = "Обновить данные через API";
             this.UpdateThroughtAPIToolStripMenuItem.Click += new System.EventHandler(this.UpdateThroughtAPIToolStripMenuItem_Click);
             // 
             // LoadDataFromFileToolStripMenuItem
             // 
             this.LoadDataFromFileToolStripMenuItem.Name = "LoadDataFromFileToolStripMenuItem";
-            this.LoadDataFromFileToolStripMenuItem.Size = new System.Drawing.Size(227, 22);
-            this.LoadDataFromFileToolStripMenuItem.Text = "Загрузить данные из файла";
+            this.LoadDataFromFileToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
+            this.LoadDataFromFileToolStripMenuItem.Text = "Загрузить данные из файлов";
             this.LoadDataFromFileToolStripMenuItem.Click += new System.EventHandler(this.LoadDataFromFileToolStripMenuItem_Click);
             // 
             // справкаToolStripMenuItem

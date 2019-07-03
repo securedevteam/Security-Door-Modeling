@@ -46,7 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\Cache.cs" />
-    <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\ConnectionSettings.cs" />
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\WebConnection.cs" />

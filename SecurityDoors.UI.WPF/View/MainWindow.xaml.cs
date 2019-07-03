@@ -30,61 +30,61 @@ namespace SecurityDoors.UI.WPF.View
 			comboBox_door.ItemsSource = doorsViewModel.Doors;
 
 
-			var isServerAvailable = TCPController.CheckServerAvailability();
-			if (isServerAvailable)
-			{
-				var listOfCards = TCPController.GetListOfStringCardsFromAPI();
-				var listOfDoors = TCPController.GetListOfDoorsFromAPI();
-				doorsViewModel.Doors.AddRange(listOfDoors);
+			//var isServerAvailable = TCPController.CheckServerAvailability();
+			//if (isServerAvailable)
+			//{
+			//	var listOfCards = TCPController.GetListOfStringCardsFromAPI();
+			//	var listOfDoors = TCPController.GetListOfDoorsFromAPI();
+			//	doorsViewModel.Doors.AddRange(listOfDoors);
 
-				///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
-				//var rnd = new DataRandomiserController();
-				//rnd.MakeRandomData();
-				//var listOfPeole = rnd.randomPeople;
+			//	///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
+			//	//var rnd = new DataRandomiserController();
+			//	//rnd.MakeRandomData();
+			//	//var listOfPeole = rnd.randomPeople;
 
-				//int i = 0;
-				//foreach (var person in listOfPeole)
-				//{
-				//	person.CardUniqueNumber = listOfCards[i];
-				//	var newPerson = new Person()
-				//	{
-				//		CardUniqueNumber = person.CardUniqueNumber,
-				//		FirstName = person.FirstName,
-				//		SecondName = person.SecondName,
-				//		LastName = person.LastName
-				//	};
-				//	dataGridView.PeopleAndCardsList.Add(newPerson);
-				//	if (i >= listOfCards.Count + 1)
-				//	{
-				//		i = 0;
-				//	}
-				//	else
-				//	{
-				//		i++;
-				//	}
-				//}
+			//	//int i = 0;
+			//	//foreach (var person in listOfPeole)
+			//	//{
+			//	//	person.CardUniqueNumber = listOfCards[i];
+			//	//	var newPerson = new Person()
+			//	//	{
+			//	//		CardUniqueNumber = person.CardUniqueNumber,
+			//	//		FirstName = person.FirstName,
+			//	//		SecondName = person.SecondName,
+			//	//		LastName = person.LastName
+			//	//	};
+			//	//	dataGridView.PeopleAndCardsList.Add(newPerson);
+			//	//	if (i >= listOfCards.Count + 1)
+			//	//	{
+			//	//		i = 0;
+			//	//	}
+			//	//	else
+			//	//	{
+			//	//		i++;
+			//	//	}
+			//	//}
 
-				//Записать скачанное в кэш
-				var cacheController = new CacheController
-				{
-					Doors = listOfDoors,
-					//People = listOfPeole
-				};
-				cacheController.SaveCacheData();
-			}
-			else
-			{
-				var cacheController = new CacheController();
-				cacheController.LoadCacheData();
-				foreach (var person in cacheController.People)
-				{
-					dataGridView.PeopleAndCardsList.Add(new Person() { CardUniqueNumber = person.CardUniqueNumber, FirstName = person.FirstName, SecondName = person.SecondName, LastName = person.LastName });
-				}
-				foreach (var door in cacheController.Doors)
-				{
-					doorsViewModel.Doors.Add(new Door() { Name = door.Name });
-				}
-			}
+			//	//Записать скачанное в кэш
+			//	//var cacheController = new CacheController
+			//	//{
+			//	//	Doors = listOfDoors,
+			//	//	//People = listOfPeole
+			//	//};
+			//	//cacheController.SaveCacheData();
+			//}
+			//else
+			//{
+			//	//var cacheController = new CacheController();
+			//	//cacheController.LoadCacheData();
+			//	//foreach (var person in cacheController.People)
+			//	//{
+			//	//	dataGridView.PeopleAndCardsList.Add(new Person() { CardUniqueNumber = person.CardUniqueNumber, FirstName = person.FirstName, SecondName = person.SecondName, LastName = person.LastName });
+			//	//}
+			//	//foreach (var door in cacheController.Doors)
+			//	//{
+			//	//	doorsViewModel.Doors.Add(new Door() { Name = door.Name });
+			//	//}
+			//}
 		}
 		/// <summary>
 		/// обработчик кнопки "запустить"
@@ -99,7 +99,7 @@ namespace SecurityDoors.UI.WPF.View
 					listofMessages.Add(new TCPMessage() {PersonCard = row.CardUniqueNumber, DoorName = comboBox_door.SelectedValue.ToString()});
 				}
 			}
-			TCPController.SendMessages(listofMessages);
+			//TCPController.SendMessages(listofMessages);
 		}
 
 		/// <summary>

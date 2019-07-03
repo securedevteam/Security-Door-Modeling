@@ -1,4 +1,4 @@
-﻿using SecurityDoors.BL.Properties;
+﻿using SecurityDoors.BLL.Properties;
 using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;

@@ -1,4 +1,4 @@
-﻿using SecurityDoors.BL.Controllers;
+﻿using SecurityDoors.BLL.Controllers;
 using SecurityDoors.BL.Windows;
 using System;
 using System.Text.RegularExpressions;
@@ -19,9 +19,9 @@ namespace SecurityDoors.UI.WPF.View
 
 		private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
 		{
-			field_host.Text = SecurityDoors.BL.Properties.Settings.Default.IP;
-			field_port.Text = SecurityDoors.BL.Properties.Settings.Default.Port.ToString();
-			field_secretKey.Text = SecurityDoors.BL.Properties.Settings.Default.SecretKey;
+			field_host.Text = BLL.Properties.Settings.Default.IP;
+			field_port.Text = BLL.Properties.Settings.Default.Port.ToString();
+			field_secretKey.Text = BLL.Properties.Settings.Default.SecretKey;
 
 		}
 

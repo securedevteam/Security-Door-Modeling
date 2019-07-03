@@ -7,6 +7,7 @@ namespace SecurityDoors.UI.WinForms.View
 {
 	public partial class Settings : Form
 	{
+		private SettingsController settings = new SettingsController();
 		public Settings()
 		{
 			InitializeComponent();
@@ -29,9 +30,9 @@ namespace SecurityDoors.UI.WinForms.View
 
 			Logger.Log = result ?? Constants.SETTING_CORRECT;
 
-			if (result != null)
+			if (result == null)
 			{
-				MessageBox.Show(result);
+				MessageBox.Show(Constants.SETTING_CORRECT);
 			}
 			else
 			{
@@ -41,12 +42,12 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			SettingsController.IP = textBoxIP.Text;
-			SettingsController.Port = int.Parse(maskedTextBoxPort.Text);
-			SettingsController.PortApi = int.Parse(maskedTextBoxPortAPI.Text);
-			SettingsController.SecretKey = textBoxSecretKey.Text;
+			settings.IP = textBoxIP.Text;
+			settings.Port = int.Parse(maskedTextBoxPort.Text);
+			settings.PortApi = int.Parse(maskedTextBoxPortAPI.Text);
+			settings.SecretKey = textBoxSecretKey.Text;
 
-			var result = SettingsController.SaveProperties();
+			var result = settings.SaveProperties();
 
 			if (result != null)
 			{
@@ -57,9 +58,10 @@ namespace SecurityDoors.UI.WinForms.View
 		private void SetDefaultToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			textBoxIP.Text = Constants.DEFAULT_IP;
-			maskedTextBoxPort.Text = Constants.DEFAULT_PORT;
-			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API;
+			maskedTextBoxPort.Text = Constants.DEFAULT_PORT.ToString();
+			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API.ToString();
             textBoxSecretKey.Text = Constants.STRING_EMPTY;
+			settings.SetDefaultProperties();
 		}
 
 		private void CloseToolStripMenuItem_Click(object sender, EventArgs e)
@@ -69,15 +71,10 @@ namespace SecurityDoors.UI.WinForms.View
 
 		private void Settings_Load(object sender, EventArgs e)
 		{
-			textBoxIP.Text = SettingsController.IP;
-			maskedTextBoxPort.Text = SettingsController.Port.ToString();
-			maskedTextBoxPortAPI.Text = SettingsController.PortApi.ToString();
-			textBoxSecretKey.Text = SettingsController.SecretKey;
-		}
-
-		private void Settings_FormClosed(object sender, FormClosedEventArgs e)
-		{
-			SettingsController.SetDefaultProperties();
+			textBoxIP.Text = settings.IP;
+			maskedTextBoxPort.Text = settings.Port.ToString();
+			maskedTextBoxPortAPI.Text = settings.PortApi.ToString();
+			textBoxSecretKey.Text = settings.SecretKey;
 		}
 
 		private async void ButtonConnectionTest_Click(object sender, EventArgs e)

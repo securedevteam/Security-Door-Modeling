@@ -1,33 +1,34 @@
-﻿using System;
+﻿using SecurityDoors.Core;
+using System;
 using System.Text.RegularExpressions;
 
 namespace SecurityDoors.BLL.Controllers
 {
-	public static class SettingsController
+	public class SettingsController
 	{
-		private static string iP = Properties.Settings.Default.IP;
-		private static int port = Properties.Settings.Default.Port;
-		private static int portApi = Properties.Settings.Default.PortApi;
-		private static string secretKey = Properties.Settings.Default.SecretKey;
+		private string iP = Properties.Settings.Default.IP;
+		private int port = Properties.Settings.Default.Port;
+		private int portApi = Properties.Settings.Default.PortApi;
+		private string secretKey = Properties.Settings.Default.SecretKey;
 
-		public static string IP { get => iP; set => iP = value; }
-		public static int Port { get => port; set => port = value; }
-		public static int PortApi { get => portApi; set => portApi = value; }
-		public static string SecretKey { get => secretKey; set => secretKey = value; }
+		public string IP { get => iP; set => iP = value; }
+		public int Port { get => port; set => port = value; }
+		public int PortApi { get => portApi; set => portApi = value; }
+		public string SecretKey { get => secretKey; set => secretKey = value; }
 
 		/// <summary>
 		/// Проверяет и сохраняет настроки, если они прошли проверку
 		/// </summary>
 		/// <returns>null в случае успеха или ошибку</returns>
-		public static string SaveProperties()
+		public string SaveProperties()
 		{
 			var checkResult = CheckSettings(iP, port, portApi, secretKey);
 			if (checkResult == null)
 			{
-				Properties.Settings.Default.IP = iP;
-				Properties.Settings.Default.Port = port;
-				Properties.Settings.Default.PortApi = portApi;
-				Properties.Settings.Default.SecretKey = secretKey;
+				Properties.Settings.Default.IP = IP;
+				Properties.Settings.Default.Port = Port;
+				Properties.Settings.Default.PortApi = PortApi;
+				Properties.Settings.Default.SecretKey = SecretKey;
 				Properties.Settings.Default.Save();
 				return null;
 			}
@@ -36,12 +37,14 @@ namespace SecurityDoors.BLL.Controllers
 		}
 
 
-		public static void SetDefaultProperties()
+		public string SetDefaultProperties()
 		{
-			iP = Properties.Settings.Default.IP;
-			port = Properties.Settings.Default.Port;
-			portApi = Properties.Settings.Default.PortApi;
-			secretKey = Properties.Settings.Default.SecretKey;
+			IP = Constants.DEFAULT_IP;
+			Port = Constants.DEFAULT_PORT;
+			PortApi = Constants.DEFAULT_PORT_API;
+			SecretKey = Constants.DEFAULT_SECRET_KEY;
+			var result = SaveProperties();
+			return result;
 		}
 
 		/// <summary>

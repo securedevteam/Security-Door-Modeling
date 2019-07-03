@@ -84,7 +84,8 @@ namespace SecurityDoors.UI.WinForms.View
 			maskedTextBoxPort.Text = Constants.DEFAULT_PORT.ToString();
 			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API.ToString();
             textBoxSecretKey.Text = Constants.STRING_EMPTY;
-			settings.SetDefaultProperties();
+
+			_cs.SetDefaultProperties();
 		}
 
 		private void CloseToolStripMenuItem_Click(object sender, EventArgs e)

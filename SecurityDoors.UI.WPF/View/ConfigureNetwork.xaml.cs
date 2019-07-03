@@ -44,15 +44,15 @@ namespace SecurityDoors.UI.WPF.View
 			host = field_host.Text;
 			if (SetErrorStyle(host, port))
 			{
-				bool isAviable = await Task.Run(() => TCPController.CheckServerAvailability());
-				if (isAviable)
-				{
-					MessageBox.Show("подключение установлено");
-				}
-				else
-				{
-					MessageBox.Show("сервер не доступен");
-				}
+				//bool isAviable = await Task.Run(() => TCPController.CheckServerAvailability());
+				//if (isAviable)
+				//{
+				//	MessageBox.Show("подключение установлено");
+				//}
+				//else
+				//{
+				//	MessageBox.Show("сервер не доступен");
+				//}
 			}
 		}
 
@@ -85,7 +85,7 @@ namespace SecurityDoors.UI.WPF.View
 			if ((bool)checkBox_isLocalhost.IsChecked)
 			{
 				field_host.IsEnabled = false;
-				field_host.Text = TCPController.DefaultServer;
+				//field_host.Text = TCPController.DefaultServer;
 			}
 			else
 			{
@@ -110,8 +110,8 @@ namespace SecurityDoors.UI.WPF.View
 		private void Btn_reset_Click(object sender, RoutedEventArgs e)
 		{
 			ResetStyle();
-			field_host.Text = TCPController.DefaultServer;
-			field_port.Text = TCPController.DefaultPort.ToString();
+			//field_host.Text = TCPController.DefaultServer;
+			//field_port.Text = TCPController.DefaultPort.ToString();
 			field_secretKey.Text = "";
 		}
 

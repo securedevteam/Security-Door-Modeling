@@ -38,37 +38,37 @@ namespace SecurityDoors.UI.WPF.View
 				doorsViewModel.Doors.AddRange(listOfDoors);
 
 				///Так как было решено ограничиться только передачей карт и дверей, для наглядности люди будут генерироваться случайным образом, с присвоением им реальных карт.
-				var rnd = new DataRandomiserController();
-				rnd.MakeRandomData();
-				var listOfPeole = rnd.randomPeople;
+				//var rnd = new DataRandomiserController();
+				//rnd.MakeRandomData();
+				//var listOfPeole = rnd.randomPeople;
 
-				int i = 0;
-				foreach (var person in listOfPeole)
-				{
-					person.CardUniqueNumber = listOfCards[i];
-					var newPerson = new Person()
-					{
-						CardUniqueNumber = person.CardUniqueNumber,
-						FirstName = person.FirstName,
-						SecondName = person.SecondName,
-						LastName = person.LastName
-					};
-					dataGridView.PeopleAndCardsList.Add(newPerson);
-					if (i >= listOfCards.Count + 1)
-					{
-						i = 0;
-					}
-					else
-					{
-						i++;
-					}
-				}
+				//int i = 0;
+				//foreach (var person in listOfPeole)
+				//{
+				//	person.CardUniqueNumber = listOfCards[i];
+				//	var newPerson = new Person()
+				//	{
+				//		CardUniqueNumber = person.CardUniqueNumber,
+				//		FirstName = person.FirstName,
+				//		SecondName = person.SecondName,
+				//		LastName = person.LastName
+				//	};
+				//	dataGridView.PeopleAndCardsList.Add(newPerson);
+				//	if (i >= listOfCards.Count + 1)
+				//	{
+				//		i = 0;
+				//	}
+				//	else
+				//	{
+				//		i++;
+				//	}
+				//}
 
 				//Записать скачанное в кэш
 				var cacheController = new CacheController
 				{
 					Doors = listOfDoors,
-					People = listOfPeole
+					//People = listOfPeole
 				};
 				cacheController.SaveCacheData();
 			}

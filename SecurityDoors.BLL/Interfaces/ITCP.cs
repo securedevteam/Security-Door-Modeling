@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using SecurityDoors.DAL.Models;
 
 namespace SecurityDoors.BLL.Interfaces
 {
-    class ITCP
+    interface ITCP
     {
+        /// <summary>
+        /// Отправить сообщение на DoorController.
+        /// </summary>
+        /// <param name="message">сообщение.</param>
+        void SendMessage(Message message);
     }
 }

@@ -1,5 +1,4 @@
-﻿using SecurityDoors.BLL.Properties;
-using SecurityDoors.DAL.Models;
+﻿using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -15,10 +14,10 @@ namespace SecurityDoors.BLL.Controllers
 {
 	public class WebConnectionController : IWebConnection
 	{
-		private int port = Settings.Default.Port;
-		private int portAPI = Settings.Default.PortApi;
-		private string server = Settings.Default.IP;
-		private string secretKey = Settings.Default.SecretKey;
+		private int port = Properties.Settings.Default.Port;
+		private int portAPI = Properties.Settings.Default.PortApi;
+		private string server = Properties.Settings.Default.IP;
+		private string secretKey = Properties.Settings.Default.SecretKey;
 
 		public int Port { get => port; set => port = value; }
 		public int PortAPI { get => portAPI; set => portAPI = value; }
@@ -31,14 +30,17 @@ namespace SecurityDoors.BLL.Controllers
 		{
 			Port = port;
 			PortAPI = portAPI;
+
 			if (string.IsNullOrWhiteSpace(server))
 			{
 				throw new ArgumentNullException(nameof(server));
 			}
+
 			if (string.IsNullOrEmpty(secretKey))
 			{
 				throw new ArgumentNullException(nameof(secretKey));
 			}
+
 			Server = server;
 			SecretKey = secretKey;
 		}

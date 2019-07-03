@@ -56,7 +56,7 @@ namespace SecurityDoors.UI.WinForms.View
                     await cache.ClearCacheFileAsync();
                     await cache.SaveCacheDataAsync();
 
-                    LoadDataFromFiles();
+                    await LoadDataFromFilesAsync();
 
                     Logger.Log = Constants.DATA_API_SUCCESSED;
                 }
@@ -67,11 +67,21 @@ namespace SecurityDoors.UI.WinForms.View
             }
         }
 
-        // Полностью готово и реализовано (Добавить константу)
+
+
+
+
+
+        // Полностью готово и реализовано (Занести выбранные данные в selectedList..)
         private async void ButtonStart_Click(object sender, EventArgs e)
         {
+            Logger.Log = Constants.SENDING_MESSAGE_STARTED;
+
+            //selectedListOfCards = выбранные из грида
+
             var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
             var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
+            var result = false;
 
             if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
             {
@@ -86,7 +96,7 @@ namespace SecurityDoors.UI.WinForms.View
                         };
 
                         var tcp = new TCP(_cs);
-                        var result = tcp.SendMessage(message);
+                        result = tcp.SendMessage(message);
 
                         if (!result)
                         {
@@ -102,6 +112,15 @@ namespace SecurityDoors.UI.WinForms.View
 
                         await Task.Delay(delay);
                     }
+
+                    if(result)
+                    {
+                        Logger.Log = Constants.SENDING_MESSAGE_ENDED;
+                    }
+                    else
+                    {
+                        Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+                    }
                 }
                 else
                 {
@@ -110,18 +129,14 @@ namespace SecurityDoors.UI.WinForms.View
             }
             else
             {
-                // TODO: Сообщение, что невозможно.
+                Logger.Log = Constants.SENDING_MESSAGE_FAILED;
             }
         }
 
 
 
-
-
-
-
-
-        private async void LoadDataFromFiles()
+        // Полностью готово и реализовано (Добавить выборку из Grid)
+        private async Task LoadDataFromFilesAsync()
         {
             Logger.Log = Constants.DATA_READING_STARTED;
 
@@ -140,20 +155,21 @@ namespace SecurityDoors.UI.WinForms.View
             }
             else
             {
-                comboBoxDoors.Items.Add("Список пуст.");
-                comboBoxDoors.SelectedItem = "Список пуст.";
-                // TODO: Сообщение, что невозможно.
+                comboBoxDoors.Items.Add(Constants.COMBOBOX_EMPTY);
+                comboBoxDoors.SelectedItem = Constants.COMBOBOX_EMPTY;
+
+                Logger.Log = Constants.DATA_READING_FAILED;
             }
         }
 
-		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+		private async void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            LoadDataFromFiles();
+            await LoadDataFromFilesAsync();
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private async void MainForm_Load(object sender, EventArgs e)
         {
-            LoadDataFromFiles();
+            await LoadDataFromFilesAsync();
         }
 
 

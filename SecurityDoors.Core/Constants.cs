@@ -18,16 +18,23 @@
 		public static readonly string CONNECTION_API_SUCCESSED = "Соединение с сервером API установлено.";
 		public static readonly string CONNECTION_DOOR_CONTROLLER_FAILED = "Соединение с сервером не установлено.";
 		public static readonly string CONNECTION_DOOR_CONTROLLER_SUCCESSED = "Соединение с сервером не установлено.";
-
-		public static readonly string CONVERSION_ERROR = "Ошибка при конвертации.";
+		
         public static readonly string DATA_API_FAILED = "Загрузка данных из API прошла с ошибкой.";
         public static readonly string DATA_API_SUCCESSED = "Загрузка данных из API прошла успешно.";
         public static readonly string DATA_API_DOWNLOADING_STARTED = "Начата загрузка данных из API.";
-        public static readonly string DATA_SAVING_COMPLETED = "Сохранение данных в файл закончено.";
+        public static readonly string DATA_SAVING_COMPLETED = "Сохранение данных в файл завершено.";
         public static readonly string DATA_SAVING_STARTED = "Начато сохранение данных в файл.";
-        public static readonly string DATA_READING_ENDED = "Загрузка из файла закончена.";
+        public static readonly string DATA_READING_ENDED = "Загрузка из файла завершена.";
+        public static readonly string DATA_READING_FAILED = "Загрузка из файла прошла с ошибкой.";
         public static readonly string DATA_READING_STARTED = "Начата загрузка данных из файла.";
 
+        public static readonly string SENDING_MESSAGE_STARTED = "Передача данных в DoorController начата.";
+        public static readonly string SENDING_MESSAGE_ENDED = "Перадача данных в DoorController успешно завершена.";
+        public static readonly string SENDING_MESSAGE_FAILED = "Перадача данных в DoorController прошла с ошибкой.";
+
+        public static readonly string CONVERSION_ERROR = "Ошибка при конвертации.";
+        public static readonly string COMBOBOX_EMPTY = "Список дверей пуст.";
+        
         public static readonly string DEFAULT_IP = "127.0.0.1";
         public static readonly int DEFAULT_PORT = 1234;
         public static readonly int DEFAULT_PORT_API = 80;

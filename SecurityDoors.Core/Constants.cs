@@ -26,6 +26,6 @@
         public static readonly string DEFAULT_IP = "127.0.0.1";
         public static readonly int DEFAULT_PORT = 1234;
         public static readonly int DEFAULT_PORT_API = 80;
-		public static readonly string DEFAULT_SECRET_KEY = " ";
+		public static readonly string DEFAULT_SECRET_KEY = "DEFAULT SECRET KEY";
 	}
 }

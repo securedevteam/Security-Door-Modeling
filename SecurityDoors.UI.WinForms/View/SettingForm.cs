@@ -83,7 +83,7 @@ namespace SecurityDoors.UI.WinForms.View
 			textBoxIP.Text = Constants.DEFAULT_IP;
 			maskedTextBoxPort.Text = Constants.DEFAULT_PORT.ToString();
 			maskedTextBoxPortAPI.Text = Constants.DEFAULT_PORT_API.ToString();
-            textBoxSecretKey.Text = Constants.STRING_EMPTY;
+            textBoxSecretKey.Text = Constants.DEFAULT_SECRET_KEY;
 
 			_cs.SetDefaultProperties();
 		}

@@ -49,7 +49,6 @@
     <Compile Include="Controllers\CacheController.cs" />
     <Compile Include="Controllers\DataRandomiserController.cs" />
     <Compile Include="Controllers\ConnectionSettings.cs" />
-    <Compile Include="Controllers\SettingsController.cs" />
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\TCPController.cs" />
     <Compile Include="Controllers\WebConnection.cs" />

@@ -117,8 +117,8 @@ namespace SecurityDoors.UI.WinForms.View
 
             if (checkResult != default)
             {
-                MessageBox.Show(checkResult);
                 Logger.Log = checkResult;
+                MessageBox.Show(checkResult);
             }
             else
             {
@@ -128,13 +128,13 @@ namespace SecurityDoors.UI.WinForms.View
 
                 if (result == true)
                 {
-                    MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
                     Logger.Log = Constants.CONNECTION_ESTABLISHED;
+                    MessageBox.Show(Constants.CONNECTION_ESTABLISHED);
                 }
                 else
                 {
-                    MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
                     Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
+                    MessageBox.Show(Constants.CONNECTION_NOT_ESTABLISHED);
                 }
             }
         }

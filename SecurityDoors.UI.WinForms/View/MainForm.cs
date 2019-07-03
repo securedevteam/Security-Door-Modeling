@@ -36,38 +36,44 @@ namespace SecurityDoors.UI.WinForms.View
             aboutForm.ShowDialog();
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
+        // Полностью готово и реализовано
         private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
 
-            var webConnection = new WebConnection(_cs);
-
-            var listOfCards = await webConnection.GetDataFromAPIAsync("cards");
-            var listOfDoors = await webConnection.GetDataFromAPIAsync("doors");
-
-            if (listOfDoors.Count != 0 || listOfCards.Count != 0)
+            try
             {
-                Logger.Log = Constants.DATA_API_SUCCESSED;
+                var webConnection = new WebConnection(_cs);
 
-                // TODO: Загрузка в файлы.
+                var listOfCards = await webConnection.GetDataFromAPIAsync("cards");
+                var listOfDoors = await webConnection.GetDataFromAPIAsync("doors");
+
+                if (listOfDoors.Count != 0 || listOfCards.Count != 0)
+                {
+                    var cache = new Cache(listOfCards, listOfDoors);
+
+                    await cache.ClearCacheFileAsync();
+                    await cache.SaveCacheDataAsync();
+
+                    Logger.Log = Constants.DATA_API_SUCCESSED;
+                }
             }
-            else
+            catch 
             {
                 Logger.Log = Constants.DATA_API_FAILED;
             }
         }
+
+
+
+
+
+
+
+
+
+
+
 
 		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
         {

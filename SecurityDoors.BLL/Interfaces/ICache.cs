@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
@@ -11,7 +7,7 @@ namespace SecurityDoors.BLL.Interfaces
         /// <summary>
         /// Запуск загрузки данных из файлов.
         /// </summary>
-        void LoadCacheDataAsync();
+        Task LoadCacheDataAsync();
 
         /// <summary>
         /// Загрузка данных из файлов.
@@ -22,7 +18,7 @@ namespace SecurityDoors.BLL.Interfaces
         /// <summary>
         /// Запуск сохренения данных в файлах.
         /// </summary>
-        void SaveCacheDataAsync();
+        Task SaveCacheDataAsync();
 
         /// <summary>
         /// Сохранение данных в файлах.
@@ -33,7 +29,7 @@ namespace SecurityDoors.BLL.Interfaces
         /// <summary>
         /// Запуск очистки данных в файлах.
         /// </summary>
-        void ClearCacheFileAsync();
+        Task ClearCacheFileAsync();
 
         /// <summary>
         /// Очистка данных в определенных файлах.

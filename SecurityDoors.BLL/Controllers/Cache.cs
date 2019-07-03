@@ -1,5 +1,4 @@
 ﻿using SecurityDoors.BLL.Interfaces;
-using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,45 +13,30 @@ namespace SecurityDoors.BLL.Controllers
         /// Локер для доступа к файлу
         /// </summary>
         private object locker = new object();
-        private List<Person> people = new List<Person>();
-        private List<Door> doors = new List<Door>();
+
+        private List<string> _cards = new List<string>();
+        private List<string> _doors = new List<string>();
 
         /// <summary>
-        /// Создание списка дверей.
+        /// Конструктор.
         /// </summary>
-        public List<Door> Doors
+        public Cache()
         {
-            get
-            {
-                LoadCacheData();
-                return doors;
-            }
-            set
-            {
-                doors = value;
-                SaveCacheData();
-            }
         }
 
         /// <summary>
-        /// Создание списка сотрудников.
+        /// Конструктор с параметрами.
         /// </summary>
-        public List<Person> People
+        /// <param name="cards">карты.</param>
+        /// <param name="doors">двери.</param>
+        public Cache(List<string> cards, List<string> doors)
         {
-            get
-            {
-                LoadCacheData();
-                return people;
-            }
-            set
-            {
-                people = value;
-                SaveCacheData();
-            }
+            _cards = cards;
+            _doors = doors;
         }
 
         /// <inheritdoc/>
-        public async void LoadCacheDataAsync()
+        public async Task LoadCacheDataAsync()
         {
             await Task.Run(() => LoadCacheData());
         }
@@ -64,19 +48,25 @@ namespace SecurityDoors.BLL.Controllers
             {
                 var formatter = new BinaryFormatter();
 
-                using (var fs = new FileStream("People.dat", FileMode.OpenOrCreate, FileAccess.Read))
+                if (File.Exists("Cards.dat"))
                 {
-                    if (fs.Length > 0 && formatter.Deserialize(fs) is List<Person> result)
+                    using (var fs = new FileStream("Cards.dat", FileMode.OpenOrCreate, FileAccess.Read))
                     {
-                        people = result;
+                        if (fs.Length > 0 && formatter.Deserialize(fs) is List<string> result)
+                        {
+                            _cards = result;
+                        }
                     }
                 }
 
-                using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Read))
+                if (File.Exists("Doors.dat"))
                 {
-                    if (fs.Length > 0 && formatter.Deserialize(fs) is List<Door> result)
+                    using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Read))
                     {
-                        doors = result;
+                        if (fs.Length > 0 && formatter.Deserialize(fs) is List<string> result)
+                        {
+                            _doors = result;
+                        }
                     }
                 }
             }
@@ -85,7 +75,7 @@ namespace SecurityDoors.BLL.Controllers
         }
 
         /// <inheritdoc/>
-        public async void SaveCacheDataAsync()
+        public async Task SaveCacheDataAsync()
         {
             await Task.Run(() => SaveCacheData());
         }
@@ -99,14 +89,14 @@ namespace SecurityDoors.BLL.Controllers
                 {
                     var formatter = new BinaryFormatter();
 
-                    using (var fs = new FileStream("People.dat", FileMode.OpenOrCreate, FileAccess.Write))
+                    using (var fs = new FileStream("Cards.dat", FileMode.OpenOrCreate, FileAccess.Write))
                     {
-                        formatter.Serialize(fs, people);
+                        formatter.Serialize(fs, _cards);
                     }
 
                     using (var fs = new FileStream("Doors.dat", FileMode.OpenOrCreate, FileAccess.Write))
                     {
-                        formatter.Serialize(fs, doors);
+                        formatter.Serialize(fs, _doors);
                     }
                 }
                 catch (Exception)
@@ -119,7 +109,7 @@ namespace SecurityDoors.BLL.Controllers
         }
 
         /// <inheritdoc/>
-        public async void ClearCacheFileAsync()
+        public async Task ClearCacheFileAsync()
         {
             await Task.Run(() => ClearCacheFile());
         }
@@ -131,9 +121,9 @@ namespace SecurityDoors.BLL.Controllers
             {
                 try
                 {
-                    if (File.Exists("People.dat"))
+                    if (File.Exists("Cards.dat"))
                     {
-                        File.Delete("People.dat");
+                        File.Delete("Cards.dat");
                     }
                     if (File.Exists("Doors.dat"))
                     {

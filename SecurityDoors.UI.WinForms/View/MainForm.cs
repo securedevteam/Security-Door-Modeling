@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Linq;
 
 namespace SecurityDoors.UI.WinForms.View
 {
@@ -14,7 +13,7 @@ namespace SecurityDoors.UI.WinForms.View
         private ConnectionSettings _cs;
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
-        private List<string> selectedListOfCards = new List<string>();
+        private List<string> selectedListOfCards;
 		private TCP tcp;
 
 		public MainForm()
@@ -24,7 +23,6 @@ namespace SecurityDoors.UI.WinForms.View
             _cs = new ConnectionSettings();
 		}
 
-        // Полностью готово и реализовано
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.Log = Constants.SETTING_OPENING_WINDOW;
@@ -32,14 +30,12 @@ namespace SecurityDoors.UI.WinForms.View
             settings.ShowDialog();
         }
 
-        // Полностью готово и реализовано
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var aboutForm = new AboutProjectForm();
             aboutForm.ShowDialog();
         }
 
-        // Полностью готово и реализовано
         private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
@@ -69,10 +65,11 @@ namespace SecurityDoors.UI.WinForms.View
             }
         }
 
-        // Полностью готово и реализовано (Занести выбранные данные в selectedList..)
         private async void ButtonStart_Click(object sender, EventArgs e)
         {
             Logger.Log = Constants.SENDING_MESSAGE_STARTED;
+
+            selectedListOfCards = new List<string>();
 
 			foreach (DataGridViewRow row in dataGridViewPeoplesAndCards.Rows)
 			{
@@ -90,36 +87,10 @@ namespace SecurityDoors.UI.WinForms.View
             {
                 if (parseCountSuccess && parseDelaySuccess)
                 {
-					/*
-                    foreach (var data in selectedListOfCards)
-                    {
-                        var message = new TCPMessage()
-                        {
-                            PersonCard = data,
-                            DoorName = comboBoxDoors.SelectedItem.ToString()
-                        };
-
-                        var tcp = new TCP(_cs);
-                        //result = tcp.SendMessageAsync(message);
-
-                        if (!result)
-                        {
-                            break;
-                        }
-
-                        count--;
-
-                        if (count == 0)
-                        {
-                            break;
-                        }
-
-                        await Task.Delay(delay);
-                    }
-					*/
-
 					tcp = new TCP(_cs);
+
 					var listOfMessages = new List<TCPMessage>();
+
 					foreach (var card in selectedListOfCards)
 					{
 						var message = new TCPMessage()
@@ -127,6 +98,7 @@ namespace SecurityDoors.UI.WinForms.View
 							PersonCard = card,
 							DoorName = comboBoxDoors.SelectedItem.ToString()
 						};
+
 						listOfMessages.Add(message);
 					}
 
@@ -162,7 +134,6 @@ namespace SecurityDoors.UI.WinForms.View
 			}
         }
 
-        // Полностью готово и реализовано (Добавить выборку из Grid)
         private async Task LoadDataFromFilesAsync()
         {
             Logger.Log = Constants.DATA_READING_STARTED;

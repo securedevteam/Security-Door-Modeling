@@ -79,16 +79,17 @@ namespace SecurityDoors.BLL.Controllers
 
 		public async Task<bool> SendMessagesAsync(List<TCPMessage> messages, int delay, int count)
 		{
+            delay = delay * 1000;
+
 			while (count >= 0)
 			{
 				count--;
+
 				foreach (var message in messages)
 				{
 					await Task.Run(() => SendMessage(message));
+                    await Task.Delay(delay);
 				}
-				//TODO: Надо придумать, как сделать паузу в потоке, но не остановить поток основной формы
-				//Например поместить слип внутрь SendMessage
-				//Thread.Sleep(new TimeSpan(0, 0, delay));
 			}
 			return true;
 		}

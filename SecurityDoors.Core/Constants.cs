@@ -17,7 +17,7 @@
 		public static readonly string CONNECTION_API_FAILED = "Соединение с сервером API не установлено.";
 		public static readonly string CONNECTION_API_SUCCESSED = "Соединение с сервером API установлено.";
 		public static readonly string CONNECTION_DOOR_CONTROLLER_FAILED = "Соединение с сервером не установлено.";
-		public static readonly string CONNECTION_DOOR_CONTROLLER_SUCCESSED = "Соединение с сервером не установлено.";
+		public static readonly string CONNECTION_DOOR_CONTROLLER_SUCCESSED = "Соединение с сервером установлено.";
 		
         public static readonly string DATA_API_FAILED = "Загрузка данных из API прошла с ошибкой.";
         public static readonly string DATA_API_SUCCESSED = "Загрузка данных из API прошла успешно.";

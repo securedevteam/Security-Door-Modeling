@@ -2,8 +2,11 @@
 using SecurityDoors.Core;
 using SecurityDoors.DAL.Models;
 using System;
+using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Controllers
 {
@@ -73,5 +76,21 @@ namespace SecurityDoors.BLL.Controllers
 
             return true;
         }
-    }
+
+		public async Task<bool> SendMessagesAsync(List<TCPMessage> messages, int delay, int count)
+		{
+			while (count >= 0)
+			{
+				count--;
+				foreach (var message in messages)
+				{
+					await Task.Run(() => SendMessage(message));
+				}
+				//TODO: Надо придумать, как сделать паузу в потоке, но не остановить поток основной формы
+				//Например поместить слип внутрь SendMessage
+				//Thread.Sleep(new TimeSpan(0, 0, delay));
+			}
+			return true;
+		}
+	}
 }

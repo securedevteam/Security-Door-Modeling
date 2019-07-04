@@ -15,8 +15,9 @@ namespace SecurityDoors.UI.WinForms.View
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
         private List<string> selectedListOfCards = new List<string>();
+		private TCP tcp;
 
-        public MainForm()
+		public MainForm()
 		{
 			InitializeComponent();
 
@@ -89,6 +90,7 @@ namespace SecurityDoors.UI.WinForms.View
             {
                 if (parseCountSuccess && parseDelaySuccess)
                 {
+					/*
                     foreach (var data in selectedListOfCards)
                     {
                         var message = new TCPMessage()
@@ -98,7 +100,7 @@ namespace SecurityDoors.UI.WinForms.View
                         };
 
                         var tcp = new TCP(_cs);
-                        result = tcp.SendMessage(message);
+                        //result = tcp.SendMessageAsync(message);
 
                         if (!result)
                         {
@@ -114,8 +116,23 @@ namespace SecurityDoors.UI.WinForms.View
 
                         await Task.Delay(delay);
                     }
+					*/
 
-                    if(result)
+					tcp = new TCP(_cs);
+					var listOfMessages = new List<TCPMessage>();
+					foreach (var card in selectedListOfCards)
+					{
+						var message = new TCPMessage()
+						{
+							PersonCard = card,
+							DoorName = comboBoxDoors.SelectedItem.ToString()
+						};
+						listOfMessages.Add(message);
+					}
+
+					result = await tcp.SendMessagesAsync(listOfMessages, delay, count);
+
+					if (result)
                     {
                         Logger.Log = Constants.SENDING_MESSAGE_ENDED;
                     }

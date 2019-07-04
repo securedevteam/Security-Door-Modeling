@@ -1,4 +1,6 @@
 ﻿using SecurityDoors.DAL.Models;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
@@ -9,5 +11,6 @@ namespace SecurityDoors.BLL.Interfaces
         /// </summary>
         /// <param name="message">сообщение.</param>
         bool SendMessage(TCPMessage message);
+		Task<bool> SendMessagesAsync(List<TCPMessage> messages, int delay, int count);
     }
 }

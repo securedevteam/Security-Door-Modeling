@@ -11,6 +11,14 @@ namespace SecurityDoors.BLL.Interfaces
         /// </summary>
         /// <param name="message">сообщение.</param>
         bool SendMessage(TCPMessage message);
+
+        /// <summary>
+        /// Запуск асинхронного метода отправки сообщений.
+        /// </summary>
+        /// <param name="messages">сообщение.</param>
+        /// <param name="delay">пауза.</param>
+        /// <param name="count">повтор.</param>
+        /// <returns></returns>
 		Task<bool> SendMessagesAsync(List<TCPMessage> messages, int delay, int count);
     }
 }

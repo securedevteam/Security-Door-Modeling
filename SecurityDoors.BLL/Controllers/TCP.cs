@@ -5,7 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Controllers
@@ -77,9 +76,10 @@ namespace SecurityDoors.BLL.Controllers
             return true;
         }
 
+        /// <inheritdoc/>
 		public async Task<bool> SendMessagesAsync(List<TCPMessage> messages, int delay, int count)
 		{
-            delay = delay * 1000;
+            delay *= 1000;
 
 			while (count >= 0)
 			{

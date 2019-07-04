@@ -124,8 +124,8 @@ namespace SecurityDoors.UI.WinForms.View
             {
                 var webConnection = new WebConnection(_cs);
 
-                var isServerAvailable = await webConnection.CheckConnectionAsync(_cs.Port.Value);
-                var isApiAvailable = await webConnection.CheckConnectionAsync(_cs.PortAPI.Value);
+				var isApiAvailable = await webConnection.CheckConnectionAsync(portAPI);
+				var isServerAvailable = await webConnection.CheckConnectionAsync(port);
 				//TODO: поправить
 				string serversAvailability = "";
 				serversAvailability += isApiAvailable ? Constants.CONNECTION_API_SUCCESSED : Constants.CONNECTION_API_FAILED;

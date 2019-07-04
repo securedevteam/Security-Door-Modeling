@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using SecurityDoors.BLL.Interfaces;
+using SecurityDoors.Core;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
@@ -10,8 +11,10 @@ namespace SecurityDoors.BLL.Controllers
 {
     public class WebConnection : IWebConnection
     {
-        private TcpClient client = new TcpClient();
+        //private static TcpClient client = new TcpClient();
         private ConnectionSettings _cs;
+
+		//private static bool clientLocked = false;
 
         /// <summary>
         /// Конструктор.
@@ -49,29 +52,41 @@ namespace SecurityDoors.BLL.Controllers
                 return listOfData;
             }
         }
-
+		///TODO: TCPClient перенесен внутрь метода. 
         /// <inheritdoc/>
         public async Task<bool> CheckConnectionAsync(int port)
         {
             try
             {
-                await client.ConnectAsync(_cs.IP, port);
+				TcpClient client = new TcpClient();
+				await client.ConnectAsync(_cs.IP, port);
 
                 if (client.Connected)
                 {
                     client.Close();
 
-                    return true;
+					return true;
                 }
                 else
-                {
-                    return false;
+				{
+					return false;
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
+				Logger.Log = e.ToString();
                 return false;
             }
         }
+
+		/*private TcpClient GetTcpClient ()
+		{
+			while (clientLocked)
+			{
+
+			}
+			clientLocked = true;
+			return client;
+		}*/
     }
 }

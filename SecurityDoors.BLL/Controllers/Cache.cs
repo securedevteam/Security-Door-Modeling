@@ -12,7 +12,7 @@ namespace SecurityDoors.BLL.Controllers
         /// <summary>
         /// Локер для доступа к файлу
         /// </summary>
-        private object locker = new object();
+        private static object locker = new object();
 
         private List<string> _cards = new List<string>();
         private List<string> _doors = new List<string>();

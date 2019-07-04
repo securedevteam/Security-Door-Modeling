@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace SecurityDoors.UI.WinForms.View
 {
@@ -72,12 +73,18 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.SENDING_MESSAGE_STARTED;
 
-            //selectedListOfCards = выбранные из грида
+			foreach (DataGridViewRow row in dataGridViewPeoplesAndCards.Rows)
+			{
+				if ((bool?)row.Cells[1].Value == true)
+				{
+					selectedListOfCards.Add(row.Cells[0].Value.ToString());
+				}
+			}
 
             var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
             var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
             var result = false;
-
+			
             if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
             {
                 if (parseCountSuccess && parseDelaySuccess)
@@ -132,11 +139,10 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.SETTING_BINDING_FORM;
 
-            dataGridViewPeoplesAndCards.DataSource = listOfCards;
-            dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
-            dataGridViewPeoplesAndCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
-            dataGridViewPeoplesAndCards.Columns[0].ReadOnly = true;
+			foreach (var card in listOfCards)
+			{
+				dataGridViewPeoplesAndCards.Rows.Add(card);
+			}
         }
 
         // Полностью готово и реализовано (Добавить выборку из Grid)

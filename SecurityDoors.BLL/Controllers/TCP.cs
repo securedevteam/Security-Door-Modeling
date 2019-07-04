@@ -64,11 +64,12 @@ namespace SecurityDoors.BLL.Controllers
             }
             catch (Exception e)
             {
-                Logger.Log = e.ToString() ?? Constants.SETTING_SAVE_FAILED;
+				Logger.Log = e.ToString();
+				Logger.Log = Constants.SETTING_SAVE_FAILED;
                 return false;
             }
 
-            Logger.Log = null ?? Constants.SETTING_SAVE_SUCCESSED;
+            Logger.Log = Constants.SETTING_SAVE_SUCCESSED;
 
             return true;
         }

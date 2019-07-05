@@ -35,7 +35,9 @@ namespace SecurityDoor.BL.Controllers
 				return checkResult;
 		}
 
-
+        /// <summary>
+        /// Устанавливает стандартные значения
+        /// </summary>
 		public static void SetDefaultProperties()
 		{
 			iP = Properties.Settings.Default.IP;

@@ -108,6 +108,10 @@ namespace SecurityDoors.BL.Controllers
 			}
 		}
 
+        /// <summary>
+        /// Возращает список дверей в виде строк
+        /// </summary>
+        /// <returns>Если дверей нет, то возращает пустой список</returns>
 		public static List<string> GetListOfStringDoorsFromAPI()
 		{
 			var response = MakeAPIRequest("api/doors");
@@ -122,7 +126,11 @@ namespace SecurityDoors.BL.Controllers
 			}
 		}
 
-		public static List<Door> GetListOfDoorsFromAPI()
+        /// <summary>
+        /// Возращает список дверей
+        /// </summary>
+        /// <returns>Если дверей нет, то возращает пустой список</returns>
+        public static List<Door> GetListOfDoorsFromAPI()
 		{
 			var response = MakeAPIRequest("api/doors");
 			if (response != null)
@@ -141,6 +149,10 @@ namespace SecurityDoors.BL.Controllers
 			}
 		}
 
+        /// <summary>
+        /// Возращает список карт в виде строк
+        /// </summary>
+        /// <returns></returns>
 		public static List<string> GetListOfStringCardsFromAPI()
 		{
 			var response = MakeAPIRequest("api/cards");
@@ -148,6 +160,11 @@ namespace SecurityDoors.BL.Controllers
 			return listOfStringCards;
 		}
 
+        /// <summary>
+        /// Делает запрос по указаному адресу
+        /// </summary>
+        /// <param name="pathValue">Адрес</param>
+        /// <returns></returns>
 		private static string MakeAPIRequest(string pathValue)
 		{
 			try
@@ -165,7 +182,11 @@ namespace SecurityDoors.BL.Controllers
 				return default;
 			}
 		}
-
+        
+        /// <summary>
+        /// Возращает список персон
+        /// </summary>
+        /// <returns>При ошибке возращает пустой список</returns>
 		public static List<Person> GetListOfPeopleFromAPI()
 		{
 			try

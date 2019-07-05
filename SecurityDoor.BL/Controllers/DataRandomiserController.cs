@@ -10,6 +10,10 @@ namespace SecurityDoors.BL.Controllers
         public List<Card> randomCards = new List<Card>();
         public List<Door> randomDoors = new List<Door>();
         public List<Person> randomPeople = new List<Person>();
+
+        /// <summary>
+        /// Заполняет переменные рандомными данными
+        /// </summary>
         public void MakeRandomData()
         {
             for (var i = 0; i < 20; i++)

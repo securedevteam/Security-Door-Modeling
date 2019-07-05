@@ -124,6 +124,10 @@ namespace SecurityDoors.BL.Controllers
             return true;
         }
 
+        /// <summary>
+        /// Устанавливает список дверей
+        /// </summary>
+        /// <param name="doors">Список дверей</param>
 		public void SetDoors (List<string> doors)
 		{
 			var listOfDoors = new List<Door>();

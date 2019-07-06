@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SecurityDoors.UI.Console</RootNamespace>
-    <AssemblyName>SecurityDoors.UI.Console</AssemblyName>
+    <RootNamespace>SecurityDoors.UI.ConsoleApp</RootNamespace>
+    <AssemblyName>SecurityDoors.UI.ConsoleApp</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

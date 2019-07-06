@@ -14,7 +14,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.BLL", "Securi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.WinForms", "SecurityDoors.UI.WinForms\SecurityDoors.UI.WinForms.csproj", "{9CF9E363-E640-415A-BA6D-863C828F113F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.Console", "SecurityDoors.UI.Console\SecurityDoors.UI.Console.csproj", "{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.ConsoleApp", "SecurityDoors.UI.Console\SecurityDoors.UI.ConsoleApp.csproj", "{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.DAL", "SecurityDoors.DAL\SecurityDoors.DAL.csproj", "{8CDB15E4-01E7-4C81-9A36-4154D123FD07}"
 EndProject

@@ -138,13 +138,13 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.DATA_READING_STARTED;
 
-            var cache = new Cache();
-            var result = await cache.LoadCacheDataAsync();
+            var dataOperations = new DataOperations();
+            (bool status, List<string> cards, List<string> doors) = await dataOperations.LoadDataAsync();
 
-            if (result.Item1.Count != 0 || result.Item1.Count != 0)
+            if (status)
             {
-                listOfCards = result.Item1;
-                listOfDoors = result.Item2;
+                listOfCards = cards;
+                listOfDoors = doors;
 
                 comboBoxDoors.DataSource = listOfDoors;
                 UpdateDataSource();

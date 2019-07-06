@@ -47,10 +47,12 @@
   <ItemGroup>
     <Compile Include="Controllers\Cache.cs" />
     <Compile Include="Controllers\ConnectionSettings.cs" />
+    <Compile Include="Controllers\DataOperations.cs" />
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\WebConnection.cs" />
     <Compile Include="Interfaces\ICache.cs" />
     <Compile Include="Interfaces\IConnectionSettings.cs" />
+    <Compile Include="Interfaces\IDataOperations.cs" />
     <Compile Include="Interfaces\ITCP.cs" />
     <Compile Include="Interfaces\IWebConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

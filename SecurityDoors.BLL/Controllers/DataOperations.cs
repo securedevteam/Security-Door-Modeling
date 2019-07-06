@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using SecurityDoors.BLL.Interfaces;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Controllers
@@ -6,13 +7,24 @@ namespace SecurityDoors.BLL.Controllers
     /// <summary>
     /// Операции с данными.
     /// </summary>
-    public class DataOperations
+    public class DataOperations : IDataOperations
     {
+        private readonly ConnectionSettings _cs;
+
         /// <summary>
         /// Конструктор.
         /// </summary>
         public DataOperations()
         {
+        }
+
+        /// <summary>
+        /// Конструктор с параметрами.
+        /// </summary>
+        /// <param name="connectionSettings">настройки.</param>
+        public DataOperations(ConnectionSettings connectionSettings)
+        {
+            _cs = connectionSettings;
         }
 
         /// <inheritdoc/>
@@ -31,13 +43,29 @@ namespace SecurityDoors.BLL.Controllers
 
                 return result;
             }
-            else
-            {
-                result.listOfCards = null;
-                result.listOfDoors = null;
 
-                return result;
+            return result;
+        }
+
+        /// <inheritdoc/>
+        public async Task<bool> DownloadDataFromAPIAsync()
+        {
+            var webConnection = new WebConnection(_cs);
+
+            var listOfCards = await webConnection.GetDataFromAPIAsync("cards");
+            var listOfDoors = await webConnection.GetDataFromAPIAsync("doors");
+
+            if (listOfDoors.Count != 0 || listOfCards.Count != 0)
+            {
+                var cache = new Cache(listOfCards, listOfDoors);
+
+                await cache.ClearCacheFileAsync();
+                await cache.SaveCacheDataAsync();
+
+                return true;
             }
+
+            return false;
         }
     }
 }

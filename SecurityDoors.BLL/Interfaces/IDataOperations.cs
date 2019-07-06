@@ -10,5 +10,11 @@ namespace SecurityDoors.BLL.Interfaces
         /// </summary>
         /// <returns>Статус операции. Список карт. Список дверей.</returns>
         Task<(bool status, List<string> cards, List<string> doors)> LoadDataAsync();
+
+        /// <summary>
+        /// Загрузить данные с WebAPI.
+        /// </summary>
+        /// <returns>Результат операции.</returns>
+        Task<bool> DownloadDataFromAPIAsync();
     }
 }

@@ -42,21 +42,18 @@ namespace SecurityDoors.UI.WinForms.View
 
             try
             {
-                var webConnection = new WebConnection(_cs);
+                var dataOperation = new DataOperations(_cs);
+                var result = await dataOperation.DownloadDataFromAPIAsync();
 
-                var listOfCards = await webConnection.GetDataFromAPIAsync("cards");
-                var listOfDoors = await webConnection.GetDataFromAPIAsync("doors");
-
-                if (listOfDoors.Count != 0 || listOfCards.Count != 0)
+                if(result)
                 {
-                    var cache = new Cache(listOfCards, listOfDoors);
-
-                    await cache.ClearCacheFileAsync();
-                    await cache.SaveCacheDataAsync();
-
                     await LoadDataFromFilesAsync();
 
                     Logger.Log = Constants.DATA_API_SUCCESSED;
+                }
+                else
+                {
+                    Logger.Log = Constants.DATA_API_FAILED;
                 }
             }
             catch 
@@ -138,8 +135,8 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.DATA_READING_STARTED;
 
-            var dataOperations = new DataOperations();
-            (bool status, List<string> cards, List<string> doors) = await dataOperations.LoadDataAsync();
+            var dataOperation = new DataOperations();
+            (bool status, List<string> cards, List<string> doors) = await dataOperation.LoadDataAsync();
 
             if (status)
             {

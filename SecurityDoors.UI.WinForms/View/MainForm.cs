@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+// TODO: Баг - не обновляет список, если данные в файле изменились!
+
 namespace SecurityDoors.UI.WinForms.View
 {
 	public partial class MainForm : Form
@@ -125,7 +127,7 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.SETTING_BINDING_FORM;
 
-			foreach (var card in listOfCards)
+            foreach (var card in listOfCards)
 			{
 				dataGridViewPeoplesAndCards.Rows.Add(card);
 			}

@@ -3,12 +3,13 @@ using SecurityDoors.Core;
 using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace SecurityDoors.UI.ConsoleApp
 {
+    /// <summary>
+    /// Класс для вспомогательных действий класса Program.
+    /// </summary>
     public class MainController
     {
         private TCP tcp;
@@ -16,14 +17,18 @@ namespace SecurityDoors.UI.ConsoleApp
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
 
-
-
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
         public MainController()
         {
         }
 
-
         // TODO: в Task
+        /// <summary>
+        /// Заполнить настройки подключения данными.
+        /// </summary>
+        /// <returns>Настройки подключения.</returns>
         public ConnectionSettings ConfigurationSetting()
         {
             Console.Write("Please enter IP Address: ");
@@ -45,7 +50,10 @@ namespace SecurityDoors.UI.ConsoleApp
             return connectionSettings;
         }
 
-
+        /// <summary>
+        /// Загрузить данные с файла.
+        /// </summary>
+        /// <returns>Результат операции.</returns>
         public async Task<bool> LoadDataAsync()
         {
             Logger.Log = Constants.DATA_READING_STARTED;
@@ -70,6 +78,11 @@ namespace SecurityDoors.UI.ConsoleApp
             }
         }
 
+        /// <summary>
+        /// Загрузить данные с API и с файла.
+        /// </summary>
+        /// <param name="connectionSettings">настройки подключения.</param>
+        /// <returns>Результат операции.</returns>
         public async Task<bool> DownloadDataAsync(ConnectionSettings connectionSettings)
         {
             try
@@ -94,18 +107,20 @@ namespace SecurityDoors.UI.ConsoleApp
             }
         }
 
-
-
-
+        /// <summary>
+        /// Отправить данные на сервер.
+        /// </summary>
+        /// <param name="connectionSettings">настройки подключения.</param>
+        /// <returns>Результат операции.</returns>
         public async Task<bool> SendDataAsync(ConnectionSettings connectionSettings)
         {
-            Console.Write("Enter count of message list: ");
+            Console.Write("Please enter a count of the message list: ");
             var count = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter repeat: ");
+            Console.Write("Please enter a number to repeat the operation: ");
             var repeat = int.Parse(Console.ReadLine());
 
-            Console.Write("Enter delay: ");
+            Console.Write("Please enter a number to delay the operation: ");
             var delay = int.Parse(Console.ReadLine());
 
             Console.WriteLine();

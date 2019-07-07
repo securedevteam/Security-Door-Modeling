@@ -87,6 +87,7 @@ namespace SecurityDoors.BLL.Controllers
 
 				foreach (var message in messages)
 				{
+                    // TODO: Возможен баг!
 					await Task.Run(() => SendMessage(message));
                     await Task.Delay(delay);
 				}

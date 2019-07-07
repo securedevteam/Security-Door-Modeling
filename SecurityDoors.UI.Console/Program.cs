@@ -1,161 +1,111 @@
 ﻿using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
-using SecurityDoors.DAL.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+
+// TODO: В константы.
 
 namespace SecurityDoors.UI.ConsoleApp
 {
     class Program
     {
-        private static ConnectionSettings _cs;
-        private static List<string> listOfDoors = new List<string>();
-        private static List<string> listOfCards = new List<string>();
-        private static TCP tcp;
-
         static void Main(string[] args)
         {
-            ConfigurationSetting();
-            var result = _cs.CheckSettings();
+            Console.Title = "Data modeling Application v1.0";
 
-            var t = Task.Run(() => LoadDataAsync());
-            t.Wait();
+            GreetingMessage();
 
-            //var s = Task.Run(() => DownloadDataAsync());
-            //s.Wait();
+            var mainController = new MainController();
 
-            var d = Task.Run(() => SendDataAsync());
-            d.Wait();
+            var connectionSettings = mainController.ConfigurationSetting();
+            var result = connectionSettings.CheckSettings(connectionSettings.IP, connectionSettings.Port, connectionSettings.PortAPI, connectionSettings.SecretKey);
+
+            if (result == default)
+            {
+                Logger.Log = Constants.CONNECTION_ESTABLISHED;
+
+                var t = Task.Run(() => StartProgram(mainController, connectionSettings));
+                t.Wait();
+
+                Console.WriteLine(Logger.Log);
+            }
+            else
+            {
+                Logger.Log = result;
+                Console.WriteLine(Logger.Log);
+                Console.WriteLine("Software operation failed..");
+            }
 
             Console.ReadLine();
-
-            // Самотестирование.
-            // Указать: файл с данными, файл с подключением, повтор: кол-во и период.
-            // Отправка сформированных рандомных значений. Сообхение об этом. Асинхронность.
         }
 
-
-        private static void ConfigurationSetting()
+        private static async Task StartProgram(MainController mainController, ConnectionSettings cs)
         {
-            Console.Write("Enter IP address: ");
-            var ip = Console.ReadLine();
+            Console.Write("Need to download data from API (Y/N): ");
+            var result = Console.ReadLine();
 
-            Console.Write("Enter port: ");
-            var port = int.Parse(Console.ReadLine());
+            Console.WriteLine();
 
-            Console.Write("Enter API port: ");
-            var portAPI = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter secret key: ");
-            var key = Console.ReadLine();
-
-            _cs = new ConnectionSettings(ip, port, portAPI, key);
-
-
-        }
-
-        private static async Task LoadDataAsync()
-        {
-            Logger.Log = Constants.DATA_READING_STARTED;
-            Console.WriteLine(Logger.Log);
-
-            var dataOperation = new DataOperations();
-            (bool status, List<string> cards, List<string> doors) = await dataOperation.LoadDataAsync();
-
-            if (status)
+            switch (result)
             {
-                listOfCards = cards;
-                listOfDoors = doors;
-
-                Logger.Log = Constants.DATA_READING_ENDED;
-                Console.WriteLine(Logger.Log);
-            }
-            else
-            {
-                Logger.Log = Constants.DATA_READING_FAILED;
-                Console.WriteLine(Logger.Log);
-            }
-        }
-
-        private static async Task DownloadDataAsync()
-        {
-            Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
-
-            try
-            {
-                var dataOperation = new DataOperations(_cs);
-                var result = await dataOperation.DownloadDataFromAPIAsync();
-
-                if (result)
-                {
-                    await LoadDataAsync();
-
-                    Logger.Log = Constants.DATA_API_SUCCESSED;
-                }
-                else
-                {
-                    Logger.Log = Constants.DATA_API_FAILED;
-                }
-            }
-            catch
-            {
-                Logger.Log = Constants.DATA_API_FAILED;
-            }
-        }
-
-
-        private static async Task SendDataAsync()
-        {
-            Console.Write("Enter count of message list: ");
-            var count = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter repeat: ");
-            var repeat = int.Parse(Console.ReadLine());
-
-            Console.Write("Enter delay: ");
-            var delay = int.Parse(Console.ReadLine());
-
-            var result = false;
-
-            if (listOfCards != null && listOfDoors != null)
-            {
-                var rnd = new Random();
-                tcp = new TCP(_cs);
-
-                var listOfMessages = new List<TCPMessage>();
-
-                for (int i = 0; i < count; i++)
-                {
-                    var cardIndex = rnd.Next(0, listOfCards.Count);
-                    var doorIndex = rnd.Next(0, listOfDoors.Count);
-
-                    var message = new TCPMessage()
+                case "n":
+                case "N":
                     {
-                        PersonCard = listOfCards[cardIndex],
-                        DoorName = listOfDoors[doorIndex]
-                    };
+                        var load = await mainController.LoadDataAsync();
 
-                    listOfMessages.Add(message);
-                }
+                        if (load)
+                        {
+                            await mainController.SendDataAsync(cs);
 
-                result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
+                            Logger.Log = Constants.SENDING_MESSAGE_ENDED;
+                            Console.WriteLine("Software operation completed successfully!\n");
+                        } 
+                        else
+                        {
+                            Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+                            Console.WriteLine("Software operation failed..\n");
+                        }
+                    }
+                    break;
 
-                if (result)
-                {
-                    Logger.Log = Constants.SENDING_MESSAGE_ENDED;
-                }
-                else
-                {
-                    Logger.Log = Constants.SENDING_MESSAGE_FAILED;
-                }
+                case "y":
+                case "Y":
+                    {
+                        Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
+
+                        var download = await mainController.DownloadDataAsync(cs);
+
+                        if (download)
+                        {
+                            Logger.Log = Constants.DATA_API_SUCCESSED;
+
+                            await mainController.SendDataAsync(cs);
+
+                            Logger.Log = Constants.SENDING_MESSAGE_ENDED;
+                            Console.WriteLine("Software operation completed successfully!\n");
+                        }
+                        else
+                        {
+                            Logger.Log = Constants.DATA_API_FAILED;
+                            Console.WriteLine("Software operation failed..\n");
+                        }
+                    }
+                    break;
+
+                default:
+                    {
+                        Console.WriteLine("Command unrecognized! Application exit..\n");
+                    }
+                    break;
             }
-            else
-            {
-                Logger.Log = Constants.SENDING_MESSAGE_FAILED;
-            }
+        }
+
+        private static void GreetingMessage()
+        {
+            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.WriteLine("Wellcome to data modeling system!\n");
+            Console.ResetColor();
         }
     }
 }

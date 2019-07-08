@@ -4,6 +4,7 @@ using System;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using SecurityDoors.Core;
 
 namespace SecurityDoors.UI.WPF.View
 {
@@ -12,21 +13,21 @@ namespace SecurityDoors.UI.WPF.View
 	/// </summary>
 	public partial class ConfigureNetwork : Window
 	{
-		private string host;
-		private int port;
-		private int portApi;
-		private string secretKey;
-
 		private ConnectionSettings _cs;
 		public ConfigureNetwork(ConnectionSettings _cs)
 		{
 			this._cs = _cs;
 			InitializeComponent();
+			RestoreSettings();
 		}
 
-		private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
+
+		/// <summary>
+		/// Устанавливает в поля данные из сохраненных параметров
+		/// </summary>
+		private void RestoreSettings()
 		{
-			field_host.Text = _cs.IP;
+			field_ip.Text = _cs.IP;
 			field_port.Text = _cs.Port.ToString();
 			field_portApi.Text = _cs.PortAPI.ToString();
 			field_secretKey.Text = _cs.SecretKey;
@@ -35,28 +36,45 @@ namespace SecurityDoors.UI.WPF.View
 		/// <summary>
 		/// обработчик кнопки "проверить соединение"
 		/// </summary>
-		private async void Btn_checkNetwork_Click(object sender, RoutedEventArgs e)
+		private async void Btn_checkNetwork_ClickAsync(object sender, RoutedEventArgs e)
 		{
-			try
+			var ip = field_ip.Text;
+			int.TryParse(field_port.Text, out int port);
+			int.TryParse(field_portApi.Text, out int portApi);
+			var secretKey = field_secretKey.Text;
+
+			var checkResult = _cs.CheckSettings(ip, port, portApi, secretKey);
+			if (checkResult != default)
 			{
-				port = int.Parse(field_port.Text);
+				MessageBox.Show(checkResult);
 			}
-			catch (FormatException)
+			else
 			{
-				port = 0;
-			}
-			host = field_host.Text;
-			if (SetErrorStyle(host, port))
-			{
-				//bool isAviable = await Task.Run(() => TCPController.CheckServerAvailability());
-				//if (isAviable)
-				//{
-				//	MessageBox.Show("подключение установлено");
-				//}
-				//else
-				//{
-				//	MessageBox.Show("сервер не доступен");
-				//}
+				_cs.IP = ip;
+				_cs.Port = port;
+				_cs.PortAPI = portApi;
+				_cs.SecretKey = secretKey;
+
+				var webConnection = new WebConnection(_cs);
+				var isApiAvailable = await webConnection.CheckConnectionAsync(portApi);
+				var isServerAvailable = await webConnection.CheckConnectionAsync(port);
+				//TODO: поправить
+				string serversAvailability = "";
+				serversAvailability += isApiAvailable ? Constants.CONNECTION_API_SUCCESSED : Constants.CONNECTION_API_FAILED;
+				serversAvailability += Environment.NewLine;
+				serversAvailability += isServerAvailable ? Constants.CONNECTION_DOOR_CONTROLLER_SUCCESSED : Constants.CONNECTION_DOOR_CONTROLLER_FAILED;
+
+
+				if (isServerAvailable || isApiAvailable)
+				{
+					Logger.Log = Constants.CONNECTION_ESTABLISHED;
+					MessageBox.Show(serversAvailability);
+				}
+				else
+				{
+					Logger.Log = Constants.CONNECTION_NOT_ESTABLISHED;
+					MessageBox.Show(serversAvailability);
+				}
 			}
 		}
 
@@ -65,35 +83,24 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private void Btn_save_Click(object sender, RoutedEventArgs e)
 		{
-			try
-			{
-				port = int.Parse(field_port.Text);
-			}
-			catch (FormatException)
-			{
-				port = 0;
-			}
-			host = field_host.Text;
-			secretKey = field_secretKey.Text;
-			if (SetErrorStyle(host, port))
-			{
-				Properties.Settings.Default.SaveNetworkSetting(host, port, secretKey);
-			}
-		}
+			var ip = field_ip.Text;
+			int.TryParse(field_port.Text, out int port);
+			int.TryParse(field_portApi.Text, out int portApi);
+			var secretKey = field_secretKey.Text;
 
-		/// <summary>
-		/// обработчик для checkBox localhost
-		/// </summary>
-		private void CheckBox_isLocalhost_Click(object sender, RoutedEventArgs e)
-		{
-			if ((bool)checkBox_isLocalhost.IsChecked)
+			_cs.IP = ip;
+			_cs.Port = port;
+			_cs.PortAPI = portApi;
+			_cs.SecretKey = secretKey;
+
+			var checkResult = _cs.SaveProperties();
+			if (checkResult != default)
 			{
-				field_host.IsEnabled = false;
-				//field_host.Text = TCPController.DefaultServer;
+				MessageBox.Show(checkResult);
 			}
 			else
 			{
-				field_host.IsEnabled = true;
+				Logger.Log = "Настройки успешно сохранены";
 			}
 		}
 
@@ -101,22 +108,35 @@ namespace SecurityDoors.UI.WPF.View
 		/// обработчик кнопки "очистить"
 		/// очищает текст в полях <c>field_host</c> и <c>field_port</c>
 		/// </summary>
-		private void Btn_clear_Click(object sender, RoutedEventArgs e)
+		private void Btn_check_Click(object sender, RoutedEventArgs e)
 		{
-			field_host.Text = "";
-			field_port.Text = "";
-			field_secretKey.Text = "";
-			field_host.IsEnabled = true;
-			checkBox_isLocalhost.IsChecked = false;
+			var ip = field_ip.Text;
+			int.TryParse(field_port.Text, out int port);
+			int.TryParse(field_portApi.Text, out int portApi);
+			var secretKey = field_secretKey.Text;
+
+			var checkResult = _cs.CheckSettings(ip, port, portApi, secretKey);
+			if (checkResult != default)
+			{
+				MessageBox.Show(checkResult);
+			}
+			else
+			{
+				MessageBox.Show("Данные корректны");
+			}
+
 			ResetStyle();
 		}
 
+		/// <summary>
+		/// Устанавливает настройки по умолчанию и выводит их в поля на форме
+		/// </summary>
 		private void Btn_reset_Click(object sender, RoutedEventArgs e)
 		{
 			ResetStyle();
-			//field_host.Text = TCPController.DefaultServer;
-			//field_port.Text = TCPController.DefaultPort.ToString();
-			field_secretKey.Text = "";
+
+			_cs.SetDefaultProperties();
+			RestoreSettings();
 		}
 
 		/// <summary>
@@ -125,7 +145,7 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private void Field_host_PreviewTextInput(object sender, System.Windows.Input.TextCompositionEventArgs e)
 		{
-			field_host.Style = (Style)field_host.FindResource("textBox_main");
+			field_ip.Style = (Style)field_ip.FindResource("textBox_main");
 			e.Handled = new Regex("[^0-9.]+").IsMatch(e.Text);
 		}
 
@@ -148,7 +168,7 @@ namespace SecurityDoors.UI.WPF.View
 		{
 			if (!NetUtils.IsAddressValid(host))
 			{
-				field_host.Style = (Style)field_host.FindResource("textBox_error");
+				field_ip.Style = (Style)field_ip.FindResource("textBox_error");
 			}
 			if (!NetUtils.IsPortValid(port))
 			{
@@ -163,7 +183,7 @@ namespace SecurityDoors.UI.WPF.View
 
 		private void ResetStyle()
 		{
-			field_host.Style = (Style)field_host.FindResource("textBox_main");
+			field_ip.Style = (Style)field_ip.FindResource("textBox_main");
 			field_port.Style = (Style)field_port.FindResource("textBox_main");
 		}
 	}

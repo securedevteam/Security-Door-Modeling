@@ -111,7 +111,6 @@ namespace SecurityDoors.UI.WPF.View
 			configureNetwork.ShowDialog();
 		}
 
-		private List<Action> actionList = new List<Action>();
 		/// <summary>
 		/// обработчик кнопки "добавить действие"
 		/// происходит добавление всех сотрудников отмеченых для проведения тестирования 

@@ -1,4 +1,5 @@
 ﻿using SecurityDoors.BLL.Controllers;
+using SecurityDoors.BLL.Properties;
 using SecurityDoors.DAL.Models;
 using SecurityDoors.DAL.ViewModels;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace SecurityDoors.UI.WPF.View
 		//TODO: Исправить именование класса на более понятное
 		private DataGridViewModel dataGridView = new DataGridViewModel();
 		private DoorViewModel doorsViewModel = new DoorViewModel();
+        private ConnectionSettings _cs = new ConnectionSettings();
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -107,7 +109,7 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private void Btn_configureNetwork_Click(object sender, RoutedEventArgs e)
 		{
-			ConfigureNetwork configureNetwork = new ConfigureNetwork();
+			ConfigureNetwork configureNetwork = new ConfigureNetwork(_cs);
 			configureNetwork.ShowDialog();
 		}
 

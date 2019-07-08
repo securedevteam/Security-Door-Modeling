@@ -12,22 +12,26 @@ namespace SecurityDoors.UI.WPF.View
 	/// </summary>
 	public partial class ConfigureNetwork : Window
 	{
-		public ConfigureNetwork()
+		private string host;
+		private int port;
+		private int portApi;
+		private string secretKey;
+
+		private ConnectionSettings _cs;
+		public ConfigureNetwork(ConnectionSettings _cs)
 		{
+			this._cs = _cs;
 			InitializeComponent();
 		}
 
 		private void ConfigureNetwork_Initialized(object sender, System.EventArgs e)
 		{
-			field_host.Text = BLL.Properties.Settings.Default.IP;
-			field_port.Text = BLL.Properties.Settings.Default.Port.ToString();
-			field_secretKey.Text = BLL.Properties.Settings.Default.SecretKey;
-
+			field_host.Text = _cs.IP;
+			field_port.Text = _cs.Port.ToString();
+			field_portApi.Text = _cs.PortAPI.ToString();
+			field_secretKey.Text = _cs.SecretKey;
 		}
 
-		private int port;
-		private string host;
-		private string secretKey;
 		/// <summary>
 		/// обработчик кнопки "проверить соединение"
 		/// </summary>

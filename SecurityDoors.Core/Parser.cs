@@ -5,19 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace SecurityDoors.Core
-{    
-    public static class Parser
-    {
+{
+    /// <summary>
+    /// Класс для преобразавания
+    /// </summary>
+    public class Parser
+    {     
         /// <summary>
         /// Преобразует значение введеное с консоли
         /// </summary>
-        /// <param name="messege">значение для вывода на консоль</param>
+        /// <typeparam name="T">тип в который надо преобразовать</typeparam>
+        /// <param name="message">значение для вывода на консоль</param>
         /// <returns>Преобразованое значение</returns>
-        public static T ParseValueFromConsole<T>(string messege) where T : IConvertible
+        public T ParseValueFromConsole<T>(string message) where T : IConvertible
         {
             while (true)
             {
-                Console.Write(messege);
+                Console.Write(message);
+                
                 if (typeof(T) == typeof(int))
                 {
                     if (int.TryParse(Console.ReadLine(), out int result))
@@ -28,7 +33,7 @@ namespace SecurityDoors.Core
                     {
                         continue;
                     }
-                }
+                }                
                 else if (typeof(T) == typeof(double))
                 {
                     if (double.TryParse(Console.ReadLine(), out double result))
@@ -39,14 +44,23 @@ namespace SecurityDoors.Core
                     {
                         continue;
                     }
-                }
+                }                
+                else if (typeof(T) == typeof(long))
+                {                    
+                    if (long.TryParse(Console.ReadLine(), out long result))
+                    {
+                        return (T)Convert.ChangeType(result, typeof(T));
+                    }
+                    else
+                    {
+                        continue;
+                    }                   
+                }               
                 else
                 {
                     return default;
                 }
             }
-
         }
-
     }
 }

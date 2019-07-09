@@ -13,6 +13,7 @@ namespace SecurityDoors.UI.ConsoleApp
     public class MainController
     {
         private TCP tcp;
+        private Parser Parser;
 
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
@@ -88,9 +89,10 @@ namespace SecurityDoors.UI.ConsoleApp
         {
             try
             {
-                var dataOperation = new DataOperations(connectionSettings);                
+                var dataOperation = new DataOperations(connectionSettings);
+                var result = await dataOperation.DownloadDataFromAPIAsync();
 
-                if (await dataOperation.DownloadDataFromAPIAsync())
+                if (result)
                 {
                     await LoadDataAsync();
 

@@ -24,6 +24,7 @@ namespace SecurityDoors.UI.ConsoleApp
         {
         }
 
+
         // TODO: в Task
         /// <summary>
         /// Заполнить настройки подключения данными.
@@ -33,22 +34,22 @@ namespace SecurityDoors.UI.ConsoleApp
         {
             Console.Write("Please enter IP Address: ");
             var ip = Console.ReadLine();
-
-            Console.Write("Please enter port number: ");
-            var port = int.Parse(Console.ReadLine());
-
-            Console.Write("Please enter API port number: ");
-            var portAPI = int.Parse(Console.ReadLine());
+            
+            var port = Parse.ParseValueFromConsole("Please enter port number: ");
+            
+            var portAPI = Parse.ParseValueFromConsole("Please enter API port number: ");
 
             Console.Write("Please enter secret key: ");
             var key = Console.ReadLine();
 
-            Console.WriteLine();
+            Console.WriteLine();           
 
-            var connectionSettings = new ConnectionSettings(ip, port, portAPI, key);
-
-            return connectionSettings;
+            return new ConnectionSettings(ip, port, portAPI, key);
         }
+
+
+
+
 
         /// <summary>
         /// Загрузить данные с файла.
@@ -87,10 +88,9 @@ namespace SecurityDoors.UI.ConsoleApp
         {
             try
             {
-                var dataOperation = new DataOperations(connectionSettings);
-                var result = await dataOperation.DownloadDataFromAPIAsync();
+                var dataOperation = new DataOperations(connectionSettings);                
 
-                if (result)
+                if (await dataOperation.DownloadDataFromAPIAsync())
                 {
                     await LoadDataAsync();
 
@@ -113,19 +113,14 @@ namespace SecurityDoors.UI.ConsoleApp
         /// <param name="connectionSettings">настройки подключения.</param>
         /// <returns>Результат операции.</returns>
         public async Task<bool> SendDataAsync(ConnectionSettings connectionSettings)
-        {
-            Console.Write("Please enter a count of the message list: ");
-            var count = int.Parse(Console.ReadLine());
+        {    
+            var count = Parse.ParseValueFromConsole("Please enter a count of the message list: ");            
 
-            Console.Write("Please enter a number to repeat the operation: ");
-            var repeat = int.Parse(Console.ReadLine());
-
-            Console.Write("Please enter a number to delay the operation: ");
-            var delay = int.Parse(Console.ReadLine());
+            var repeat = Parse.ParseValueFromConsole("Please enter a number to repeat the operation: ");
+          
+            var delay = Parse.ParseValueFromConsole("Please enter a number to delay the operation: ");
 
             Console.WriteLine();
-
-            var result = false;
 
             if (listOfCards != null && listOfDoors != null)
             {
@@ -148,16 +143,7 @@ namespace SecurityDoors.UI.ConsoleApp
                     listOfMessages.Add(message);
                 }
 
-                result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
-
-                if (result)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                return await tcp.SendMessagesAsync(listOfMessages, delay, repeat);                
             }
             else
             {

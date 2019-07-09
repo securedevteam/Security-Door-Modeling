@@ -25,7 +25,6 @@ namespace SecurityDoors.UI.ConsoleApp
         {
         }
 
-
         // TODO: в Task
         /// <summary>
         /// Заполнить настройки подключения данными.
@@ -43,14 +42,11 @@ namespace SecurityDoors.UI.ConsoleApp
             Console.Write("Please enter secret key: ");
             var key = Console.ReadLine();
 
-            Console.WriteLine();           
+            Console.WriteLine();
 
-            return new ConnectionSettings(ip, port, portAPI, key);
+            var connectionSettings = new ConnectionSettings(ip, port, portAPI, key);
+            return connectionSettings;
         }
-
-
-
-
 
         /// <summary>
         /// Загрузить данные с файла.
@@ -145,7 +141,15 @@ namespace SecurityDoors.UI.ConsoleApp
                     listOfMessages.Add(message);
                 }
 
-                return await tcp.SendMessagesAsync(listOfMessages, delay, repeat);                
+                var result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
+                if (result)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }                             
             }
             else
             {

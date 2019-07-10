@@ -34,9 +34,9 @@ namespace SecurityDoors.UI.ConsoleApp
         {
             Console.Write("Please enter IP Address: ");
             var ip = Console.ReadLine();
-            
+
             var port = Parser.ParseValueFromConsole<int>("Please enter port number: ");
-            
+
             var portAPI = Parser.ParseValueFromConsole<int>("Please enter API port number: ");
 
             Console.Write("Please enter secret key: ");
@@ -111,11 +111,11 @@ namespace SecurityDoors.UI.ConsoleApp
         /// <param name="connectionSettings">настройки подключения.</param>
         /// <returns>Результат операции.</returns>
         public async Task<bool> SendDataAsync(ConnectionSettings connectionSettings)
-        {    
-            var count = Parser.ParseValueFromConsole<int>("Please enter a count of the message list: ");            
+        {
+            var count = Parser.ParseValueFromConsole<int>("Please enter a count of the message list: ");
 
             var repeat = Parser.ParseValueFromConsole<int>("Please enter a number to repeat the operation: ");
-          
+
             var delay = Parser.ParseValueFromConsole<int>("Please enter a number to delay the operation: ");
 
             Console.WriteLine();
@@ -142,14 +142,7 @@ namespace SecurityDoors.UI.ConsoleApp
                 }
 
                 var result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
-                if (result)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }                             
+                return result;
             }
             else
             {

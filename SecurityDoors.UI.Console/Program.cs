@@ -33,7 +33,7 @@ namespace SecurityDoors.UI.ConsoleApp
             {
                 Logger.Log = result;
                 Console.WriteLine(Logger.Log);
-                Console.WriteLine("Software operation failed..");
+                Console.WriteLine(Constants.SOFTWARE_OPERATION_FAILED);
             }
 
             Console.ReadLine();
@@ -41,7 +41,7 @@ namespace SecurityDoors.UI.ConsoleApp
 
         private static async Task StartProgram(MainController mainController, ConnectionSettings cs)
         {
-            Console.Write("Need to download data from API (Y/N): ");
+            Console.Write(Constants.ENTER_DOWNLOADING_BY_API);
             var result = Console.ReadLine();
 
             Console.WriteLine();
@@ -58,12 +58,12 @@ namespace SecurityDoors.UI.ConsoleApp
                             await mainController.SendDataAsync(cs);
 
                             Logger.Log = Constants.SENDING_MESSAGE_ENDED;
-                            Console.WriteLine("Software operation completed successfully!\n");
+                            Console.WriteLine($"{Constants.SOFTWARE_OPERATION_SUCCESSFULLY}\n");
                         } 
                         else
                         {
                             Logger.Log = Constants.SENDING_MESSAGE_FAILED;
-                            Console.WriteLine("Software operation failed..\n");
+                            Console.WriteLine($"{Constants.SOFTWARE_OPERATION_FAILED}\n");
                         }
                     }
                     break;
@@ -82,19 +82,19 @@ namespace SecurityDoors.UI.ConsoleApp
                             await mainController.SendDataAsync(cs);
 
                             Logger.Log = Constants.SENDING_MESSAGE_ENDED;
-                            Console.WriteLine("Software operation completed successfully!\n");
+                            Console.WriteLine($"{Constants.SOFTWARE_OPERATION_SUCCESSFULLY}\n");
                         }
                         else
                         {
                             Logger.Log = Constants.DATA_API_FAILED;
-                            Console.WriteLine("Software operation failed..\n");
+                            Console.WriteLine($"{Constants.SOFTWARE_OPERATION_FAILED}\n");
                         }
                     }
                     break;
 
                 default:
                     {
-                        Console.WriteLine("Command unrecognized! Application exit..\n");
+                        Console.WriteLine($"{Constants.SOFTWARE_OPERATION_EXIT}\n");
                     }
                     break;
             }

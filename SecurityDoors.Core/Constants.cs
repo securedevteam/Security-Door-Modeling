@@ -34,7 +34,20 @@
 
         public static readonly string CONVERSION_ERROR = "Ошибка при конвертации.";
         public static readonly string COMBOBOX_EMPTY = "Список дверей пуст.";
-        
+
+        public static readonly string ENTER_IP_ADDRESS = "Пожалуйста, введите IP адрес: "; // Please enter IP Address
+        public static readonly string ENTER_PORT = "Пожалуйста, введите номер порта: "; // Please enter port number
+        public static readonly string ENTER_API_PORT = "Пожалуйста, введите номер API порта: "; // Please enter port numbe
+        public static readonly string ENTER_SECRET_KEY = "Пожалуйста, введите секретный ключ: "; // Please enter secret key
+        public static readonly string ENTER_COUNT_MESSAGE_LIST = "Пожалуйста, введите количество сообщений в списке: "; // Please enter a count of the message list
+        public static readonly string ENTER_NUMBER_TO_REPEAT = "Пожалуйста, введите количество раз, чтобы повторить операцию: "; // Please enter a number to repeat the operation
+        public static readonly string ENTER_NUMBER_TO_DELAY = "Пожалуйста, введите количество секунд, чтобы отложить операцию: "; // Please enter a number to delay the operation
+        public static readonly string ENTER_DOWNLOADING_BY_API = "Необходимо скачать данные из API (Y / N): "; // Need to download data from API (Y/N):
+
+        public static readonly string SOFTWARE_OPERATION_FAILED = "Ошибка программного обеспечения.."; // Software operation failed..
+        public static readonly string SOFTWARE_OPERATION_SUCCESSFULLY = "Успешное завершение программного обеспечения.."; // Software operation completed successfully..
+        public static readonly string SOFTWARE_OPERATION_EXIT = "Команда не распознана! Выход из приложения.."; // Command unrecognized! Application exit
+
         public static readonly string DEFAULT_IP = "127.0.0.1";
         public static readonly int DEFAULT_PORT = 1234;
         public static readonly int DEFAULT_PORT_API = 80;

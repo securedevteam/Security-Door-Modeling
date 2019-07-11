@@ -1,29 +1,36 @@
 ﻿using SecurityDoors.DAL.Models;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
-    public class DoorViewModel : INotifyPropertyChanged
+    public class CardsUsingViewModel : INotifyPropertyChanged, IEnumerable
     {
-        private List<Door> doors = new List<Door>();
+        private List<Card> cards = new List<Card>();
 
-        public List<Door> Doors
+        public List<Card> Cards
         {
             get
             {
-                return doors;
+                return cards;
             }
             set
             {
-                doors = value;
-                OnPropertyChanged(nameof(Doors));
+                cards = value;
+                OnPropertyChanged(nameof(Cards));
             }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName]string prop = "")
+
+		public IEnumerator GetEnumerator()
+		{
+			return ((IEnumerable)Cards).GetEnumerator();
+		}
+
+		public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
         }

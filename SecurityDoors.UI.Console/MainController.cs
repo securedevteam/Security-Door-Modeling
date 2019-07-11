@@ -13,6 +13,7 @@ namespace SecurityDoors.UI.ConsoleApp
     public class MainController
     {
         private TCP tcp;
+        private Parser Parser;
 
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
@@ -34,11 +35,9 @@ namespace SecurityDoors.UI.ConsoleApp
             Console.Write("Please enter IP Address: ");
             var ip = Console.ReadLine();
 
-            Console.Write("Please enter port number: ");
-            var port = int.Parse(Console.ReadLine());
+            var port = Parser.ParseValueFromConsole<int>("Please enter port number: ");
 
-            Console.Write("Please enter API port number: ");
-            var portAPI = int.Parse(Console.ReadLine());
+            var portAPI = Parser.ParseValueFromConsole<int>("Please enter API port number: ");
 
             Console.Write("Please enter secret key: ");
             var key = Console.ReadLine();
@@ -46,7 +45,6 @@ namespace SecurityDoors.UI.ConsoleApp
             Console.WriteLine();
 
             var connectionSettings = new ConnectionSettings(ip, port, portAPI, key);
-
             return connectionSettings;
         }
 
@@ -114,18 +112,13 @@ namespace SecurityDoors.UI.ConsoleApp
         /// <returns>Результат операции.</returns>
         public async Task<bool> SendDataAsync(ConnectionSettings connectionSettings)
         {
-            Console.Write("Please enter a count of the message list: ");
-            var count = int.Parse(Console.ReadLine());
+            var count = Parser.ParseValueFromConsole<int>("Please enter a count of the message list: ");
 
-            Console.Write("Please enter a number to repeat the operation: ");
-            var repeat = int.Parse(Console.ReadLine());
+            var repeat = Parser.ParseValueFromConsole<int>("Please enter a number to repeat the operation: ");
 
-            Console.Write("Please enter a number to delay the operation: ");
-            var delay = int.Parse(Console.ReadLine());
+            var delay = Parser.ParseValueFromConsole<int>("Please enter a number to delay the operation: ");
 
             Console.WriteLine();
-
-            var result = false;
 
             if (listOfCards != null && listOfDoors != null)
             {
@@ -148,16 +141,8 @@ namespace SecurityDoors.UI.ConsoleApp
                     listOfMessages.Add(message);
                 }
 
-                result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
-
-                if (result)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
+                var result = await tcp.SendMessagesAsync(listOfMessages, delay, repeat);
+                return result;
             }
             else
             {

@@ -13,7 +13,7 @@ namespace SecurityDoors.UI.ConsoleApp
     public class MainController
     {
         private TCP tcp;
-        private Parser Parser;
+        private readonly Parser _parser;
 
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
@@ -23,6 +23,7 @@ namespace SecurityDoors.UI.ConsoleApp
         /// </summary>
         public MainController()
         {
+            _parser = new Parser();
         }
 
         // TODO: в Task
@@ -35,9 +36,9 @@ namespace SecurityDoors.UI.ConsoleApp
             Console.Write("Please enter IP Address: ");
             var ip = Console.ReadLine();
 
-            var port = Parser.ParseValueFromConsole<int>("Please enter port number: ");
+            var port = _parser.ParseValueFromConsole<int>("Please enter port number: ");
 
-            var portAPI = Parser.ParseValueFromConsole<int>("Please enter API port number: ");
+            var portAPI = _parser.ParseValueFromConsole<int>("Please enter API port number: ");
 
             Console.Write("Please enter secret key: ");
             var key = Console.ReadLine();
@@ -112,11 +113,11 @@ namespace SecurityDoors.UI.ConsoleApp
         /// <returns>Результат операции.</returns>
         public async Task<bool> SendDataAsync(ConnectionSettings connectionSettings)
         {
-            var count = Parser.ParseValueFromConsole<int>("Please enter a count of the message list: ");
+            var count = _parser.ParseValueFromConsole<int>("Please enter a count of the message list: ");
 
-            var repeat = Parser.ParseValueFromConsole<int>("Please enter a number to repeat the operation: ");
+            var repeat = _parser.ParseValueFromConsole<int>("Please enter a number to repeat the operation: ");
 
-            var delay = Parser.ParseValueFromConsole<int>("Please enter a number to delay the operation: ");
+            var delay = _parser.ParseValueFromConsole<int>("Please enter a number to delay the operation: ");
 
             Console.WriteLine();
 

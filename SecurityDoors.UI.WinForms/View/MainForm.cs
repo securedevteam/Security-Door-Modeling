@@ -1,145 +1,177 @@
-﻿using SecurityDoors.BL.Controllers;
-using SecurityDoors.BL.Models.ViewModels;
-using SecurityDoors.UI.WinForms.Controllers;
+﻿using SecurityDoors.BLL.Controllers;
+using SecurityDoors.Core;
+using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
+// TODO: Баг - не обновляет список, если данные в файле изменились!
 
 namespace SecurityDoors.UI.WinForms.View
 {
 	public partial class MainForm : Form
 	{
-		private DataGridViewModel dataGridViewModel = new DataGridViewModel();
-		private DoorsViewModel doorsViewModel = new DoorsViewModel();
+        private ConnectionSettings _cs;
+        private List<string> listOfDoors = new List<string>();
+        private List<string> listOfCards = new List<string>();
+        private List<string> selectedListOfCards;
+		private TCP tcp;
 
 		public MainForm()
 		{
 			InitializeComponent();
 
-			UpdateDataSource();
+            _cs = new ConnectionSettings();
 		}
 
-		/// <summary>
-		/// Обновляет данные на форме
-		/// </summary>
-		private void UpdateDataSource()
-		{
-			LoggerController.Log = "Устанавливаю привязки к форме";
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.Log = Constants.SETTING_OPENING_WINDOW;
+            var settings = new SettingForm(_cs);
+            settings.ShowDialog();
+        }
 
-			dataGridViewPeoplesAndCards.DataSource = dataGridViewModel.PeopleAndCardsList;
-			dataGridViewPeoplesAndCards.AutoGenerateColumns = true;
-			dataGridViewPeoplesAndCards.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var aboutForm = new AboutProjectForm();
+            aboutForm.ShowDialog();
+        }
 
-			dataGridViewPeoplesAndCards.Columns[0].ReadOnly = true;
-			dataGridViewPeoplesAndCards.Columns[1].ReadOnly = true;
-			dataGridViewPeoplesAndCards.Columns[2].ReadOnly = true;
-			dataGridViewPeoplesAndCards.Columns[3].ReadOnly = true;
+        private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Logger.Log = Constants.DATA_API_DOWNLOADING_STARTED;
 
-			comboBoxDoors.DataSource = doorsViewModel.Doors;
-			comboBoxDoors.DisplayMember = "Name";
-			comboBoxDoors.ValueMember = "Name";
-		}
+            try
+            {
+                var dataOperation = new DataOperations(_cs);
+                var result = await dataOperation.DownloadDataFromAPIAsync();
 
-		private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			LoggerController.Log = "Открываю окно настроек";
-			var settings = new Settings();
-			settings.ShowDialog();
-		}
+                if(result)
+                {
+                    await LoadDataFromFilesAsync();
 
-		/// <summary>
-		/// Выполняет загрузку данных из файла
-		/// </summary>
-		private void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			LoggerController.Log = "Начата загрузка данных из файла";
-			var cacheController = new CacheController();
+                    Logger.Log = Constants.DATA_API_SUCCESSED;
+                }
+                else
+                {
+                    Logger.Log = Constants.DATA_API_FAILED;
+                }
+            }
+            catch 
+            {
+                Logger.Log = Constants.DATA_API_FAILED;
+            }
+        }
 
-			doorsViewModel.Doors = cacheController.Doors;
-			dataGridViewModel.PeopleAndCardsList = cacheController.People;
+        private async void ButtonStart_Click(object sender, EventArgs e)
+        {
+            Logger.Log = Constants.SENDING_MESSAGE_STARTED;
 
-			UpdateDataSource();
+            selectedListOfCards = new List<string>();
 
-			LoggerController.Log = "Загрузка из файла закончена";
-		}
-		/// <summary>
-		/// Сохраняет данные в файл
-		/// </summary>
-		private void SaveDataToFileToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			LoggerController.Log = "Начато сохранение данных в файл";
-			var cacheController = new CacheController();
-
-			cacheController.Doors = doorsViewModel.Doors;
-			cacheController.People = dataGridViewModel.PeopleAndCardsList;
-
-			cacheController.SaveCacheData();
-
-			LoggerController.Log = "Сохранение данных в файл закончено";
-		}
-
-		/// <summary>
-		/// Выполняет загрузку данных из API
-		/// </summary>
-		private void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			LoggerController.Log = "Начата загрузка данных из API";
-
-			var listOfPeopleAndCards = TCPController.GetListOfPeopleFromAPI();
-			var lisrOfDoors = TCPController.GetListOfDoorsFromAPI();
-			if (lisrOfDoors.Count != 0 || listOfPeopleAndCards.Count != 0)
+			foreach (DataGridViewRow row in dataGridViewPeoplesAndCards.Rows)
 			{
-				LoggerController.Log = "Загрузка данных из API прошла успешно";
-				dataGridViewModel.PeopleAndCardsList = listOfPeopleAndCards;
-				doorsViewModel.Doors = lisrOfDoors;
-				UpdateDataSource();
-			}
-			else
-			{
-				LoggerController.Log = "Загрузка данных из API неудачна";
-			}
-		}
-		/// <summary>
-		/// Запускает/останавливает тесты.
-		/// </summary>
-		private void ButtonStart_Click(object sender, EventArgs e)
-		{
-			var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
-			var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
-
-			if (parseCountSuccess && parseDelaySuccess)
-			{
-				do
+				if ((bool?)row.Cells[1].Value == true)
 				{
-					var messages = new List<BL.Models.Message>();
-					foreach (var row in dataGridViewModel.PeopleAndCardsList)
+					selectedListOfCards.Add(row.Cells[0].Value.ToString());
+				}
+			}
+
+            var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
+            var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
+            var result = false;
+			
+            if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
+            {
+                if (parseCountSuccess && parseDelaySuccess)
+                {
+					tcp = new TCP(_cs);
+
+					var listOfMessages = new List<TCPMessage>();
+
+					foreach (var card in selectedListOfCards)
 					{
-						if (row.Use)
+						var message = new TCPMessage()
 						{
-							messages.Add(new BL.Models.Message() { DoorName = comboBoxDoors.SelectedValue.ToString(), PersonCard = row.CardUniqueNumber });
-						}
+							PersonCard = card,
+							DoorName = comboBoxDoors.SelectedItem.ToString()
+						};
+
+						listOfMessages.Add(message);
 					}
-					TCPController.SendMessages(messages);
-					Thread.Sleep(new TimeSpan(0, 0, delay));
-					count--;
-				} while (count > 0);
-			}
-			else
+
+					result = await tcp.SendMessagesAsync(listOfMessages, delay, count);
+
+					if (result)
+                    {
+                        Logger.Log = Constants.SENDING_MESSAGE_ENDED;
+                    }
+                    else
+                    {
+                        Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+                    }
+                }
+                else
+                {
+                    Logger.Log = Constants.CONVERSION_ERROR;
+                }
+            }
+            else
+            {
+                Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+            }
+        }
+
+        private void UpdateDataSource()
+        {
+            Logger.Log = Constants.SETTING_BINDING_FORM;
+
+            foreach (var card in listOfCards)
 			{
-				LoggerController.Log = "Ошибка при конвертации";
+				dataGridViewPeoplesAndCards.Rows.Add(card);
 			}
-		}
+        }
+
+        private async Task LoadDataFromFilesAsync()
+        {
+            Logger.Log = Constants.DATA_READING_STARTED;
+
+            var dataOperation = new DataOperations();
+            (bool status, List<string> cards, List<string> doors) = await dataOperation.LoadDataAsync();
+
+            if (status)
+            {
+                listOfCards = cards;
+                listOfDoors = doors;
+
+                comboBoxDoors.DataSource = listOfDoors;
+                UpdateDataSource();
+
+                Logger.Log = Constants.DATA_READING_ENDED;
+            }
+            else
+            {
+                comboBoxDoors.Items.Add(Constants.COMBOBOX_EMPTY);
+                comboBoxDoors.SelectedItem = Constants.COMBOBOX_EMPTY;
+
+                Logger.Log = Constants.DATA_READING_FAILED;
+            }
+        }
+
+		private async void LoadDataFromFileToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            await LoadDataFromFilesAsync();
+        }
+
+        private async void MainForm_Load(object sender, EventArgs e)
+        {
+            await LoadDataFromFilesAsync();
+        }
+
 		private void TimerUpdateLog_Tick(object sender, EventArgs e)
 		{
-			textBoxLog.Text = LoggerController.Log;
+			textBoxLog.Text = Logger.Log;
 		}
-
-		private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
-		{
-			var about = new About();
-			about.ShowDialog();
-		}
-	}
+    }
 }

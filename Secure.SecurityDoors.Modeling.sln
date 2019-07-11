@@ -3,16 +3,22 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI", "SecurityDoors.WPFApp\SecurityDoors.UI.csproj", "{A0D010F1-5411-46BC-9E69-E3A4B41385ED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.WPF", "SecurityDoors.UI.WPF\SecurityDoors.UI.WPF.csproj", "{A0D010F1-5411-46BC-9E69-E3A4B41385ED}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A606F1ED-6EEF-4503-BE8A-C6307BFA412E}"
 	ProjectSection(SolutionItems) = preProject
 		.travis.yml = .travis.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.BL", "SecurityDoor.BL\SecurityDoors.BL.csproj", "{3EEE4E31-02E7-4BD5-8D97-763C479D1237}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.BLL", "SecurityDoors.BLL\SecurityDoors.BLL.csproj", "{3EEE4E31-02E7-4BD5-8D97-763C479D1237}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.WinForms", "SecurityDoors.UI.WinForms\SecurityDoors.UI.WinForms.csproj", "{9CF9E363-E640-415A-BA6D-863C828F113F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.ConsoleApp", "SecurityDoors.UI.Console\SecurityDoors.UI.ConsoleApp.csproj", "{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.DAL", "SecurityDoors.DAL\SecurityDoors.DAL.csproj", "{8CDB15E4-01E7-4C81-9A36-4154D123FD07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.Core", "SecurityDoors.Core\SecurityDoors.Core.csproj", "{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +38,18 @@ Global
 		{9CF9E363-E640-415A-BA6D-863C828F113F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9CF9E363-E640-415A-BA6D-863C828F113F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9CF9E363-E640-415A-BA6D-863C828F113F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF78ACEF-9E10-49BD-8AB5-98F8A758FAF6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CDB15E4-01E7-4C81-9A36-4154D123FD07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CDB15E4-01E7-4C81-9A36-4154D123FD07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CDB15E4-01E7-4C81-9A36-4154D123FD07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CDB15E4-01E7-4C81-9A36-4154D123FD07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

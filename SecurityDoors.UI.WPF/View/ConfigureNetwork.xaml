@@ -1,0 +1,97 @@
+﻿<Window x:Class="SecurityDoors.UI.WPF.View.ConfigureNetwork"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Name="configureNetwork"
+        Title="Настройка сети" Height="250" Width="300"
+        WindowStartupLocation="CenterScreen"
+        MinHeight="250" MinWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="15"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="IP сервера" Grid.Row="0" Grid.Column="0" Style="{StaticResource label_main}"/>
+        <Label Content="Порт" Grid.Row="1" Grid.Column="0" Style="{StaticResource label_main}"/>
+        <Label Content="Порт API" Grid.Row="2" Grid.Column="0" Style="{StaticResource label_main}"/>
+        <Label Content="Сек. ключ" Grid.Row="3" Grid.Column="0" Style="{StaticResource label_main}"/>
+        
+        <TextBox x:Name="field_ip" Grid.Row="0" Grid.Column="1" Height="30" PreviewTextInput="Field_host_PreviewTextInput"  MaxLength="15"  Style="{StaticResource textBox_main}">
+            <TextBox.ToolTip>
+                <ToolTip Style="{StaticResource tooltip_main}">
+                    ip адресс - это уникальный адресс сервера в сети. Имеет вид: 192.168.0.3
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBox x:Name="field_port" Grid.Row="1" Grid.Column="1" Height="30" PreviewTextInput="Field_port_PreviewTextInput" Style="{StaticResource textBox_main}">
+            <TextBox.ToolTip>
+                <ToolTip Style="{StaticResource tooltip_main}">
+                    порт - номер от 1 до 65535
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <TextBox x:Name="field_portApi" Grid.Row="2" Grid.Column="1" Height="30" PreviewTextInput="Field_secretKey_PreviewTextInput" Style="{StaticResource textBox_main}">
+            <TextBox.ToolTip>
+                <ToolTip>
+                    
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+
+        <TextBox x:Name="field_secretKey" Grid.Row="3" Grid.Column="1" Height="30" PreviewTextInput="Field_secretKey_PreviewTextInput" Style="{StaticResource textBox_main}">
+            <TextBox.ToolTip>
+                <ToolTip>
+
+                </ToolTip>
+            </TextBox.ToolTip>
+        </TextBox>
+        <Grid  Grid.Row="5" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button x:Name="btn_reset" Content="Сбросить" Grid.Row="0" Grid.Column="0" Click="Btn_reset_Click" Style="{StaticResource button_main}">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tooltip_main}">
+                        Вернуть состояние всех полей до значений по умолчанию
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button Name="btn_checkNetwork" Content="Тест подключения" Grid.Row="1" Grid.Column="1" Click="Btn_checkNetwork_ClickAsync" Style="{StaticResource button_main}">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tooltip_main}">
+                        проверить что сервер доступен по заданным параметрам сети
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button x:Name="btn_save" Content="Сохранить" Grid.Row="1" Grid.Column="0" Click="Btn_save_Click" Style="{StaticResource button_main}">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tooltip_main}">
+                        сохранить параметры и закрыть окно
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+            <Button x:Name="btn_clear" Content="Проверить" Grid.Row="0" Grid.Column="2" Click="Btn_check_Click" Style="{StaticResource button_main}">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tooltip_main}">
+                        Очистить все поля
+                    </ToolTip>
+                </Button.ToolTip>
+            </Button>
+        </Grid>
+    </Grid>
+</Window>

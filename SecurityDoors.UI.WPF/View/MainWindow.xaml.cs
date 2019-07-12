@@ -1,5 +1,6 @@
 ﻿using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
+using SecurityDoors.DAL.Models;
 using SecurityDoors.DAL.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -29,8 +30,6 @@ namespace SecurityDoors.UI.WPF.View
 			timer.Tick += InterfaceUpdate;
 			timer.Start();
 
-			dataGrid_persons.ItemsSource = cardsUsingViewModel;
-
 			LoadDataFromFilesAsync();
 		}
 
@@ -47,7 +46,61 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private async void Btn_run_Click(object sender, RoutedEventArgs e)
 		{
+			Logger.Log = Constants.SENDING_MESSAGE_STARTED;
 
+			var selectedListOfCards = new List<string>();
+
+			foreach (var card in cardsUsingViewModel.Cards)
+			{
+				if (card.Use)
+				{
+					selectedListOfCards.Add(card.UniqueNumber);
+				}
+			}
+
+			var parseCountSuccess = int.TryParse(textBox_repeat.Text, out int count);
+			var parseDelaySuccess = int.TryParse(textBox_pause.Text, out int delay);
+			var selectedDoor = comboBox_door.SelectedItem.ToString();
+
+			if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(selectedDoor))
+			{
+				if (parseCountSuccess && parseDelaySuccess)
+				{
+					var tcp = new TCP(_cs);
+
+					var listOfMessages = new List<TCPMessage>();
+
+					foreach (var card in selectedListOfCards)
+					{
+						var message = new TCPMessage()
+						{
+							PersonCard = card,
+							DoorName = selectedDoor
+						};
+
+						listOfMessages.Add(message);
+					}
+
+					var result = await tcp.SendMessagesAsync(listOfMessages, delay, count);
+
+					if (result)
+					{
+						Logger.Log = Constants.SENDING_MESSAGE_ENDED;
+					}
+					else
+					{
+						Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+					}
+				}
+				else
+				{
+					Logger.Log = Constants.CONVERSION_ERROR;
+				}
+			}
+			else
+			{
+				Logger.Log = Constants.SENDING_MESSAGE_FAILED;
+			}
 		}
 
 		/// <summary>
@@ -125,7 +178,7 @@ namespace SecurityDoors.UI.WPF.View
 			{
 				cardsUsingViewModel.Cards.Add(new DAL.Models.Card() { UniqueNumber = card , Use = false });
 			}
-			dataGrid_persons.ItemsSource = cardsUsingViewModel;
+			dataGrid_persons.ItemsSource = cardsUsingViewModel.Cards;
 		}
 
 		private async void Btn_SaveToFile_Click(object sender, RoutedEventArgs e)

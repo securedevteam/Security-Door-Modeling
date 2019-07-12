@@ -1,0 +1,47 @@
+﻿<Window x:Class="SecurityDoors.UI.WPF.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="470" Width="800"
+        MinHeight="470" MinWidth="710"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="0,0,2,11">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Выбор двери" Grid.Row="0" Grid.Column="0" Style="{StaticResource label_main}" Margin="28,4,28,3"/>
+        <Label Content="Повторять" Grid.Row="0" Grid.Column="1" Style="{StaticResource label_main}" Margin="36,4,36,3"/>
+        <Label Content="Паузка (сек)" Grid.Row="0" Grid.Column="2"  Style="{StaticResource label_main}" Margin="32,4,32,3"/>
+        <ComboBox Name="comboBox_door" Grid.Row="1" Grid.Column="0" Style="{StaticResource comboBox_main}"/>
+
+        <TextBox x:Name="textBox_repeat" Grid.Row="1" Grid.Column="1" PreviewTextInput="TextBox_PreviewTextInput"  Style="{StaticResource textBox_main}"/>
+        <TextBox x:Name="textBox_pause" Grid.Row="1" Grid.Column="2" PreviewTextInput="TextBox_PreviewTextInput" Style="{StaticResource textBox_main}"/>
+        <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5"  Style="{StaticResource dataGrid_main}" AutoGenerateColumns="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding CardNumber}" ClipboardContentBinding="{x:Null}" Header="Карта" CanUserResize="False" CanUserReorder="False" CanUserSort="False" IsReadOnly="True" MinWidth="350"/>
+                <DataGridCheckBoxColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="btn_run" Content="Запуск" Grid.Row="1" Grid.Column="3" Click="Btn_run_Click" Style="{StaticResource button_main}" Margin="4,4,4,4"/>
+        <Button x:Name="btn_configureNetwork" Content="Настроить подключение"  Grid.Row="0" Grid.Column="3" Click="Btn_configureNetwork_Click" Style="{StaticResource button_main}" Margin="4,4,4,4"/>
+        <Button x:Name="btn_loadFromApi" Content="Загрузить данные из API" Grid.Row="1" Grid.Column="4" Click="Btn_loadFromApi_Click" Style="{StaticResource button_main}" Margin="4,4,4,4"/>
+        <Button x:Name="btn_SaveToFile" Content="Сохранить данные в файл"  Grid.Row="0" Grid.Column="4" Click="Btn_SaveToFile_Click" Style="{StaticResource button_main}" Margin="4,4,4,4"/>
+
+        <Label Content="Лог" Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" Style="{StaticResource label_main}" Margin="0,3,0,4"/>
+        <TextBox x:Name="textBox_log" Grid.Row="4" Grid.ColumnSpan="5" Height="auto"  Style="{StaticResource textBox_main}" IsReadOnly="True" HorizontalScrollBarVisibility="Auto" TextAlignment="Left"/>
+    </Grid>
+</Window>

@@ -30,9 +30,9 @@
 
         <TextBox x:Name="textBox_repeat" Grid.Row="1" Grid.Column="1" PreviewTextInput="TextBox_PreviewTextInput"  Style="{StaticResource textBox_main}"/>
         <TextBox x:Name="textBox_pause" Grid.Row="1" Grid.Column="2" PreviewTextInput="TextBox_PreviewTextInput" Style="{StaticResource textBox_main}"/>
-        <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5"  Style="{StaticResource dataGrid_main}" AutoGenerateColumns="True">
+        <DataGrid x:Name="dataGrid_persons" Grid.Row="2" Grid.ColumnSpan="5"  Style="{StaticResource dataGrid_main}" AutoGenerateColumns="false">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding CardNumber}" ClipboardContentBinding="{x:Null}" Header="Карта" CanUserResize="False" CanUserReorder="False" CanUserSort="False" IsReadOnly="True" MinWidth="350"/>
+                <DataGridTextColumn Binding="{Binding UniqueNumber}" ClipboardContentBinding="{x:Null}" Header="Карта" CanUserResize="False" CanUserReorder="False" CanUserSort="False" IsReadOnly="True" MinWidth="350"/>
                 <DataGridCheckBoxColumn Binding="{Binding Use}" ClipboardContentBinding="{x:Null}" Header="Использовать"/>
             </DataGrid.Columns>
         </DataGrid>

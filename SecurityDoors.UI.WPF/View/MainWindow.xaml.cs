@@ -30,7 +30,7 @@ namespace SecurityDoors.UI.WPF.View
 			timer.Tick += InterfaceUpdate;
 			timer.Start();
 
-			LoadDataFromFilesAsync();
+            _ = LoadDataFromFilesAsync();
 		}
 
 		/// <summary>

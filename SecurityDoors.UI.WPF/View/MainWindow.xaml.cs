@@ -19,7 +19,7 @@ namespace SecurityDoors.UI.WPF.View
 		private ConnectionSettings _cs = new ConnectionSettings();
 		private List<string> listOfCards;
 		private List<string> listOfDoors;
-		private CardsUsingViewModel cardsUsingViewModel;
+		private CardsUsingViewModel cardsUsingViewModel = new CardsUsingViewModel();
 
 		public MainWindow()
 		{
@@ -45,7 +45,7 @@ namespace SecurityDoors.UI.WPF.View
 		/// <summary>
 		/// обработчик кнопки "запустить"
 		/// </summary>
-		private void Btn_run_Click(object sender, RoutedEventArgs e)
+		private async void Btn_run_Click(object sender, RoutedEventArgs e)
 		{
 
 		}

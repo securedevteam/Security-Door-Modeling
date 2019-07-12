@@ -1,6 +1,7 @@
 ﻿using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
 using SecurityDoors.DAL.Models;
+using SecurityDoors.DAL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace SecurityDoors.UI.ConsoleApp
         private TCP tcp;
         private readonly Parser _parser;
 
+		private CardsUsingViewModel cardsUsing = new CardsUsingViewModel();
+		
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
 

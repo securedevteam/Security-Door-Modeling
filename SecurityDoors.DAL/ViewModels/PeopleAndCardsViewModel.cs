@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
-    public class PeopleAndCardsViewModel : INotifyPropertyChanged
+    public class PeopleAndCardsViewModel: INotifyPropertyChanged
     {
         private string name;
         private string cardNumber;
@@ -40,6 +40,10 @@ namespace SecurityDoors.DAL.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+        /// <summary>
+        /// Вызывает событие изменения свойства.
+        /// </summary>
+        /// <param name="prop">Имя вызывающего метода.</param>
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

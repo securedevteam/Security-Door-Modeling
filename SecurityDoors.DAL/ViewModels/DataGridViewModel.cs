@@ -28,6 +28,7 @@ namespace SecurityDoors.DAL.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Вызывает событие изменения свойства.
         /// </summary>

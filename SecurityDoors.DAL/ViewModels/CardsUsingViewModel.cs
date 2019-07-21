@@ -29,10 +29,11 @@ namespace SecurityDoors.DAL.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// Вызывает событие изменения свойства.
         /// </summary>
-        /// <param name="prop">Имя вызывающего метода.</param>
+        /// <param name="prop">Имя вызвавшего свойства.</param>
 		public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

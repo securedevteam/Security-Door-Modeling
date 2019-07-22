@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
-    public class DataGridViewModel : INotifyPropertyChanged
+    public class DataGridViewModel: INotifyPropertyChanged
     {
         private List<Person> peopleAndCardsList;
 
@@ -28,6 +28,11 @@ namespace SecurityDoors.DAL.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Вызывает событие изменения свойства.
+        /// </summary>
+        /// <param name="prop">Имя вызывающего метода.</param>
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

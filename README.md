@@ -1,7 +1,7 @@
 # Security-Door-Modeling
 [![Build Status](https://dev.azure.com/SecureDevTeam/SecureDoors/_apis/build/status/securedevteam.Security-Door-Modeling?branchName=master)](https://dev.azure.com/SecureDevTeam/SecureDoors/_build/latest?definitionId=2&branchName=master)
 
-Разработанный комплекс приложений необходим для моделирования данных для Console App приложения SecurityDoors.DoorController. Основной идей является генерация и последующая отправка полученных данных из файла или по средствам WebAPI веб-приложения SecurityDoors.App. Основных интерфейса в разработанном комплексе 3: WPF, WinForms и ConsoleApp. 
+Разработанный комплекс приложений необходим для моделирования данных для Console App приложения SecurityDoors.DoorController. Основной идей является генерация и последующая отправка полученных данных из файла или по средствам WebAPI веб-приложения SecurityDoors.App. Основных интерфейсов в разработанном комплексе 3: WPF, WinForms и ConsoleApp. 
 
 Что было реализовано:
 - Windows Forms (WinFoms) приложение.

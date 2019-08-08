@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
-    interface ITCP
+    public interface ITCP
     {
         /// <summary>
         /// Отправить сообщение на DoorController.

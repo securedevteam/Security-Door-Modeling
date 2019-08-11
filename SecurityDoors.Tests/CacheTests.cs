@@ -1,11 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SecurityDoors.BLL.Interfaces;
 using SecurityDoors.BLL.Controllers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SecurityDoors.Tests
 {
@@ -13,7 +8,7 @@ namespace SecurityDoors.Tests
     public class CacheTests
     {
         [TestMethod()]
-        public void LoadCacheDataTest()
+        public void LoadCacheDataTest_Return_True()
         {
             // Arrange
             ICache cache = new Cache();
@@ -26,7 +21,7 @@ namespace SecurityDoors.Tests
         }
 
         [TestMethod()]
-        public void SaveCacheDataTest()
+        public void SaveCacheDataTest_Return_True()
         {
             // Arrange
             ICache cache = new Cache();
@@ -39,7 +34,7 @@ namespace SecurityDoors.Tests
         }
 
         [TestMethod()]
-        public void ClearCacheFileTest()
+        public void ClearCacheFileTest_Return_True()
         {
             // Arrange
             ICache cache = new Cache();

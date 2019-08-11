@@ -2,18 +2,18 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
-[assembly: AssemblyTitle("SecurityDoorsModelingUnitTests")]
+[assembly: AssemblyTitle("SecurityDoors.Tests")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SecurityDoorsModelingUnitTests")]
+[assembly: AssemblyProduct("SecurityDoors.Tests")]
 [assembly: AssemblyCopyright("Copyright ©  2019")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
 [assembly: ComVisible(false)]
 
-[assembly: Guid("cb2234cc-1ffe-4c47-8e0b-c11abc1b053f")]
+[assembly: Guid("c9372c4c-40fc-444f-b82d-62c062838552")]
 
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]

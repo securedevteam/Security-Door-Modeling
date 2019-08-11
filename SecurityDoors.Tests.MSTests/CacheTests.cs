@@ -24,5 +24,31 @@ namespace SecurityDoors.Tests
             // Assert
             Assert.IsTrue(result);
         }
+
+        [TestMethod()]
+        public void SaveCacheDataTest()
+        {
+            // Arrange
+            ICache cache = new Cache();
+
+            // Act
+            var result = cache.SaveCacheData();
+
+            // Assert
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod()]
+        public void ClearCacheFileTest()
+        {
+            // Arrange
+            ICache cache = new Cache();
+
+            // Act
+            var result = cache.ClearCacheFile();
+
+            // Assert
+            Assert.IsTrue(result);
+        }
     }
 }

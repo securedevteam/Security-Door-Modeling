@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 namespace SecurityDoorsModelingUnitTests
 {
     [TestClass]
-    public class CacheTest : ServiceFixture
+    public class CacheTest
     {
         private readonly ServiceProvider _serviceProvider;
         private readonly DataManager _dataManagerService;

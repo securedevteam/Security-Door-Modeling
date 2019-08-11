@@ -65,7 +65,7 @@
     <Compile Include="ConnectionSettingsTest.cs" />
     <Compile Include="DataOperationsTest.cs" />
     <Compile Include="ServiceFixture.cs" />
-    <Compile Include="CacheTest.cs" />
+    <Compile Include="Tests\CacheTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TCPTest.cs" />
     <Compile Include="WebConnectionTest.cs" />

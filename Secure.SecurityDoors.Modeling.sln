@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.757
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.UI.WPF", "SecurityDoors.UI.WPF\SecurityDoors.UI.WPF.csproj", "{A0D010F1-5411-46BC-9E69-E3A4B41385ED}"
 EndProject
@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.DAL", "Securi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.Core", "SecurityDoors.Core\SecurityDoors.Core.csproj", "{D6199DFC-EECE-423A-82EC-059D4D2A3CA9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoorsModelingUnitTests", "SecurityDoorsModelingUnitTests\SecurityDoorsModelingUnitTests.csproj", "{CB2234CC-1FFE-4C47-8E0B-C11ABC1B053F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SecurityDoors.Tests", "SecurityDoorsModelingUnitTests\SecurityDoors.Tests.csproj", "{CB2234CC-1FFE-4C47-8E0B-C11ABC1B053F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

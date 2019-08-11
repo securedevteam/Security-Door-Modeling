@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SecurityDoorModeling.Tests;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SecurityDoorsModelingUnitTests
+namespace SecurityDoorsModelingUnitTests.
 {
     [TestClass]
     public class CacheTest

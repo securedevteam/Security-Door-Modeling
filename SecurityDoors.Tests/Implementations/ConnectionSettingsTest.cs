@@ -2,7 +2,6 @@
 using SecurityDoors.DAL.Models;
 using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using SecurityDoorModeling.Tests;
 using Microsoft.Extensions.DependencyInjection;
 using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;

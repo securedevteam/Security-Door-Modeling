@@ -13,6 +13,8 @@ namespace SecurityDoors.Tests
         {
             var serviceCollection = new ServiceCollection();
 
+            serviceCollection.AddDbContext<ApplicationContext>(options => options.UseInMemoryDatabase(Guid.NewGuid().ToString()), ServiceLifetime.Transient);
+
             serviceCollection.AddScoped<ICache, Cache>();
             serviceCollection.AddScoped<IConnectionSettings, ConnectionSettings>();
             serviceCollection.AddScoped<IDataOperations, DataOperations>();

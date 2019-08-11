@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="CacheTests.cs" />
     <Compile Include="ConnectionSettingsTests.cs" />
+    <Compile Include="WebConnectionTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

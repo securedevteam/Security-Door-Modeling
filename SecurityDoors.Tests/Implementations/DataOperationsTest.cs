@@ -6,28 +6,28 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SecurityDoorModeling.Tests;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SecurityDoorsModelingUnitTests
+namespace SecurityDoors.Tests.Implementations
 {
     [TestClass]
-    public class WebConnectionTest
+    public class DataOperationsTest 
     {
         private readonly ServiceProvider _serviceProvider;
         private readonly DataManager _dataManagerService;
 
-        public WebConnectionTest(ServiceFixture fixture)
+        public DataOperationsTest(ServiceFixture fixture)
         {
             _serviceProvider = fixture.ServiceProvider;
             _dataManagerService = _serviceProvider.GetRequiredService<DataManager>();
         }
 
         [TestMethod]
-        public void GetDataFromAPIAsync_Return_True()
+        public void LoadDataAsync_Return_True()
         {
 
         }
 
         [TestMethod]
-        public void CheckConnectionAsync_Return_True()
+        public void DownloadDataFromAPIAsync_Return_True()
         {
 
         }

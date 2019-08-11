@@ -7,7 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
 
-namespace SecurityDoorsModelingUnitTests
+namespace SecurityDoors.Tests.Implementations
 {
     [TestClass]
     public class ConnectionSettingsTest : ServiceFixture

@@ -3,7 +3,7 @@ using SecurityDoors.BLL.Controllers;
 using SecurityDoors.BLL.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace SecurityDoorModeling.Tests
+namespace SecurityDoors.Tests
 {
     public class ServiceFixture
     {

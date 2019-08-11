@@ -1,13 +1,12 @@
 ﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
 using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
 using SecurityDoors.BLL.Interfaces;
+using Xunit;
 
 namespace SecurityDoors.Tests.Implementations
 {
-    [TestClass]
     public class ConnectionSettingsTest : ServiceFixture
     {
         private readonly IServiceProvider _serviceProvider;
@@ -21,7 +20,7 @@ namespace SecurityDoors.Tests.Implementations
             _connectionSettings = _serviceProvider.GetRequiredService<IConnectionSettings>();
         }
         
-        [TestMethod]
+        [Fact]
         public void SaveProperties_Return_True()
         {
             var expected = new ConnectionSettings()
@@ -34,10 +33,10 @@ namespace SecurityDoors.Tests.Implementations
 
             var actual = _connectionSettings.SaveProperties();
 
-            Assert.Equals(actual, Constants.SETTING_SAVE_SUCCESSED);
+            Assert.Equal(actual, Constants.SETTING_SAVE_SUCCESSED);
         }
 
-        [TestMethod]
+        [Fact]
         public void SetDefaultProperties_Return_True()
         {
             var expected = new ConnectionSettings()

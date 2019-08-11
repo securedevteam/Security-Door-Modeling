@@ -22,7 +22,7 @@ namespace SecurityDoors.Tests.Implementations
 
         }
 
-        [TestMethod]
+        [Fact]
         public void DownloadDataFromAPIAsync_Return_True()
         {
 

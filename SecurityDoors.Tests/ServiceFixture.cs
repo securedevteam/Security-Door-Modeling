@@ -19,8 +19,6 @@ namespace SecurityDoors.Tests
             serviceCollection.AddScoped<ITCP, TCP>();
             serviceCollection.AddScoped<IWebConnection, WebConnection>();
 
-            serviceCollection.AddScoped<DataManager>();
-
             ServiceProvider = serviceCollection.BuildServiceProvider();
         }
     }

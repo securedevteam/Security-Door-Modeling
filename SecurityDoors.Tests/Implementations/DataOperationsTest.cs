@@ -1,9 +1,6 @@
-﻿using SecurityDoors.BLL;
-using SecurityDoors.DAL.Models;
-using System;
-using System.Collections.Generic;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
+using SecurityDoors.BLL.Interfaces;
 
 namespace SecurityDoors.Tests.Implementations
 {
@@ -11,12 +8,12 @@ namespace SecurityDoors.Tests.Implementations
     public class DataOperationsTest 
     {
         private readonly ServiceProvider _serviceProvider;
-        private readonly DataManager _dataManagerService;
+        private readonly IDataOperations _dataOperations;
 
         public DataOperationsTest(ServiceFixture fixture)
         {
             _serviceProvider = fixture.ServiceProvider;
-            _dataManagerService = _serviceProvider.GetRequiredService<DataManager>();
+            _dataOperations = _serviceProvider.GetRequiredService<IDataOperations>();
         }
 
         [TestMethod]

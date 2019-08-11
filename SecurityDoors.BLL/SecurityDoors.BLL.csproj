@@ -52,7 +52,6 @@
     <Compile Include="Controllers\DataOperations.cs" />
     <Compile Include="Controllers\TCP.cs" />
     <Compile Include="Controllers\WebConnection.cs" />
-    <Compile Include="DataManager.cs" />
     <Compile Include="Interfaces\ICache.cs" />
     <Compile Include="Interfaces\IConnectionSettings.cs" />
     <Compile Include="Interfaces\IDataOperations.cs" />

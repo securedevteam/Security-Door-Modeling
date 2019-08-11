@@ -1,10 +1,9 @@
-﻿using SecurityDoors.BLL;
-using SecurityDoors.DAL.Models;
-using System;
+﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
 using SecurityDoors.BLL.Controllers;
 using SecurityDoors.Core;
+using SecurityDoors.BLL.Interfaces;
 
 namespace SecurityDoors.Tests.Implementations
 {
@@ -12,14 +11,14 @@ namespace SecurityDoors.Tests.Implementations
     public class ConnectionSettingsTest : ServiceFixture
     {
         private readonly IServiceProvider _serviceProvider;
-        private readonly DataManager _dataManagerService;
+        private readonly IConnectionSettings _connectionSettings;
 
         private readonly Random rnd = new Random();
        
         public ConnectionSettingsTest(ServiceFixture fixture)
         {
             _serviceProvider = fixture.ServiceProvider;
-            _dataManagerService = _serviceProvider.GetRequiredService<DataManager>();
+            _connectionSettings = _serviceProvider.GetRequiredService<IConnectionSettings>();
         }
         
         [TestMethod]
@@ -33,7 +32,7 @@ namespace SecurityDoors.Tests.Implementations
                 SecretKey = Guid.NewGuid().ToString()
             };
 
-            var actual = _dataManagerService.ConnectionSettings.SaveProperties();
+            var actual = _connectionSettings.SaveProperties();
 
             Assert.Equals(actual, Constants.SETTING_SAVE_SUCCESSED);
         }

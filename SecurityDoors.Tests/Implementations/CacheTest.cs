@@ -1,28 +1,28 @@
-﻿using SecurityDoors.BLL;
-using SecurityDoors.DAL.Models;
+﻿using SecurityDoors.DAL.Models;
 using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Extensions.DependencyInjection;
+using SecurityDoors.BLL.Interfaces;
+using Xunit;
 
 namespace SecurityDoors.Tests.Implementations
 {
     [TestClass]
-    public class CacheTest
+    public class CacheTest : IClassFixture<ServiceFixture>
     {
         private readonly ServiceProvider _serviceProvider;
-        private readonly DataManager _dataManagerService;
+        private readonly ICache _cache;
 
         public CacheTest(ServiceFixture fixture)
         {
             _serviceProvider = fixture.ServiceProvider;
-            _dataManagerService = _serviceProvider.GetRequiredService<DataManager>();
+            _cache = _serviceProvider.GetRequiredService<ICache>();
         }
 
         [TestMethod]
         public void LoadCacheDataAsync_Return_True()
         {
-
             var listCards = new List<Card>();
             var expectedCards = 10;
 

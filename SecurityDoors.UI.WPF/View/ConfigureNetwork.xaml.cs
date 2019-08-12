@@ -1,7 +1,6 @@
 ﻿using SecurityDoors.BLL.Controllers;
 using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using SecurityDoors.Core;
 
@@ -162,23 +161,6 @@ namespace SecurityDoors.UI.WPF.View
 		{
 			field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_main");
 		}
-
-		//private bool SetErrorStyle(string host, int port)
-		//{
-		//	if (!NetUtils.IsAddressValid(host))
-		//	{
-		//		field_ip.Style = (Style)field_ip.FindResource("textBox_error");
-		//	}
-		//	if (!NetUtils.IsPortValid(port))
-		//	{
-		//		field_port.Style = (Style)field_port.FindResource("textBox_error");
-		//	}
-		//	if (field_secretKey.Text == "")
-		//	{
-		//		field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_error");
-		//	}
-		//	return NetUtils.IsSettingValid(host, port);
-		//}
 
 		private void ResetStyle()
 		{

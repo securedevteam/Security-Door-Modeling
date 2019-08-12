@@ -29,7 +29,6 @@ namespace SecurityDoors.UI.ConsoleApp
             _parser = new Parser();
         }
 
-        // TODO: в Task
         /// <summary>
         /// Заполнить настройки подключения данными.
         /// </summary>

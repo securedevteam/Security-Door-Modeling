@@ -11,10 +11,7 @@ namespace SecurityDoors.BLL.Controllers
 {
     public class WebConnection : IWebConnection
     {
-        //private static TcpClient client = new TcpClient();
         private ConnectionSettings _cs;
-
-		//private static bool clientLocked = false;
 
         /// <summary>
         /// Конструктор.
@@ -52,7 +49,7 @@ namespace SecurityDoors.BLL.Controllers
                 return listOfData;
             }
         }
-		///TODO: TCPClient перенесен внутрь метода. 
+
         /// <inheritdoc/>
         public async Task<bool> CheckConnectionAsync(int port)
         {
@@ -78,15 +75,5 @@ namespace SecurityDoors.BLL.Controllers
                 return false;
             }
         }
-
-		/*private TcpClient GetTcpClient ()
-		{
-			while (clientLocked)
-			{
-
-			}
-			clientLocked = true;
-			return client;
-		}*/
     }
 }

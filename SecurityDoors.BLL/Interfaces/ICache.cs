@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
-    interface ICache
+    public interface ICache
     {
         /// <summary>
         /// Запуск загрузки данных из файлов.

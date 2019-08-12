@@ -1,6 +1,6 @@
 ﻿namespace SecurityDoors.BLL.Interfaces
 {
-    interface IConnectionSettings
+    public interface IConnectionSettings
     {
         /// <summary>
         /// Сохранить настройки.

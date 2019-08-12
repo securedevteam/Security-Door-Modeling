@@ -9,6 +9,9 @@ namespace SecurityDoors.Core
     {
         private static string log;
 
+        /// <summary>
+        /// Формирование лога.
+        /// </summary>
         public static string Log
         {
             get => log;

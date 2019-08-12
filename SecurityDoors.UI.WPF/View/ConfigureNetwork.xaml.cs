@@ -56,8 +56,8 @@ namespace SecurityDoors.UI.WPF.View
 				var webConnection = new WebConnection(_cs);
 				var isApiAvailable = await webConnection.CheckConnectionAsync(portApi);
 				var isServerAvailable = await webConnection.CheckConnectionAsync(port);
-				//TODO: поправить
-				string serversAvailability = "";
+
+				var serversAvailability = string.Empty;
 				serversAvailability += isApiAvailable ? Constants.CONNECTION_API_SUCCESSED : Constants.CONNECTION_API_FAILED;
 				serversAvailability += Environment.NewLine;
 				serversAvailability += isServerAvailable ? Constants.CONNECTION_DOOR_CONTROLLER_SUCCESSED : Constants.CONNECTION_DOOR_CONTROLLER_FAILED;

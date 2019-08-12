@@ -1,5 +1,8 @@
 ﻿namespace SecurityDoors.Core
 {
+    /// <summary>
+    /// Основные константы проекта.
+    /// </summary>
     public static class Constants
 	{
 		public static readonly string STRING_EMPTY = string.Empty;

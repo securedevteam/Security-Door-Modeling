@@ -5,10 +5,16 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
+    /// <summary>
+    /// Класс ViewModel для отображения данных в таблице.
+    /// </summary>
     public class DataGridViewModel: INotifyPropertyChanged
     {
         private List<Person> peopleAndCardsList;
 
+        /// <summary>
+        /// Список сотрудников.
+        /// </summary>
         public List<Person> PeopleAndCardsList
         {
             get

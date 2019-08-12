@@ -6,10 +6,16 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
+    /// <summary>
+    /// Класс ViewModel для использования карточки.
+    /// </summary>
     public class CardsUsingViewModel: INotifyPropertyChanged, IEnumerable
     {
         private List<Card> cards = new List<Card>();
 
+        /// <summary>
+        /// Список карточек.
+        /// </summary>
         public List<Card> Cards
         {
             get

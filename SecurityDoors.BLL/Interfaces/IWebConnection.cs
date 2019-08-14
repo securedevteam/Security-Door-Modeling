@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
-	interface IWebConnection
+	public interface IWebConnection
 	{
         /// <summary>
         /// Получить данные по API.

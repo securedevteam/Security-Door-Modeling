@@ -1,7 +1,6 @@
 ﻿using SecurityDoors.BLL.Controllers;
 using System;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using SecurityDoors.Core;
 
@@ -57,8 +56,8 @@ namespace SecurityDoors.UI.WPF.View
 				var webConnection = new WebConnection(_cs);
 				var isApiAvailable = await webConnection.CheckConnectionAsync(portApi);
 				var isServerAvailable = await webConnection.CheckConnectionAsync(port);
-				//TODO: поправить
-				string serversAvailability = "";
+
+				var serversAvailability = string.Empty;
 				serversAvailability += isApiAvailable ? Constants.CONNECTION_API_SUCCESSED : Constants.CONNECTION_API_FAILED;
 				serversAvailability += Environment.NewLine;
 				serversAvailability += isServerAvailable ? Constants.CONNECTION_DOOR_CONTROLLER_SUCCESSED : Constants.CONNECTION_DOOR_CONTROLLER_FAILED;
@@ -162,23 +161,6 @@ namespace SecurityDoors.UI.WPF.View
 		{
 			field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_main");
 		}
-
-		//private bool SetErrorStyle(string host, int port)
-		//{
-		//	if (!NetUtils.IsAddressValid(host))
-		//	{
-		//		field_ip.Style = (Style)field_ip.FindResource("textBox_error");
-		//	}
-		//	if (!NetUtils.IsPortValid(port))
-		//	{
-		//		field_port.Style = (Style)field_port.FindResource("textBox_error");
-		//	}
-		//	if (field_secretKey.Text == "")
-		//	{
-		//		field_secretKey.Style = (Style)field_secretKey.FindResource("textBox_error");
-		//	}
-		//	return NetUtils.IsSettingValid(host, port);
-		//}
 
 		private void ResetStyle()
 		{

@@ -3,8 +3,6 @@ using SecurityDoors.Core;
 using System;
 using System.Threading.Tasks;
 
-// TODO: В константы.
-
 namespace SecurityDoors.UI.ConsoleApp
 {
     class Program

@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace SecurityDoors.BLL.Interfaces
 {
-    interface IDataOperations
+    public interface IDataOperations
     {
         /// <summary>
         /// Загрузить данные с файлов.

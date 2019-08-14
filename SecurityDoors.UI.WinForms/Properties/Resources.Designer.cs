@@ -63,9 +63,9 @@ namespace SecurityDoors.UI.WinForms.Properties {
         /// <summary>
         ///   Поиск локализованного ресурса типа System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _2019_06_27_11_42_23 {
+        internal static System.Drawing.Bitmap about_team {
             get {
-                object obj = ResourceManager.GetObject("2019-06-27_11-42-23", resourceCulture);
+                object obj = ResourceManager.GetObject("about_team", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

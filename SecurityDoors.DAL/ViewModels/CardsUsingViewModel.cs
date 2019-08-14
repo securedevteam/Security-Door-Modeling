@@ -6,10 +6,16 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
-    public class CardsUsingViewModel : INotifyPropertyChanged, IEnumerable
+    /// <summary>
+    /// Класс ViewModel для использования карточки.
+    /// </summary>
+    public class CardsUsingViewModel: INotifyPropertyChanged, IEnumerable
     {
         private List<Card> cards = new List<Card>();
 
+        /// <summary>
+        /// Список карточек.
+        /// </summary>
         public List<Card> Cards
         {
             get
@@ -23,13 +29,17 @@ namespace SecurityDoors.DAL.ViewModels
             }
         }
 
+        public IEnumerator GetEnumerator()
+        {
+            return ((IEnumerable)Cards).GetEnumerator();
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-		public IEnumerator GetEnumerator()
-		{
-			return ((IEnumerable)Cards).GetEnumerator();
-		}
-
+        /// <summary>
+        /// Вызывает событие изменения свойства.
+        /// </summary>
+        /// <param name="prop">Имя вызвавшего свойства.</param>
 		public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

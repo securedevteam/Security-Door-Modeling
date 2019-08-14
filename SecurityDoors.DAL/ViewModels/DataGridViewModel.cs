@@ -5,10 +5,16 @@ using System.Runtime.CompilerServices;
 
 namespace SecurityDoors.DAL.ViewModels
 {
-    public class DataGridViewModel : INotifyPropertyChanged
+    /// <summary>
+    /// Класс ViewModel для отображения данных в таблице.
+    /// </summary>
+    public class DataGridViewModel: INotifyPropertyChanged
     {
         private List<Person> peopleAndCardsList;
 
+        /// <summary>
+        /// Список сотрудников.
+        /// </summary>
         public List<Person> PeopleAndCardsList
         {
             get
@@ -28,6 +34,11 @@ namespace SecurityDoors.DAL.ViewModels
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Вызывает событие изменения свойства.
+        /// </summary>
+        /// <param name="prop">Имя вызывающего метода.</param>
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));

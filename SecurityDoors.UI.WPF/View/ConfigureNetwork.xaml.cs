@@ -11,7 +11,7 @@ namespace SecurityDoors.UI.WPF.View
 	/// </summary>
 	public partial class ConfigureNetwork : Window
 	{
-		private ConnectionSettings _cs;
+		private readonly ConnectionSettings _cs;
 		public ConfigureNetwork(ConnectionSettings _cs)
 		{
 			this._cs = _cs;

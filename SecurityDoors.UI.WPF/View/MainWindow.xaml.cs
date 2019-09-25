@@ -16,11 +16,11 @@ namespace SecurityDoors.UI.WPF.View
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		private DispatcherTimer timer;
-		private ConnectionSettings _cs = new ConnectionSettings();
+		private readonly DispatcherTimer timer;
+		private readonly ConnectionSettings _cs = new ConnectionSettings();
 		private List<string> listOfCards;
 		private List<string> listOfDoors;
-		private CardsUsingViewModel cardsUsingViewModel = new CardsUsingViewModel();
+		private readonly CardsUsingViewModel cardsUsingViewModel = new CardsUsingViewModel();
 
 		public MainWindow()
 		{
@@ -38,7 +38,7 @@ namespace SecurityDoors.UI.WPF.View
 		/// </summary>
 		private void InterfaceUpdate(object sender = null, object e = null)
 		{
-			textBox_log.Text = Logger.Log != null ? Logger.Log : string.Empty;
+			textBox_log.Text = Logger.Log ?? string.Empty;
 		}
 
 		/// <summary>

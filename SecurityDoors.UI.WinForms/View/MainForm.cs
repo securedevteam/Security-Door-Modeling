@@ -126,6 +126,8 @@ namespace SecurityDoors.UI.WinForms.View
         {
             Logger.Log = Constants.SETTING_BINDING_FORM;
 
+			dataGridViewPeoplesAndCards.Rows.Clear();
+
             foreach (var card in listOfCards)
 			{
 				dataGridViewPeoplesAndCards.Rows.Add(card);

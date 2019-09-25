@@ -10,7 +10,7 @@ namespace SecurityDoors.UI.WinForms.View
 {
 	public partial class MainForm : Form
 	{
-        private ConnectionSettings _cs;
+        private readonly ConnectionSettings _cs;
         private List<string> listOfDoors = new List<string>();
         private List<string> listOfCards = new List<string>();
         private List<string> selectedListOfCards;
@@ -28,12 +28,14 @@ namespace SecurityDoors.UI.WinForms.View
             Logger.Log = Constants.SETTING_OPENING_WINDOW;
             var settings = new SettingForm(_cs);
             settings.ShowDialog();
-        }
+			settings.Dispose();
+		}
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var aboutForm = new AboutProjectForm();
             aboutForm.ShowDialog();
+			aboutForm.Dispose();
         }
 
         private async void UpdateThroughtAPIToolStripMenuItem_Click(object sender, EventArgs e)
@@ -43,9 +45,9 @@ namespace SecurityDoors.UI.WinForms.View
             try
             {
                 var dataOperation = new DataOperations(_cs);
-                var result = await dataOperation.DownloadDataFromAPIAsync();
+                var downloadSuccess = await dataOperation.DownloadDataFromAPIAsync();
 
-                if(result)
+                if(downloadSuccess)
                 {
                     await LoadDataFromFilesAsync();
 
@@ -78,9 +80,8 @@ namespace SecurityDoors.UI.WinForms.View
 
             var parseCountSuccess = int.TryParse(numericUpDownRepeatCount.Value.ToString(), out int count);
             var parseDelaySuccess = int.TryParse(numericUpDownDelay.Value.ToString(), out int delay);
-            var result = false;
-			
-            if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
+
+			if (selectedListOfCards != null && !string.IsNullOrWhiteSpace(comboBoxDoors.SelectedItem.ToString()))
             {
                 if (parseCountSuccess && parseDelaySuccess)
                 {
@@ -99,7 +100,7 @@ namespace SecurityDoors.UI.WinForms.View
 						listOfMessages.Add(message);
 					}
 
-					result = await tcp.SendMessagesAsync(listOfMessages, delay, count);
+					bool result = await tcp.SendMessagesAsync(listOfMessages, delay, count);
 
 					if (result)
                     {

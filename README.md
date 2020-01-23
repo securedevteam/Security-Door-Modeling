@@ -1,31 +1,38 @@
-# Security-Door-Modeling
+# Data modeling
+
 [![Build Status](https://dev.azure.com/SecureDevTeam/SecureDoors/_apis/build/status/securedevteam.Security-Door-Modeling?branchName=master)](https://dev.azure.com/SecureDevTeam/SecureDoors/_build/latest?definitionId=2&branchName=master)
 
-Разработанный комплекс приложений необходим для моделирования данных для Console App приложения SecurityDoors.DoorController. Основной идей является генерация и последующая отправка полученных данных из файла или по средствам WebAPI веб-приложения SecurityDoors.App. Основных интерфейсов в разработанном комплексе 3: WPF, WinForms и ConsoleApp. 
+The developed set of applications is necessary for data modeling for the Console App of the SecurityDoors.DoorController application. The main idea is to generate and then send the received data from a file or via the WebAPI of the SecurityDoors.App web application. The main interfaces in the developed complex 3: WPF, WinForms and ConsoleApp.
 
-Что было реализовано:
-- Windows Forms (WinFoms) приложение.
-- Windows Presentation Foundation (WPF) приложение.
-- Console App on Framework 4.7 приложение.
-- Настройка соединения с сервером и веб-приложением.
-- Возможность тестового соединения и проверка данных.
-- Сохранение и возврат к стандартным данных соединения.
-- Загрузка данных из файла.
-- Возможность получения данных от сервера через WebAPI.
-- Обновление полученных данных от сервера.
-- Отображение полученных данных от сервера.
-- Моделирование и отправка выбранных данных на сервер.
-- Многофункциональный лог для всех типов приложения.
+## Application features
+1. Windows Forms (WinFoms) application;
+2. Windows Presentation Foundation (WPF) application;
+3. Console App on Framework 4.7 application;
+4. Configuring connection to the server and web application;
+5. Possibility of test connection and data verification;
+6. Saving and returning to the standard connection data;
+7. Loading data from a file;
+8. Ability to receive data from the server via WebAPI;
+9. Update received data from the server;
+10. Display of received data from the server;
+11. Modeling and sending selected data to the server;
+12. Multifunctional log for all types of applications;
 
-Используемый стек технологий:
-- Windows Forms (WinFoms);
-- Windows Presentation Foundation (WPF);
-- Console App on Framework 4.7;
-- N-Layer архитектура;
-- Entity Framework Core;
-- LINQ (Language-Integrated Query);
-- Manual и xUnit тестирование;
-- Использования данных от WebAPI;
-- Система контроля версий: Git;
-- Система менеджмента заданий: Trello;
-- Непрерывная интеграция: Azure Pipelines;
+## Built With
+- [N-Layer architecture](https://docs.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/common-web-application-architectures);
+- [LINQ](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/linq/) (Language-Integrated Query) - uniform query syntax in C#;
+- Manual and [xUnit](https://xunit.net/) testing;
+- [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) - data access technology;
+- [Windows Forms (WinForms)](https://docs.microsoft.com/en-us/dotnet/framework/winforms/);
+- [Windows Presentation Foundation (WPF)](https://docs.microsoft.com/en-us/dotnet/framework/wpf/);
+- Using data from [Doors WebAPI app](https://github.com/securedevteam/Security-Doors);
+- [Git](https://git-scm.com/) - version control system;
+- [Trello](https://trello.com/en) - a web-based Kanban-style list-making application;
+- [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/) - continuous integration;
+
+## Authors
+- [Mikhail M.](https://mikhailmasny.github.io/) - Architect & .NET Developer;
+- [Alexandr G.](https://s207883.github.io/) - Full-stack .NET Developer;
+
+## License
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/securedevteam/Security-Door-Modeling/blob/master/LICENSE) file for details.

@@ -25,6 +25,7 @@ The developed set of applications is necessary for data modeling for the Console
 - [Entity Framework Core](https://docs.microsoft.com/en-us/ef/core/) - data access technology;
 - [Windows Forms (WinForms)](https://docs.microsoft.com/en-us/dotnet/framework/winforms/);
 - [Windows Presentation Foundation (WPF)](https://docs.microsoft.com/en-us/dotnet/framework/wpf/);
+- [Console application on .NET Core](https://docs.microsoft.com/en-us/dotnet/core/about);
 - Using data from [Doors WebAPI app](https://github.com/securedevteam/Security-Doors);
 - [Git](https://git-scm.com/) - version control system;
 - [Trello](https://trello.com/en) - a web-based Kanban-style list-making application;
